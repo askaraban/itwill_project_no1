@@ -44,8 +44,8 @@ public class PracticeUi {
 	 * Create the application.
 	 */ 
 	public PracticeUi() {
-		initialize();
-	}
+		initialize(); 
+	} 
 
 	/**
 	 * Initialize the contents of the frame.
