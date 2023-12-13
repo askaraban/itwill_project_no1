@@ -1,40 +1,21 @@
 package itwill.xyz.jdcbtam1;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
+import java.awt.EventQueue;
 import java.awt.FlowLayout;
-import javax.swing.JTextArea;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JButton;
-import javax.swing.JSplitPane;
-import javax.swing.JTable;
-import javax.swing.BoxLayout;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import java.awt.Component;
 import java.awt.GridLayout;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
 import java.awt.Panel;
-import java.awt.SystemColor;
-import java.awt.Font;
-import javax.swing.JTabbedPane;
-import javax.swing.JLayeredPane;
-import javax.swing.JDesktopPane;
-import java.awt.CardLayout;
-import javax.swing.Box;
-import javax.swing.SpringLayout;
-import javax.swing.JSpinner;
-import javax.swing.JComboBox;
+
 import javax.swing.DefaultComboBoxModel;
-import java.awt.Button;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 public class PracticeUi {
 
