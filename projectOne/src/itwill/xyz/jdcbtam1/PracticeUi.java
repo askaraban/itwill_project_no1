@@ -41,7 +41,7 @@ public class PracticeUi {
 	}
 
 	/**
-	 * Create the application.
+	 * Create the application.ㅇ
 	 */ 
 	public PracticeUi() {
 		initialize(); 
@@ -51,8 +51,10 @@ public class PracticeUi {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
 		frame = new JFrame();
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		frame.setBounds(400,100,1000,800);
 		
 		JPanel panel_3 = new JPanel();
 		frame.getContentPane().add(panel_3, BorderLayout.SOUTH);
