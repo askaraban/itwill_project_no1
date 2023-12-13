@@ -43,7 +43,7 @@ public class PracticeUi {
 	private JTextField textField_1;
 	private JTable table;
 
-	/**ㅇㅇ
+	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
@@ -121,43 +121,54 @@ public class PracticeUi {
 		
 		Panel panel_1 = new Panel();
 		panel.add(panel_1);
-		panel_1.setLayout(new GridLayout(0, 6, 0, 0));
+		panel_1.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		JPanel panel_2 = new JPanel();
 		panel_1.add(panel_2);
-		panel_2.setLayout(new GridLayout(2, 1, 0, 0));
+		panel_2.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		JButton btnNewButton = new JButton("로그인");
-		panel_2.add(btnNewButton);
+		JPanel panel_4 = new JPanel();
+		panel_2.add(panel_4);
+		panel_4.setLayout(new GridLayout(2, 2, 0, 0));
 		
-		JButton btnNewButton_1 = new JButton("로그아웃");
-		panel_2.add(btnNewButton_1);
+		JButton btnNewButton_1 = new JButton("로그인");
+		panel_4.add(btnNewButton_1);
+		
+		JButton btnNewButton = new JButton("회원가입");
+		panel_4.add(btnNewButton);
+		
+		JButton button = new JButton("로그아웃");
+		panel_4.add(button);
+		
+		JButton btnNewButton_8 = new JButton("회원탈퇴");
+		panel_4.add(btnNewButton_8);
+		
+		JPanel panel_5 = new JPanel();
+		panel_2.add(panel_5);
+		panel_5.setLayout(new BorderLayout(0, 0));
+		
+		JButton btnNewButton_5 = new JButton("내 정보 보기");
+		panel_5.add(btnNewButton_5);
 		
 		JPanel panel_7 = new JPanel();
 		panel_1.add(panel_7);
 		panel_7.setLayout(new GridLayout(2, 1, 0, 0));
 		
-		JButton btnNewButton_6 = new JButton("회원가입");
-		btnNewButton_6.setToolTipText("회원탈퇴");
-		panel_7.add(btnNewButton_6);
+		JLabel lblNewLabel_2 = new JLabel("환영합니다");
+		panel_7.add(lblNewLabel_2);
 		
-		JButton btnNewButton_7 = new JButton("회원탈퇴");
-		panel_7.add(btnNewButton_7);
-		
-		JPanel panel_8 = new JPanel();
-		panel_1.add(panel_8);
-		panel_8.setLayout(new GridLayout(1, 2, 0, 0));
-		
-		JButton btnNewButton_5 = new JButton("내 정보");
-		panel_8.add(btnNewButton_5);
-		
-		JPanel panel_4 = new JPanel();
-		panel_1.add(panel_4);
-		
-		JPanel panel_5 = new JPanel();
-		panel_1.add(panel_5);
+		JLabel lblNewLabel_1 = new JLabel("아이티윌 은행입니다.");
+		panel_7.add(lblNewLabel_1);
 		
 		JPanel panel_6 = new JPanel();
-		panel_1.add(panel_6);
+		panel.add(panel_6);
+		panel_6.setLayout(new GridLayout(2, 0, 0, 0));
+		
+		JPanel panel_8 = new JPanel();
+		panel_6.add(panel_8);
+		panel_8.setLayout(new GridLayout(0, 2, 0, 0));
+		
+		JPanel panel_9 = new JPanel();
+		panel_8.add(panel_9);
 	}
 }
