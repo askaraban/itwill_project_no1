@@ -43,7 +43,7 @@ public class PracticeUi {
 	private JTextField textField_1;
 	private JTable table;
 
-	/**
+	/**ㅇㅇ
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
