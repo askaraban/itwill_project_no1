@@ -42,7 +42,7 @@ public class PracticeUi {
 
 	/**
 	 * Create the application.
-	 */
+	 */ 
 	public PracticeUi() {
 		initialize();
 	}
