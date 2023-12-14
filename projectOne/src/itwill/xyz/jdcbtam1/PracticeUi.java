@@ -37,7 +37,7 @@ public class PracticeUi extends JFrame {
 
 
 	/**
-	 * Create the application.ㅇ
+	 * Create the application.
 	 */ 
 	public PracticeUi(String title) {
 		initialize(title); 
@@ -57,6 +57,10 @@ public class PracticeUi extends JFrame {
 		panel_3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		InBtn = new JButton("입금");
+		InBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		panel_3.add(InBtn);
 		
 		JButton btnNewButton_3 = new JButton("출금");
@@ -111,9 +115,30 @@ public class PracticeUi extends JFrame {
 		panel_4.setLayout(new GridLayout(2, 2, 0, 0));
 		
 		JButton btnNewButton_1 = new JButton("로그인");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				LoginUI join = new LoginUI();
+				join.setVisible(true);
+				join.setLayout(null);
+				join.setLocation(getWidth() / 2 + 700 + join.getLocation().x, 
+						getHeight() / 2 + 200 + join.getLocation().y);
+				
+			}
+		});
 		panel_4.add(btnNewButton_1);
 		
 		JButton btnNewButton = new JButton("회원가입");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JoinUI join = new JoinUI();
+				join.setVisible(true);
+				join.setLayout(null);
+				join.setLocation(getWidth() / 2 + 700 + join.getLocation().x, 
+						getHeight() / 2 + 200 + join.getLocation().y);
+			}
+		});
 		panel_4.add(btnNewButton);
 		
 		JButton button = new JButton("로그아웃");
@@ -151,6 +176,7 @@ public class PracticeUi extends JFrame {
 		panel_8.add(panel_9);
 		
 		inin = new InputMoney(this, "입금창");
+		
 	}
 	
 	public class InOutMoney implements ActionListener{
@@ -255,4 +281,3 @@ public class PracticeUi extends JFrame {
 	}
 	
 	
-
