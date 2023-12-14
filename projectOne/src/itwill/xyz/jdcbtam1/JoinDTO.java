@@ -10,7 +10,7 @@ PW      NOT NULL VARCHAR2(20)
 NAME    NOT NULL VARCHAR2(10) 
 CAL     NOT NULL DATE         
 BALANCE          NUMBER 
- 
+  
  */
 
 public class JoinDTO {
