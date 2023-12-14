@@ -3,15 +3,15 @@ package itwill.xyz.jdcbtam1;
 import java.sql.Date;
 
 /*
- 이름      널?       유형           
+이름      널?       유형           
 ------- -------- ------------ 
 ID      NOT NULL VARCHAR2(10) 
 PW      NOT NULL VARCHAR2(20) 
 NAME    NOT NULL VARCHAR2(10) 
 CAL     NOT NULL DATE         
 BALANCE          NUMBER 
-  
- */
+ 
+*/
 
 /*
 SNO      NOT NULL NUMBER        
