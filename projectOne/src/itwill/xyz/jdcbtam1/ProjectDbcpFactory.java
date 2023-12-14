@@ -15,10 +15,12 @@ public abstract class ProjectDbcpFactory {
 	static {
 		pds = PoolDataSourceFactory.getPoolDataSource(); // dbcp기능을 가진 객체를 생성하여 connection 객체로 제공받음
 		try {
-			pds.setConnectionFactoryClassName("www.itwill.xyz");
-			pds.setURL("oracle:jdbc:thin:@www.itwill.xyz:1521:xe");
-			pds.setUser("jdbc.team1");
+			pds.setConnectionFactoryClassName("oracle.jdbc.driver.OracleDriver");
+			pds.setURL("jdbc:oracle:thin:@www.itwill.xyz:1521:xe");
+			pds.setUser("jdbc_team1");
 			pds.setPassword("jdbc_team1");
+			pds.setInitialPoolSize(3); // 
+			pds.setMaxPoolSize(5);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
