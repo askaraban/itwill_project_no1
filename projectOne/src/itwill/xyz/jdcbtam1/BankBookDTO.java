@@ -1,6 +1,6 @@
 package itwill.xyz.jdcbtam1;
 
-public class BankBook {
+public class BankBookDTO {
 	private String ID;
 	private int InOutType;
 	private long InputMoney;
@@ -10,12 +10,12 @@ public class BankBook {
 	private long LastMoney;
 	
 	
-	public BankBook() {
+	public BankBookDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
 
-	public BankBook(String iD, int inOutType, long inputMoney, long outputMoney, String date, String memo,
+	public BankBookDTO(String iD, int inOutType, long inputMoney, long outputMoney, String date, String memo,
 			long lastMoney) {
 		super();
 		ID = iD;
