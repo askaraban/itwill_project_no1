@@ -345,7 +345,7 @@ public class ProjectUI {
 			for (JoinDTO joinDTO : jd) {
 				Vector<Object> i = new Vector<Object>();
 				String check = "";
-				i.add(joinDTO.getLocal());
+				i.add(joinDTO.getIocal());
 				i.add(joinDTO.getIotype());
 				check = joinDTO.getIotype();
 				if (check.equals("입금")) {
@@ -374,7 +374,7 @@ public class ProjectUI {
 			for (JoinDTO joinDTO : jd) {
 				Vector<Object> i = new Vector<Object>();
 				String check = "";
-				i.add(joinDTO.getLocal());
+				i.add(joinDTO.getIocal());
 				i.add(joinDTO.getIotype());
 				check = joinDTO.getIotype();
 				if (check.equals("입금")) {
@@ -408,7 +408,7 @@ public class ProjectUI {
 			for (JoinDTO joinDTO : jd) {
 				Vector<Object> i = new Vector<Object>();
 				String check = "";
-				i.add(joinDTO.getLocal());
+				i.add(joinDTO.getIocal());
 				i.add(joinDTO.getIotype());
 				check = joinDTO.getIotype();
 				if (check.equals("입금")) {
@@ -441,7 +441,7 @@ public class ProjectUI {
 			for (JoinDTO joinDTO : jd) {
 				Vector<Object> i = new Vector<Object>();
 				String check = "";
-				i.add(joinDTO.getLocal());
+				i.add(joinDTO.getIocal());
 				i.add(joinDTO.getIotype());
 				check = joinDTO.getIotype();
 				if (check.equals("입금")) i.add(joinDTO.getDeposit()); 
@@ -465,7 +465,7 @@ public class ProjectUI {
 			for (JoinDTO joinDTO : jd) {
 				Vector<Object> i = new Vector<Object>();
 				String check = "";
-				i.add(joinDTO.getLocal());
+				i.add(joinDTO.getIocal());
 				i.add(joinDTO.getIotype());
 				check = joinDTO.getIotype();
 				if (check.equals("입금")) i.add(joinDTO.getDeposit());
@@ -494,7 +494,7 @@ public class ProjectUI {
 			for (JoinDTO joinDTO : jd) {
 				Vector<Object> i = new Vector<Object>();
 				String check = "";
-				i.add(joinDTO.getLocal());
+				i.add(joinDTO.getIocal());
 				i.add(joinDTO.getIotype());
 				check = joinDTO.getIotype();
 				if (check.equals("입금")) i.add(joinDTO.getDeposit());
@@ -524,7 +524,7 @@ public class ProjectUI {
 			for (JoinDTO joinDTO : jd) {
 				Vector<Object> i = new Vector<Object>();
 				String check = "";
-				i.add(joinDTO.getLocal());
+				i.add(joinDTO.getIocal());
 				i.add(joinDTO.getIotype());
 				check = joinDTO.getIotype();
 				if (check.equals("출금")) {
@@ -550,7 +550,7 @@ public class ProjectUI {
 			for (JoinDTO joinDTO : jd) {
 				Vector<Object> i = new Vector<Object>();
 				String check = "";
-				i.add(joinDTO.getLocal());
+				i.add(joinDTO.getIocal());
 				i.add(joinDTO.getIotype());
 				check = joinDTO.getIotype();
 				if (check.equals("출금")) i.add(joinDTO.getWithdraw());
@@ -579,7 +579,7 @@ public class ProjectUI {
 			for (JoinDTO joinDTO : jd) {
 				Vector<Object> i = new Vector<Object>();
 				String check = "";
-				i.add(joinDTO.getLocal());
+				i.add(joinDTO.getIocal());
 				i.add(joinDTO.getIotype());
 				check = joinDTO.getIotype();
 				if (check.equals("출금")) i.add(joinDTO.getWithdraw());
