@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
@@ -40,6 +42,8 @@ public class ProjectUI {
 
 	private JFrame frame;
 
+	
+	JButton btnNewButton,button,btnNewButton_8,btnNewButton_1,btnNewButton_6,btnNewButton_7,btnNewButton_5,btnNewButton_2,btnNewButton_3,btnNewButton_4;
 	/**
 	 * Launch the application.
 	 */
@@ -67,6 +71,36 @@ public class ProjectUI {
 	public ProjectUI() throws IOException {
 
 		initialize();
+		
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowActivated(WindowEvent e) {
+				//로그인 전과 후 버튼 활성화,비활성화 설정
+				if(LoginUI.isLogin) {
+					btnNewButton.setEnabled(false);//회원가입
+					button.setEnabled(true);//로그아웃
+					btnNewButton_8.setEnabled(true);//회원탈퇴
+					btnNewButton_1.setEnabled(false);//로그인
+					btnNewButton_6.setEnabled(true);//계좌생성
+					btnNewButton_7.setEnabled(true);//계좌 삭제
+					btnNewButton_5.setEnabled(true);//내 정보
+					btnNewButton_2.setEnabled(true);//입금
+					btnNewButton_3.setEnabled(true);//출금
+					btnNewButton_4.setEnabled(true);//조회
+				} else {
+					btnNewButton.setEnabled(true);//회원가입
+					button.setEnabled(false);//로그아웃
+					btnNewButton_8.setEnabled(false);//회원탈퇴
+					btnNewButton_1.setEnabled(true);//로그인
+					btnNewButton_6.setEnabled(false);//계좌생성
+					btnNewButton_7.setEnabled(false);//계좌 삭제
+					btnNewButton_5.setEnabled(false);//내 정보
+					btnNewButton_2.setEnabled(false);//입금
+					btnNewButton_3.setEnabled(false);//출금
+					btnNewButton_4.setEnabled(false);//조회
+				}
+			}		
+		});
 	}
 
 	/**
@@ -84,10 +118,10 @@ public class ProjectUI {
 		frame.getContentPane().add(panel_3, BorderLayout.SOUTH);
 		panel_3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		JButton btnNewButton_2 = new JButton("입금");
+		btnNewButton_2 = new JButton("입금");
 		panel_3.add(btnNewButton_2);
 
-		JButton btnNewButton_3 = new JButton("출금");
+		btnNewButton_3 = new JButton("출금");
 		panel_3.add(btnNewButton_3);
 
 		이전날짜 = new JTextField();
@@ -114,7 +148,7 @@ public class ProjectUI {
 
 		System.out.println(comboBox.getSelectedItem());
 
-		JButton btnNewButton_4 = new JButton("조회");
+	    btnNewButton_4 = new JButton("조회");
 		// 조회버튼을 눌렀을 경우
 
 		panel_3.add(btnNewButton_4);
@@ -148,7 +182,7 @@ public class ProjectUI {
 		panel_2.add(panel_4);
 		panel_4.setLayout(new GridLayout(2, 2, 5, 5));
 
-		JButton btnNewButton_1 = new JButton("로그인");
+		btnNewButton_1 = new JButton("로그인");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -169,7 +203,7 @@ public class ProjectUI {
 		});
 		panel_4.add(btnNewButton_1);
 
-		JButton btnNewButton = new JButton("회원가입");
+		btnNewButton = new JButton("회원가입");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -190,10 +224,43 @@ public class ProjectUI {
 		});
 		panel_4.add(btnNewButton);
 
-		JButton button = new JButton("로그아웃");
+		button = new JButton("로그아웃");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(LoginUI.isLogin) {
+					btnNewButton.setEnabled(true);//회원가입
+					button.setEnabled(false);//로그아웃
+					btnNewButton_8.setEnabled(false);//회원탈퇴
+					btnNewButton_1.setEnabled(true);//로그인
+					btnNewButton_6.setEnabled(false);//계좌생성
+					btnNewButton_7.setEnabled(false);//계좌 삭제
+					btnNewButton_5.setEnabled(false);//내 정보
+					btnNewButton_2.setEnabled(false);//입금
+					btnNewButton_3.setEnabled(false);//출금
+					btnNewButton_4.setEnabled(false);//조회
+				} else {
+					btnNewButton.setEnabled(false);//회원가입
+					button.setEnabled(true);//로그아웃
+					btnNewButton_8.setEnabled(true);//회원탈퇴
+					btnNewButton_1.setEnabled(false);//로그인
+					btnNewButton_6.setEnabled(true);//계좌생성
+					btnNewButton_7.setEnabled(true);//계좌 삭제
+					btnNewButton_5.setEnabled(true);//내 정보
+					btnNewButton_2.setEnabled(true);//입금
+					btnNewButton_3.setEnabled(true);//출금
+					btnNewButton_4.setEnabled(true);//조회
+				}
+			}
+			
+		});
 		panel_4.add(button);
 
-		JButton btnNewButton_8 = new JButton("회원탈퇴");
+		btnNewButton_8 = new JButton("회원탈퇴");
+		btnNewButton_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
 		panel_4.add(btnNewButton_8);
 
 		JPanel panel_5 = new JPanel();
@@ -208,7 +275,7 @@ public class ProjectUI {
 		panel_11.add(panel_16);
 		panel_16.setLayout(new BorderLayout(0, 0));
 		
-		JButton btnNewButton_6 = new JButton("계좌 생성");
+		btnNewButton_6 = new JButton("계좌 생성");
 		
 		panel_16.add(btnNewButton_6);
 		
@@ -216,14 +283,14 @@ public class ProjectUI {
 		panel_11.add(panel_12);
 		panel_12.setLayout(new BorderLayout(0, 0));
 		
-		JButton btnNewButton_7 = new JButton("계좌 삭제");
+		btnNewButton_7 = new JButton("계좌 삭제");
 		panel_12.add(btnNewButton_7);
 		
 		JPanel panel_10 = new JPanel();
 		panel_5.add(panel_10);
 		panel_10.setLayout(new BorderLayout(5, 5));
 		
-		JButton btnNewButton_5 = new JButton("내 정보 ");
+		btnNewButton_5 = new JButton("내 정보 ");
 		panel_10.add(btnNewButton_5, BorderLayout.CENTER);
 
 		JPanel panel_7 = new JPanel();
@@ -382,20 +449,8 @@ public class ProjectUI {
 			}
 		});
 		
+	}
 		
-		
-		if(LoginUI.isLogin) {
-			btnNewButton.setEnabled(false);//회원가입
-			button.setEnabled(true);//로그아웃
-			btnNewButton_8.setEnabled(true);//회원탈퇴
-			btnNewButton_1.setEnabled(false);
-		} else {
-			btnNewButton.setEnabled(true);//회원가입
-			button.setEnabled(false);//로그아웃
-			btnNewButton_8.setEnabled(false);//회원탈퇴
-			btnNewButton_1.setEnabled(true);
-		}
-	} 
 
 	public void result() throws Exception {
 
