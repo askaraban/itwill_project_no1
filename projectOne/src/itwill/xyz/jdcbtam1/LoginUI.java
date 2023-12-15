@@ -20,7 +20,7 @@ public class LoginUI extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField idTf2;
 	private JTextField pwTf2;
-	public String id;
+	public static String id;
 
 	public static boolean isLogin;
 	
@@ -86,8 +86,9 @@ public class LoginUI extends JDialog {
 						//로그인 버튼을 눌렀을때
 						id=idTf2.getText();
 						String pw=pwTf2.getText();
-						
 						 JoinDTO login=JoinDAOImpl.getDAO().selectClientByNo(id);
+						
+						 System.out.println(ProjectUI.idLogin);
 				            if(login==null) {
 				               JOptionPane.showMessageDialog(null, "아이디를 찾을 수 업습니다.");
 				               return;
@@ -99,7 +100,8 @@ public class LoginUI extends JDialog {
 				            }
 				            
 				            isLogin=true;
-				           
+				            
+				            
 				            dispose();
 
 						

@@ -38,10 +38,10 @@ public class ProjectUI {
 	private String firstDate = null;
 	private String endDate = null;
 	private String event = null;
-	
+	public static String idLogin=null;
 
 	private JFrame frame;
-
+	JLabel lblNewLabel_1;
 	
 	JButton btnNewButton,button,btnNewButton_8,btnNewButton_1,btnNewButton_6,btnNewButton_7,btnNewButton_5,btnNewButton_2,btnNewButton_3,btnNewButton_4;
 	/**
@@ -77,6 +77,8 @@ public class ProjectUI {
 			public void windowActivated(WindowEvent e) {
 				//로그인 전과 후 버튼 활성화,비활성화 설정
 				if(LoginUI.isLogin) {
+					lblNewLabel_1.setText(LoginUI.id);
+
 					btnNewButton.setEnabled(false);//회원가입
 					button.setEnabled(true);//로그아웃
 					btnNewButton_8.setEnabled(true);//회원탈퇴
@@ -109,7 +111,7 @@ public class ProjectUI {
 	 * @throws IOException
 	 */
 	private void initialize() throws IOException {
-
+		
 		frame = new JFrame();
 		frame.setBounds(800, 200, 800, 500);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
@@ -304,7 +306,7 @@ public class ProjectUI {
 		JPanel panel_20 = new JPanel();
 		panel_17.add(panel_20);
 		
-		JLabel lblNewLabel_1 = new JLabel("TEST");
+		lblNewLabel_1 = new JLabel("");
 		panel_20.add(lblNewLabel_1);
 		
 		JPanel panel_21 = new JPanel();
