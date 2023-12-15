@@ -1,6 +1,7 @@
 package itwill.xyz.jdcbtam1;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /*
 이름      널?       유형           
@@ -24,42 +25,58 @@ BALANCE          NUMBER
 */
 
 public class JoinDTO {
+//	********** 회원정보 필드 **********
 	private String ID;
 	private String pw;
 	private String name;
-	private String cal;
+	private Date cal;
 	private int balance;
+//	********** 입출금 필드 ************
 	private int deposit;
 	private int withdraw;
 	private String memo;
 	private String cid;
-	private Date local;
+	private Date iocal;
 	private String Iotype;
-
-	public JoinDTO(int balance, int deposit, int withdraw, String memo, String cid, Date local, String Iotype) {
-		super();
-		this.balance = balance;
-		this.deposit = deposit;
-		this.withdraw = withdraw;
-		this.memo = memo;
-		this.cid = cid;
-		this.local = local;
-		this.Iotype = Iotype;
+	private int hbalance;
+// *********** 계좌 정보 필드 *********
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public Date getCal() {
+		return cal;
 	}
 
-	public JoinDTO() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public JoinDTO(String iD, String pw, String name, String cal, int balance) {
-		super();
-		ID = iD;
-		this.pw = pw;
-		this.name = name;
+	public void setCal(Date cal) {
 		this.cal = cal;
-		this.balance = balance;
 	}
 
+	public Date getIocal() {
+		return iocal;
+	}
+
+	public void setIocal(Date iocal) {
+		this.iocal = iocal;
+	}
+
+	public int getHbalance() {
+		return hbalance;
+	}
+
+	public void setHbalance(int hbalance) {
+		this.hbalance = hbalance;
+	}
+
+
+	
+
+	
 	public int getDeposit() {
 		return deposit;
 	}
@@ -92,13 +109,7 @@ public class JoinDTO {
 		this.cid = cid;
 	}
 
-	public Date getLocal() {
-		return local;
-	}
 
-	public void setLocal(Date local) {
-		this.local = local;
-	}
 
 	public String getID() {
 		return ID;
@@ -124,13 +135,6 @@ public class JoinDTO {
 		this.name = name;
 	}
 
-	public String getCal() {
-		return cal;
-	}
-
-	public void setCal(String cal) {
-		this.cal = cal;
-	}
 
 	public int getBalance() {
 		return balance;

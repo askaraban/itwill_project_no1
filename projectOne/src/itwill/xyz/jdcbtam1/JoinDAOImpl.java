@@ -69,7 +69,7 @@ public class JoinDAOImpl extends ProjectDbcpFactory implements JoinDAO {
 				client.setID(rs.getString("id"));
 				client.setPw(rs.getString("pw"));
 				client.setName(rs.getString("name"));
-				client.setCal(rs.getString("cal"));
+				client.setCal(rs.getDate("cal"));
 				client.setBalance(rs.getInt("balance"));
 				
 			}
