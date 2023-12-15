@@ -8,6 +8,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -17,9 +18,11 @@ public class LoginUI extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField idTf2;
+	private JTextField pwTf2;
 
+	public static boolean isLogin;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -48,16 +51,16 @@ public class LoginUI extends JDialog {
 			contentPanel.add(lblNewLabel);
 		}
 		{
-			textField = new JTextField();
-			textField.setBounds(12, 58, 198, 21);
-			contentPanel.add(textField);
-			textField.setColumns(10);
+			idTf2 = new JTextField();
+			idTf2.setBounds(12, 58, 198, 21);
+			contentPanel.add(idTf2);
+			idTf2.setColumns(10);
 		}
 		{
-			textField_1 = new JTextField();
-			textField_1.setBounds(12, 106, 198, 21);
-			textField_1.setColumns(10);
-			contentPanel.add(textField_1);
+			pwTf2 = new JTextField();
+			pwTf2.setBounds(12, 106, 198, 21);
+			pwTf2.setColumns(10);
+			contentPanel.add(pwTf2);
 		}
 		{
 			JLabel lblNewLabel = new JLabel("비밀번호");
@@ -78,6 +81,27 @@ public class LoginUI extends JDialog {
 				JButton okButton = new JButton("Login");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						
+						//로그인 버튼을 눌렀을때
+						String id=idTf2.getText();
+						String pw=pwTf2.getText();
+						
+						 JoinDTO login=JoinDAOImpl.getDAO().selectClientByNo(id);
+				            if(login==null) {
+				               JOptionPane.showMessageDialog(null, "아이디를 찾을 수 업습니다.");
+				               return;
+				            }
+				            
+				            if(!login.getPw().equals(pw)) {
+				               JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호가 맞지 않습니다.");
+				               return;
+				            }
+				            
+				            isLogin=true;
+				           
+				            dispose();
+
+						
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -88,6 +112,7 @@ public class LoginUI extends JDialog {
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						setVisible(false);
 					}
 				});
 				cancelButton.setActionCommand("Cancel");

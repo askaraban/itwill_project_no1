@@ -363,7 +363,19 @@ public class ProjectUI {
 
 			}
 		});
-
+		
+		
+		if(LoginUI.isLogin) {
+			btnNewButton.setEnabled(false);//회원가입
+			button.setEnabled(true);//로그아웃
+			btnNewButton_8.setEnabled(true);//회원탈퇴
+			btnNewButton_1.setEnabled(false);
+		} else {
+			btnNewButton.setEnabled(true);//회원가입
+			button.setEnabled(false);//로그아웃
+			btnNewButton_8.setEnabled(false);//회원탈퇴
+			btnNewButton_1.setEnabled(true);
+		}
 	} 
 
 	public void result() throws Exception {
