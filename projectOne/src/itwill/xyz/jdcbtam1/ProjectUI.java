@@ -1,10 +1,12 @@
 package itwill.xyz.jdcbtam1;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Panel;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -147,9 +149,45 @@ public class ProjectUI {
 		panel_4.setLayout(new GridLayout(2, 2, 5, 5));
 
 		JButton btnNewButton_1 = new JButton("로그인");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				LoginUI login = new LoginUI();
+				
+				login.setSize(256, 225);
+				
+				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+				int x = (screenSize.width - login.getWidth()) / 2;
+				int y = (screenSize.height - login.getHeight()) / 2;
+				login.setLocation(x, y);
+				
+				login.setVisible(true);
+				login.getContentPane().setLayout(null);
+				login.setResizable(false);
+				
+			}
+		});
 		panel_4.add(btnNewButton_1);
 
 		JButton btnNewButton = new JButton("회원가입");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JoinUI join = new JoinUI();
+				
+				join.setSize(332, 365);
+				
+				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+				int x = (screenSize.width - join.getWidth()) / 2;
+				int y = (screenSize.height - join.getHeight()) / 2;
+				join.setLocation(x, y);
+				
+				join.setVisible(true);
+				join.getContentPane().setLayout(null);
+				join.setResizable(false);
+				
+			}
+		});
 		panel_4.add(btnNewButton);
 
 		JButton button = new JButton("로그아웃");

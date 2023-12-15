@@ -48,7 +48,7 @@ public class JoinUI extends JDialog {
 	 * Create the dialog.
 	 */
 	public JoinUI() {
-		setBounds(100, 100, 333, 365);
+		setBounds(100, 100, 332, 365);
 		getContentPane().setLayout(null);
 		contentPanel.setBounds(0, 0, 434, 1);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

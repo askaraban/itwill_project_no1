@@ -37,7 +37,7 @@ public class LoginUI extends JDialog {
 	 * Create the dialog.
 	 */
 	public LoginUI() {
-		setBounds(100, 100, 244, 219);
+		setBounds(100, 100, 256, 225);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
