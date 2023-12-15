@@ -38,7 +38,7 @@ public class JoinDTO {
 	private String ID;
 	private String pw;
 	private String name;
-	private Date cal;
+	private String cal;
 	private int balance;
 //	********** 입출금 필드 ************
 	private int deposit;
@@ -80,11 +80,11 @@ public class JoinDTO {
 		this.ac_kind = ac_kind;
 	}
 
-	public Date getCal() {
+	public String getCal() {
 		return cal;
 	}
 
-	public void setCal(Date cal) {
+	public void setCal(String cal) {
 		this.cal = cal;
 	}
 
