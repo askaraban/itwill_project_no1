@@ -19,8 +19,8 @@ public abstract class ProjectDbcpFactory {
 			pds.setURL("jdbc:oracle:thin:@www.itwill.xyz:1521:xe");
 			pds.setUser("jdbc_team1");
 			pds.setPassword("jdbc_team1");
-			pds.setInitialPoolSize(3); // 
-			pds.setMaxPoolSize(5);
+			pds.setInitialPoolSize(7); // 
+			pds.setMaxPoolSize(10);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
