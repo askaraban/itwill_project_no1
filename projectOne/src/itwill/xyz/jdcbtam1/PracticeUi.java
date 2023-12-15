@@ -224,6 +224,9 @@ public class PracticeUi extends JFrame {
 				inTF.setText("");
 				psTF.setText("");
 				setVisible(true);
+				
+				
+				
 
 				}
 			});
