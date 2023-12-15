@@ -209,6 +209,7 @@ public class ProjectUI {
 		panel_16.setLayout(new BorderLayout(0, 0));
 		
 		JButton btnNewButton_6 = new JButton("계좌 생성");
+		
 		panel_16.add(btnNewButton_6);
 		
 		JPanel panel_12 = new JPanel();
@@ -363,6 +364,24 @@ public class ProjectUI {
 
 			}
 		});
+		
+		btnNewButton_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AccountCreateUI acUI = new AccountCreateUI(frame, "계좌 생성");
+				
+				acUI.setSize(332, 365);
+				
+				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+				int x = (screenSize.width - acUI.getWidth()) / 2;
+				int y = (screenSize.height - acUI.getHeight()) / 2;
+				acUI.setLocation(x, y);
+				
+				acUI.setVisible(true);
+				acUI.getContentPane().setLayout(null);
+				acUI.setResizable(false);
+			}
+		});
+		
 		
 		
 		if(LoginUI.isLogin) {
