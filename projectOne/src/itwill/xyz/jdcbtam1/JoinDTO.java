@@ -36,7 +36,7 @@ public class JoinDTO {
 	private int withdraw;
 	private String memo;
 	private String cid;
-	private Date iocal;
+	private Timestamp iocal;
 	private String Iotype;
 	private int hbalance;
 // *********** 계좌 정보 필드 *********
@@ -57,11 +57,11 @@ public class JoinDTO {
 		this.cal = cal;
 	}
 
-	public Date getIocal() {
+	public Timestamp getIocal() {
 		return iocal;
 	}
 
-	public void setIocal(Date iocal) {
+	public void setIocal(Timestamp iocal) {
 		this.iocal = iocal;
 	}
 

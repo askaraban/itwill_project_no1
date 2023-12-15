@@ -45,7 +45,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 
 			while (rs.next()) {
 				client = new JoinDTO();
-				client.setIocal(rs.getDate("iocal"));
+				client.setIocal(rs.getTimestamp("iocal"));
 				client.setCid(rs.getString("cid"));
 				client.setWithdraw(rs.getInt("withdraw"));
 				client.setDeposit(rs.getInt("deposit"));
@@ -87,7 +87,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 
 			while (rs.next()) {
 				client = new JoinDTO();
-				client.setIocal(rs.getDate("iocal"));
+				client.setIocal(rs.getTimestamp("iocal"));
 				client.setCid(rs.getString("cid"));
 				client.setWithdraw(rs.getInt("withdraw"));
 				client.setDeposit(rs.getInt("deposit"));
@@ -128,7 +128,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 
 			while (rs.next()) {
 				client = new JoinDTO();
-				client.setIocal(rs.getDate("iocal"));
+				client.setIocal(rs.getTimestamp("iocal"));
 				client.setCid(rs.getString("cid"));
 				client.setWithdraw(rs.getInt("withdraw"));
 				client.setDeposit(rs.getInt("deposit"));
@@ -172,7 +172,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 
 			while (rs.next()) {
 				client = new JoinDTO();
-				client.setIocal(rs.getDate("iocal"));
+				client.setIocal(rs.getTimestamp("iocal"));
 				client.setCid(rs.getString("cid"));
 				client.setWithdraw(rs.getInt("withdraw"));
 				client.setDeposit(rs.getInt("deposit"));
@@ -217,7 +217,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 
 			while (rs.next()) {
 				client = new JoinDTO();
-				client.setIocal(rs.getDate("iocal"));
+				client.setIocal(rs.getTimestamp("iocal"));
 				client.setCid(rs.getString("cid"));
 				client.setWithdraw(rs.getInt("withdraw"));
 				client.setDeposit(rs.getInt("deposit"));
@@ -260,7 +260,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 
 			while (rs.next()) {
 				client = new JoinDTO();
-				client.setIocal(rs.getDate("iocal"));
+				client.setIocal(rs.getTimestamp("iocal"));
 				client.setCid(rs.getString("cid"));
 				client.setWithdraw(rs.getInt("withdraw"));
 				client.setDeposit(rs.getInt("deposit"));
@@ -304,7 +304,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 
 			while (rs.next()) {
 				client = new JoinDTO();
-				client.setIocal(rs.getDate("iocal"));
+				client.setIocal(rs.getTimestamp("iocal"));
 				client.setCid(rs.getString("cid"));
 				client.setWithdraw(rs.getInt("withdraw"));
 				client.setDeposit(rs.getInt("deposit"));
@@ -347,7 +347,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 
 			while (rs.next()) {
 				client = new JoinDTO();
-				client.setIocal(rs.getDate("iocal"));
+				client.setIocal(rs.getTimestamp("iocal"));
 				client.setCid(rs.getString("cid"));
 				client.setWithdraw(rs.getInt("withdraw"));
 				client.setDeposit(rs.getInt("deposit"));
@@ -389,7 +389,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 
 			while (rs.next()) {
 				client = new JoinDTO();
-				client.setIocal(rs.getDate("iocal"));
+				client.setIocal(rs.getTimestamp("iocal"));
 				client.setCid(rs.getString("cid"));
 				client.setWithdraw(rs.getInt("withdraw"));
 				client.setDeposit(rs.getInt("deposit"));
