@@ -24,6 +24,15 @@ CAL     NOT NULL DATE
 BALANCE          NUMBER     
 */
 
+
+/*
+AC_ID   NOT NULL VARCHAR2(30) 
+AC_NUM  NOT NULL VARCHAR2(30) 
+AC_PW   NOT NULL NUMBER(4)    
+AC_KIND NOT NULL VARCHAR2(40)
+*/
+
+
 public class JoinDTO {
 //	********** 회원정보 필드 **********
 	private String ID;
@@ -40,15 +49,37 @@ public class JoinDTO {
 	private String Iotype;
 	private int hbalance;
 // *********** 계좌 정보 필드 *********
+	private String ac_num;
+	private int ac_pw;
+	private String ac_kind;
 	
 	
 	
 	
-	
-	
-	
-	
-	
+	public String getAc_num() {
+		return ac_num;
+	}
+
+	public void setAc_num(String ac_num) {
+		this.ac_num = ac_num;
+	}
+
+	public int getAc_pw() {
+		return ac_pw;
+	}
+
+	public void setAc_pw(int ac_pw) {
+		this.ac_pw = ac_pw;
+	}
+
+	public String getAc_kind() {
+		return ac_kind;
+	}
+
+	public void setAc_kind(String ac_kind) {
+		this.ac_kind = ac_kind;
+	}
+
 	public Date getCal() {
 		return cal;
 	}

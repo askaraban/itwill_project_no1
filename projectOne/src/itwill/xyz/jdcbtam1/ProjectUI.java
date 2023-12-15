@@ -36,7 +36,7 @@ public class ProjectUI {
 	private String firstDate = null;
 	private String endDate = null;
 	private String event = null;
-	int dd;
+	
 
 	private JFrame frame;
 

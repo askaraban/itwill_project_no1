@@ -20,6 +20,7 @@ public class LoginUI extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField idTf2;
 	private JTextField pwTf2;
+	public String id;
 
 	public static boolean isLogin;
 	
@@ -83,7 +84,7 @@ public class LoginUI extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						
 						//로그인 버튼을 눌렀을때
-						String id=idTf2.getText();
+						id=idTf2.getText();
 						String pw=pwTf2.getText();
 						
 						 JoinDTO login=JoinDAOImpl.getDAO().selectClientByNo(id);
