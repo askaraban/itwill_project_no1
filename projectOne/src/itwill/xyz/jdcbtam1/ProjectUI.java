@@ -146,7 +146,7 @@ public class ProjectUI {
 
 		JComboBox comboBox = new JComboBox();
 
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "전체", "입금", "출금" }));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"  ", "전체", "입금", "출금" }));
 		comboBox.setMaximumRowCount(3);
 		panel_3.add(comboBox);
 

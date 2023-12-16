@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AccoutDAO extends ProjectDbcpFactory{
 	private static AccoutDAO _acdao;
@@ -91,16 +93,41 @@ public class AccoutDAO extends ProjectDbcpFactory{
 	}
 	
 	
-	 
-//	출처: https://info-lab.tistory.com/292 [:: IT School :::티스토리]
-	public static void main(String[] args) {
+	// ****************** 계좌를 찾는 메소드 **************************************
+	// 계좌를 찾아서 JoinDTO 객체에 id에 맞는 계좌번호 리스트를 담음
+	public List<JoinDTO> accountSearch(String id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<JoinDTO> accountSearchList  = new ArrayList<JoinDTO>();
+		JoinDTO accountSearch=null;
 		
-		System.out.println("0.0 ~ 1.0 사이의 난수 1개 발생 : " + Math.random());
-        System.out.println("0 ~ 10 사이의 난수 1개 발생 : " + (int)((Math.random()*1000000)%1000000
-        		));
-        
-        
-        
-	}
+		
+		try {
+			con = getConnection();
+			// client의 id를 가져와서 account 테이블과 비교하여 모든 계좌번호를 가져오기
+			String sql = "select ac_num from account join client on ac_id=?";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, LoginUI.id);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				accountSearch = new JoinDTO();
+				accountSearch.setAc_num(rs.getString("ac_num"));
+				accountSearchList.add(accountSearch);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("[에러]accountSearch() 메소드의 SQL 오류 = " + e.getMessage());
+		}
+		
+		return accountSearchList;
+	} 
+	
+	
+	 
+
 	
 }
