@@ -96,13 +96,18 @@ public class AccoutDAO extends ProjectDbcpFactory{
 	}
 	
 	// ****************** 계좌 삭제 메소드 **************************************
+	// 1. 다이얼로그 띄워서 계좌를 선택
+	// 2. 삭제하시겠습니까? 메세지 띄우기
+	// 3. 잔액이 남아있다면, "잔액이 남아있습니다" 경고 띄우기
+	// 4. "이체하실 계좌를 선택하세요" -> 로그인된 아이디의 나머지 계좌를 선택하게 다이얼로그 띄우고 이체하기/취소하기 클릭
+	// 5. 계좌가 삭제되었습니다.
 	public void accountDelete (String accountNumber) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
-		
 		try {
 			con = getConnection();
+			
 			String sql = "delete from account where ac_num=? ";
 			pstmt = con.prepareStatement(sql);
 			
@@ -117,6 +122,97 @@ public class AccoutDAO extends ProjectDbcpFactory{
 		}
 		
 	}
+	
+	// ******************* 해당 계좌의 잔액을 확인하는 메소드 *************************
+	public JoinDTO getAccountBal() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		JoinDTO deleteAccount = null;
+		
+		try {
+			con = getConnection();
+			
+			String sql = "select balance from client join account on id=ac_id where ac_num=?";
+	
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, "삭제할 때 띄우는 다이얼로그에서 계좌를 선택한것을 여기에 넣을 예정");
+			
+			rs=pstmt.executeQuery();
+			
+			if (rs.next()) {
+				deleteAccount = new JoinDTO();
+				deleteAccount.setBalance(rs.getInt("balance"));
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("[에러]getAccountBal() 메소드의 SQL 오류 = " + e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}  return deleteAccount;
+	}
+	
+	// ********************* 선택된 내 계좌 외 나머지 계좌를 찾는 메소드 ****************
+	public List<JoinDTO> getDeleteSearch() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<JoinDTO> delSearchList = new ArrayList<JoinDTO>();
+		JoinDTO delSearch = null;
+		
+		try {
+			con = getConnection();
+			
+			String sql = "select balance from client join account on id=ac_id where ac_num!=?";
+	
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, "삭제할 때 띄우는 다이얼로그에서 계좌를 선택한것을 여기에 넣을 예정");
+			
+			rs=pstmt.executeQuery();
+			
+			while (rs.next()) {
+				delSearch = new JoinDTO();
+				delSearch.setAc_num(rs.getString("ac_num"));
+				delSearchList.add(delSearch);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("[에러]getAccountBal() 메소드의 SQL 오류 = " + e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+			
+		}  return delSearchList;
+	}
+	
+	// ********************** 내 계좌에서 선택된 계좌에게 잔액을 이체하는 메소드 *********************
+	public void delTrans () {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		
+		try {
+			con = getConnection();
+			// 기존 계좌에서 선택된 계좌로 남은 돈을 잔액에 더함
+			String sql = "update client set balance = balance + ? join account on id=ac_id "
+					+ "where ac_num = (select balance from client join account on id=ac_id where ac_num=?)";
+			pstmt = con.prepareStatement(sql);
+			
+			// 내 계좌의 잔액
+			pstmt.setInt(1, getAccountBal().getBalance());
+			pstmt.setString(2, "선택된 계좌를 넣기-이체받을 계좌번호");
+			
+			pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			System.out.println("[에러]delTrans() 메소드의 SQL 오류 = " + e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+	}
+	
 	
 	
 	
