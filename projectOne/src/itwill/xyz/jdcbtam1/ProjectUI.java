@@ -29,6 +29,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.SwingConstants;
+import javax.swing.JSeparator;
 
 public class ProjectUI {
 	
@@ -359,9 +360,6 @@ public class ProjectUI {
 		JPanel panel_25 = new JPanel();
 		panel_24.add(panel_25);
 		panel_25.setLayout(new GridLayout(0, 1, 5, 5));
-		
-		JButton btnNewButton_9 = new JButton("계좌 선택");
-		panel_25.add(btnNewButton_9);
 
 		JPanel panel_13 = new JPanel();
 		panel_6.add(panel_13);
@@ -371,9 +369,8 @@ public class ProjectUI {
 		panel_13.add(panel_14);
 		panel_14.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel_6 = new JLabel("계좌번호 보여주는 라벨");
-		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_14.add(lblNewLabel_6, BorderLayout.CENTER);
+		JComboBox comboBox_1 = new JComboBox();
+		panel_14.add(comboBox_1, BorderLayout.CENTER);
 
 		JPanel panel_15 = new JPanel();
 		panel_13.add(panel_15);
