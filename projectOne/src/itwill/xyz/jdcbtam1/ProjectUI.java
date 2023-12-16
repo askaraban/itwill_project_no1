@@ -288,6 +288,7 @@ public class ProjectUI {
 		panel_12.setLayout(new BorderLayout(0, 0));
 		
 		btnNewButton_7 = new JButton("계좌 삭제");
+		
 		panel_12.add(btnNewButton_7);
 		
 		JPanel panel_10 = new JPanel();
@@ -461,14 +462,21 @@ public class ProjectUI {
 				
 				acUI.setSize(332, 365);
 				
-				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-				int x = (screenSize.width - acUI.getWidth()) / 2;
-				int y = (screenSize.height - acUI.getHeight()) / 2;
-				acUI.setLocation(x, y);
-				
+				acUI.setLocationRelativeTo(scrollPane);
 				acUI.setVisible(true);
 				acUI.getContentPane().setLayout(null);
 				acUI.setResizable(false);
+			}
+		});
+		
+		btnNewButton_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AccountDeleteUI acDeleteUI = new AccountDeleteUI(frame, "계좌 삭제");
+	
+				acDeleteUI.setLocationRelativeTo(scrollPane);
+				acDeleteUI.setVisible(true);
+				acDeleteUI.getContentPane().setLayout(null);
+				acDeleteUI.setResizable(false);
 			}
 		});
 		
