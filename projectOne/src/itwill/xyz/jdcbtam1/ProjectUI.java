@@ -503,7 +503,7 @@ public class ProjectUI {
 				} else {
 					i.add(joinDTO.getWithdraw());
 				}
-				i.add(joinDTO.getBalance());
+				i.add(joinDTO.getHbalance());
 				i.add(joinDTO.getMemo());
 
 				tableModel.addRow(i);
@@ -532,7 +532,7 @@ public class ProjectUI {
 				} else {
 					i.add(joinDTO.getWithdraw());
 				}
-				i.add(joinDTO.getBalance());
+				i.add(joinDTO.getHbalance());
 				i.add(joinDTO.getMemo());
 
 				tableModel.addRow(i);
@@ -566,7 +566,7 @@ public class ProjectUI {
 				} else {
 					i.add(joinDTO.getWithdraw());
 				}
-				i.add(joinDTO.getBalance());
+				i.add(joinDTO.getHbalance());
 				i.add(joinDTO.getMemo());
 
 				tableModel.addRow(i);
@@ -595,7 +595,7 @@ public class ProjectUI {
 				i.add(joinDTO.getIotype());
 				check = joinDTO.getIotype();
 				if (check.equals("입금")) i.add(joinDTO.getDeposit()); 
-				i.add(joinDTO.getBalance());
+				i.add(joinDTO.getHbalance());
 				i.add(joinDTO.getMemo());
 
 				tableModel.addRow(i);
@@ -619,7 +619,7 @@ public class ProjectUI {
 				i.add(joinDTO.getIotype());
 				check = joinDTO.getIotype();
 				if (check.equals("입금")) i.add(joinDTO.getDeposit());
-				i.add(joinDTO.getBalance());
+				i.add(joinDTO.getHbalance());
 				i.add(joinDTO.getMemo());
 
 				tableModel.addRow(i);
@@ -648,7 +648,7 @@ public class ProjectUI {
 				i.add(joinDTO.getIotype());
 				check = joinDTO.getIotype();
 				if (check.equals("입금")) i.add(joinDTO.getDeposit());
-				i.add(joinDTO.getBalance());
+				i.add(joinDTO.getHbalance());
 				i.add(joinDTO.getMemo());
 
 				tableModel.addRow(i);
@@ -680,7 +680,7 @@ public class ProjectUI {
 				if (check.equals("출금")) {
 					i.add(joinDTO.getWithdraw());
 				}
-				i.add(joinDTO.getBalance());
+				i.add(joinDTO.getHbalance());
 				i.add(joinDTO.getMemo());
 
 				tableModel.addRow(i);
@@ -704,7 +704,7 @@ public class ProjectUI {
 				i.add(joinDTO.getIotype());
 				check = joinDTO.getIotype();
 				if (check.equals("출금")) i.add(joinDTO.getWithdraw());
-				i.add(joinDTO.getBalance());
+				i.add(joinDTO.getHbalance());
 				i.add(joinDTO.getMemo());
 
 				tableModel.addRow(i);
@@ -733,7 +733,7 @@ public class ProjectUI {
 				i.add(joinDTO.getIotype());
 				check = joinDTO.getIotype();
 				if (check.equals("출금")) i.add(joinDTO.getWithdraw());
-				i.add(joinDTO.getBalance());
+				i.add(joinDTO.getHbalance());
 				i.add(joinDTO.getMemo());
 
 				tableModel.addRow(i);
