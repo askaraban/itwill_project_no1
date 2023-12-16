@@ -28,6 +28,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.SwingConstants;
 
 public class ProjectUI {
 	
@@ -170,11 +171,11 @@ public class ProjectUI {
 
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
-		panel.setLayout(new GridLayout(2, 4, 0, 0));
+		panel.setLayout(new GridLayout(2, 4, 5, 5));
 
 		Panel panel_1 = new Panel();
 		panel.add(panel_1);
-		panel_1.setLayout(new GridLayout(0, 2, 0, 0));
+		panel_1.setLayout(new GridLayout(0, 2, 5, 0));
 
 		JPanel panel_2 = new JPanel();
 		panel_1.add(panel_2);
@@ -305,8 +306,10 @@ public class ProjectUI {
 		
 		JPanel panel_20 = new JPanel();
 		panel_17.add(panel_20);
+		panel_20.setLayout(new BorderLayout(0, 0));
 		
 		lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.TRAILING);
 		panel_20.add(lblNewLabel_1);
 		
 		JPanel panel_21 = new JPanel();
@@ -317,12 +320,15 @@ public class ProjectUI {
 		
 		JPanel panel_19 = new JPanel();
 		panel_17.add(panel_19);
+		panel_19.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblNewLabel_3 = new JLabel("아이티윌");
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.RIGHT);
 		panel_19.add(lblNewLabel_3);
 		
 		JPanel panel_22 = new JPanel();
 		panel_17.add(panel_22);
+		panel_22.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblNewLabel_4 = new JLabel(" 은행입니다.");
 		panel_22.add(lblNewLabel_4);
@@ -340,14 +346,22 @@ public class ProjectUI {
 
 		JPanel panel_9 = new JPanel();
 		panel_8.add(panel_9);
-		panel_9.setLayout(new BorderLayout(0, 0));
-
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] { "----------------------" }));
-		panel_9.add(comboBox_1);
+		panel_9.setLayout(new GridLayout(0, 2, 10, 50));
 		
-		JLabel lblNewLabel_5 = new JLabel("잔액 :");
-		panel_8.add(lblNewLabel_5);
+		JPanel panel_23 = new JPanel();
+		panel_9.add(panel_23);
+		panel_23.setLayout(new BorderLayout(5, 5));
+		
+		JPanel panel_24 = new JPanel();
+		panel_9.add(panel_24);
+		panel_24.setLayout(new GridLayout(0, 2, 5, 5));
+		
+		JPanel panel_25 = new JPanel();
+		panel_24.add(panel_25);
+		panel_25.setLayout(new GridLayout(0, 1, 5, 5));
+		
+		JButton btnNewButton_9 = new JButton("계좌 선택");
+		panel_25.add(btnNewButton_9);
 
 		JPanel panel_13 = new JPanel();
 		panel_6.add(panel_13);
@@ -355,10 +369,19 @@ public class ProjectUI {
 
 		JPanel panel_14 = new JPanel();
 		panel_13.add(panel_14);
+		panel_14.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblNewLabel_6 = new JLabel("계좌번호 보여주는 라벨");
+		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_14.add(lblNewLabel_6, BorderLayout.CENTER);
 
 		JPanel panel_15 = new JPanel();
 		panel_13.add(panel_15);
 		panel_15.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblNewLabel_5 = new JLabel("      잔액 :");
+		panel_15.add(lblNewLabel_5, BorderLayout.CENTER);
+		lblNewLabel_5.setHorizontalAlignment(SwingConstants.LEFT);
 
 		// -------------------------------------------------------------------------------------------------------------------//
 //		****************** 기능 삽입 ***************************************************
