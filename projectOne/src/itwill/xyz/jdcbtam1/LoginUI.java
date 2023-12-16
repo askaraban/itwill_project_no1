@@ -88,7 +88,6 @@ public class LoginUI extends JDialog {
 						String pw=pwTf2.getText();
 						 JoinDTO login=JoinDAOImpl.getDAO().selectClientByNo(id);
 						
-						 System.out.println(ProjectUI.idLogin);
 				            if(login==null) {
 				               JOptionPane.showMessageDialog(null, "아이디를 찾을 수 업습니다.");
 				               return;
