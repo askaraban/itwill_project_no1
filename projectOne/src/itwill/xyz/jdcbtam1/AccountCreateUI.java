@@ -13,13 +13,14 @@ import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
+import javax.swing.JPasswordField;
 
 public class AccountCreateUI  extends JDialog{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
+	private JPasswordField passwordField;
 
 
 
@@ -50,11 +51,11 @@ public class AccountCreateUI  extends JDialog{
 		lblNewLabel_1.setBounds(33, 56, 72, 15);
 		panel_2.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
+		JLabel lblNewLabel_2 = new JLabel("계좌번호 생성되는 곳");
 		lblNewLabel_2.setBounds(117, 56, 151, 15);
 		panel_2.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_4 = new JLabel("New label");
+		JLabel lblNewLabel_4 = new JLabel("아이디 나타나는곳");
 		lblNewLabel_4.setBounds(117, 23, 115, 15);
 		panel_2.add(lblNewLabel_4);
 		
@@ -62,22 +63,13 @@ public class AccountCreateUI  extends JDialog{
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(128, 26, 116, 21);
-		panel_1.add(textField);
-		textField.setColumns(10);
-		
 		JLabel lblNewLabel_3 = new JLabel("계좌 비밀번호 :");
 		lblNewLabel_3.setBounds(34, 29, 97, 15);
 		panel_1.add(lblNewLabel_3);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("일반 통장");
-		rdbtnNewRadioButton.setBounds(22, 53, 121, 23);
-		panel_1.add(rdbtnNewRadioButton);
-		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("대출 통장");
-		rdbtnNewRadioButton_1.setBounds(173, 53, 121, 23);
-		panel_1.add(rdbtnNewRadioButton_1);
+		passwordField = new JPasswordField();
+		passwordField.setBounds(143, 27, 111, 18);
+		panel_1.add(passwordField);
 		
 		JPanel panel_4 = new JPanel();
 		panel.add(panel_4);
