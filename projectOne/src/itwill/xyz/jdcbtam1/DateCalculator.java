@@ -14,6 +14,7 @@ public class DateCalculator extends ProjectDbcpFactory{
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	
 	// 검색하고자 하는 전 날짜를 구하기 위한 메소드
+	/*
 	public String getFirstDate(String firstDate) {
 
 		d1 = Integer.parseInt(firstDate.substring(0, 4));
@@ -24,23 +25,14 @@ public class DateCalculator extends ProjectDbcpFactory{
 		cal = Calendar.getInstance();
 		cal.set(d1, d2-1, d3);
 		calDate = dateFormat.format((cal.getTimeInMillis()));
-		return calDate;
-		
-		
+		return calDate;	
 	}
-	// 검색하고자 하는 뒷 날짜를 구하기 위한 메소드
+	*/
 	public String getEndDate(String endDate) {
+		String end = Integer.parseInt(endDate)+1+"";
+		return end;
+	} 
 
-		d1 = Integer.valueOf(endDate.substring(0,4));
-		d2 = Integer.valueOf(endDate.substring(4,6));
-		d3 = Integer.valueOf(endDate.substring(6));
-			
-		Calendar cal = Calendar.getInstance();
-		cal.set(d1, d2-1, d3);
-		calDate = dateFormat.format((cal.getTimeInMillis()));
-		return calDate;
-		
-	}
 	// 날짜를 검증하기 위한 메소드
 	public boolean checkDate(String checkDate) {
 		try {
@@ -63,9 +55,9 @@ public class DateCalculator extends ProjectDbcpFactory{
 		
 		String[] dateList = printDate.split("-");
 		return dateList[0]+dateList[1]+dateList[2];
-		
-		
 	}
+	
+	
 	public static void main(String[] args) {
 		DateCalculator dc = new DateCalculator();
 		

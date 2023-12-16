@@ -541,7 +541,7 @@ public class ProjectUI {
 			}
 
 //																	****** 아이디 넣는 곳 *********
-			List<JoinDTO> jd = ResultDAO.getDao().bothSearch(firstDate, endDate, LoginUI.id);
+			List<JoinDTO> jd = ResultDAO.getDao().bothSearch(firstDate, dc.getEndDate(endDate), LoginUI.id);
 
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 
@@ -598,7 +598,7 @@ public class ProjectUI {
 //			// 2. 이후 날짜만 있다면, 이후 날짜 이전꺼를 모두 조회
 		} else if (firstDate.isEmpty() && !endDate.isEmpty()) {
 //																	****** 아이디 넣는 곳 *********
-			List<JoinDTO> jd = ResultDAO.getDao().depositOneSearch(endDate, LoginUI.id);
+			List<JoinDTO> jd = ResultDAO.getDao().depositOneSearch(dc.getEndDate(endDate), LoginUI.id);
 
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 
@@ -627,7 +627,7 @@ public class ProjectUI {
 			}
 
 //																	****** 아이디 넣는 곳 *********
-			List<JoinDTO> jd = ResultDAO.getDao().depositSearch(firstDate, endDate, LoginUI.id);
+			List<JoinDTO> jd = ResultDAO.getDao().depositSearch(firstDate, dc.getEndDate(endDate), LoginUI.id);
 
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 
@@ -683,7 +683,7 @@ public class ProjectUI {
 //			// 2. 이후 날짜만 있다면, 이후 날짜 이전꺼를 모두 조회
 		} else if (firstDate.isEmpty() && !endDate.isEmpty()) {
 //																	****** 아이디 넣는 곳 *********
-			List<JoinDTO> jd = ResultDAO.getDao().withOneSearch(endDate, LoginUI.id);
+			List<JoinDTO> jd = ResultDAO.getDao().withOneSearch(dc.getEndDate(endDate), LoginUI.id);
 
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 
@@ -712,7 +712,7 @@ public class ProjectUI {
 			}
 
 //																	****** 아이디 넣는 곳 *********
-			List<JoinDTO> jd = ResultDAO.getDao().withSearch(firstDate, endDate, LoginUI.id);
+			List<JoinDTO> jd = ResultDAO.getDao().withSearch(firstDate, dc.getEndDate(endDate), LoginUI.id);
 
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 

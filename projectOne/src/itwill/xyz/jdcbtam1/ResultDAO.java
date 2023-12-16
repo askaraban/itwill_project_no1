@@ -82,7 +82,6 @@ public class ResultDAO extends ProjectDbcpFactory {
 			
 			
 			pstmt = con.prepareStatement(sql);
-
 			pstmt.setString(1, cid);
 			pstmt.setString(2, endDate);
 			rs = pstmt.executeQuery();
@@ -201,13 +200,13 @@ public class ResultDAO extends ProjectDbcpFactory {
 		ResultSet rs = null;
 		List<JoinDTO> resultList = new ArrayList<JoinDTO>();
 		JoinDTO client = null;
-
+		
 		// 지금보니깐 아이디가 누구껀지 내가 지정을 안했네 그래서 오류나는거 같은데
 
 		try {
 			con = getConnection();
 			String sql = "select iocal,cid,withdraw,deposit,memo, hbalance,iotype from iocash join client on id=cid"
-					+ " where cid=? and iotype='입금' and iocal<=? order by iocal desc";
+					+ " where cid=? and iotype='입금' and iocal<=to_date(?,'YY-MM-DD') order by iocal desc";
 			
 			
 			
