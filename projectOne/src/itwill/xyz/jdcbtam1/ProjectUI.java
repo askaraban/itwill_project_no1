@@ -395,7 +395,6 @@ public class ProjectUI {
 					try {
 
 						result();
-						System.out.println("둘다!!");
 
 					} catch (Exception e1) {
 						// 잘못된 날짜 입력시 에러메세지 출력
@@ -407,7 +406,6 @@ public class ProjectUI {
 					try {
 
 						depositResult();
-						System.out.println("입금만!!");
 
 					} catch (Exception e1) {
 						// 잘못된 날짜 입력시 에러메세지 출력
@@ -419,7 +417,6 @@ public class ProjectUI {
 					try {
 
 						withResult();
-						System.out.println("출금만!");
 
 					} catch (Exception e1) {
 						// 잘못된 날짜 입력시 에러메세지 출력
@@ -482,7 +479,6 @@ public class ProjectUI {
 
 		if (firstDate.isEmpty() && endDate.isEmpty()) {
 			
-			System.out.println("둘다 비어있는 RESULT()메소드");
 //												****** 아이디 넣는 곳 *********
 			List<JoinDTO> jd = ResultDAO.getDao().nowSearch("TEST");
 
@@ -511,9 +507,8 @@ public class ProjectUI {
 
 //			// 2. 이후 날짜만 있다면, 이후 날짜 이전꺼를 모두 조회
 		} else if (firstDate.isEmpty() && !endDate.isEmpty()) {
-			System.out.println("이후 날짜만 RESULT()메소드");
 //																	****** 아이디 넣는 곳 *********
-			List<JoinDTO> jd = ResultDAO.getDao().oneSearch( "TEST",dc.getEndDate(endDate));
+			List<JoinDTO> jd = ResultDAO.getDao().oneSearch(LoginUI.id,dc.getEndDate(endDate));
 			
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 
@@ -539,7 +534,6 @@ public class ProjectUI {
 			}
 			// 3. 이전 날짜와 이후 날짜 모두 있다면 해당 날짜 사이를 조회
 		} else if (!firstDate.isEmpty() && !endDate.isEmpty()) {
-			System.out.println("모든 날짜만만 RESULT()메소드");
 
 			// 이후 날짜가 이전 날짜보다 작을경우 에러 출력
 			if (Integer.valueOf(endDate) < Integer.valueOf(firstDate)) {
@@ -547,7 +541,7 @@ public class ProjectUI {
 			}
 
 //																	****** 아이디 넣는 곳 *********
-			List<JoinDTO> jd = ResultDAO.getDao().bothSearch(firstDate, endDate, "TEST");
+			List<JoinDTO> jd = ResultDAO.getDao().bothSearch(firstDate, endDate, LoginUI.id);
 
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 
@@ -580,7 +574,7 @@ public class ProjectUI {
 
 		if (firstDate.isEmpty() && endDate.isEmpty()) {
 //												****** 아이디 넣는 곳 *********
-			List<JoinDTO> jd = ResultDAO.getDao().depositNowSearch("TEST");
+			List<JoinDTO> jd = ResultDAO.getDao().depositNowSearch(LoginUI.id);
 
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 
@@ -604,7 +598,7 @@ public class ProjectUI {
 //			// 2. 이후 날짜만 있다면, 이후 날짜 이전꺼를 모두 조회
 		} else if (firstDate.isEmpty() && !endDate.isEmpty()) {
 //																	****** 아이디 넣는 곳 *********
-			List<JoinDTO> jd = ResultDAO.getDao().depositOneSearch(endDate, "TEST");
+			List<JoinDTO> jd = ResultDAO.getDao().depositOneSearch(endDate, LoginUI.id);
 
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 
@@ -633,7 +627,7 @@ public class ProjectUI {
 			}
 
 //																	****** 아이디 넣는 곳 *********
-			List<JoinDTO> jd = ResultDAO.getDao().depositSearch(firstDate, endDate, "TEST");
+			List<JoinDTO> jd = ResultDAO.getDao().depositSearch(firstDate, endDate, LoginUI.id);
 
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 
@@ -663,7 +657,7 @@ public class ProjectUI {
 		if (firstDate.isEmpty() && endDate.isEmpty()) {
 			
 //												****** 아이디 넣는 곳 *********
-			List<JoinDTO> jd = ResultDAO.getDao().withNowSearch("TEST");
+			List<JoinDTO> jd = ResultDAO.getDao().withNowSearch(LoginUI.id);
 
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 
@@ -689,7 +683,7 @@ public class ProjectUI {
 //			// 2. 이후 날짜만 있다면, 이후 날짜 이전꺼를 모두 조회
 		} else if (firstDate.isEmpty() && !endDate.isEmpty()) {
 //																	****** 아이디 넣는 곳 *********
-			List<JoinDTO> jd = ResultDAO.getDao().withOneSearch(endDate, "TEST");
+			List<JoinDTO> jd = ResultDAO.getDao().withOneSearch(endDate, LoginUI.id);
 
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 
@@ -718,7 +712,7 @@ public class ProjectUI {
 			}
 
 //																	****** 아이디 넣는 곳 *********
-			List<JoinDTO> jd = ResultDAO.getDao().withSearch(firstDate, endDate, "TEST");
+			List<JoinDTO> jd = ResultDAO.getDao().withSearch(firstDate, endDate, LoginUI.id);
 
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 

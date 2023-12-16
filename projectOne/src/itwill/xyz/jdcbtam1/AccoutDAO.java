@@ -32,6 +32,7 @@ public class AccoutDAO extends ProjectDbcpFactory{
 	
 	
 	
+//	*********************************** 계좌 생성 *************************************
 	// ID는 projectUI의 id 에서
 	// ac_num 은 projectUI의 checkAccNumber에서
 	// 비밀번호는 입력된 값에서
@@ -63,13 +64,15 @@ public class AccoutDAO extends ProjectDbcpFactory{
 		
 	} 
 	
+	
+//	*************************** 계좌 중복 확인 메소드 *****************************************
 	public String checkAccNum(String id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		
-		// 계좌 생성을 눌렀을 때 계좌번호가 생성되고 이를 가져다가 비교하여 중복이면 false를 반환시키자
+		// 계좌 생성을 눌렀을 때 계좌번호가 생성되고 이를 가져다가 비교하여 중복이면 계속 반복문 진행하도록하자
 		try {
 			con = getConnection();
 			
@@ -87,10 +90,34 @@ public class AccoutDAO extends ProjectDbcpFactory{
 			}
 		} catch (SQLException e) {
 			System.out.println("[에러]checkAccNum() 메소드의 SQL 오류 = " + e.getMessage());
-		}
+		} close(con, pstmt, rs);
 		return id;
 				
 	}
+	
+	// ****************** 계좌 삭제 메소드 **************************************
+	public void accountDelete (String accountNumber) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		
+		try {
+			con = getConnection();
+			String sql = "delete from account where ac_num=? ";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, accountNumber);
+			
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("[에러]accountDelete() 메소드의 SQL 오류 = " + e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		
+	}
+	
 	
 	
 	// ****************** 계좌를 찾는 메소드 **************************************
@@ -121,6 +148,8 @@ public class AccoutDAO extends ProjectDbcpFactory{
 			
 		} catch (SQLException e) {
 			System.out.println("[에러]accountSearch() 메소드의 SQL 오류 = " + e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
 		}
 		
 		return accountSearchList;

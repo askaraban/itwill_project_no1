@@ -22,7 +22,7 @@ public class DateCalculator extends ProjectDbcpFactory{
 		
 		Calendar cal = Calendar.getInstance();
 		cal = Calendar.getInstance();
-		cal.set(d1, d2+1, d3);
+		cal.set(d1, d2-1, d3);
 		calDate = dateFormat.format((cal.getTimeInMillis()));
 		return calDate;
 		
@@ -36,7 +36,7 @@ public class DateCalculator extends ProjectDbcpFactory{
 		d3 = Integer.valueOf(endDate.substring(6));
 			
 		Calendar cal = Calendar.getInstance();
-		cal.set(d1, d2 - 1, d3);
+		cal.set(d1, d2-1, d3);
 		calDate = dateFormat.format((cal.getTimeInMillis()));
 		return calDate;
 		
@@ -69,7 +69,7 @@ public class DateCalculator extends ProjectDbcpFactory{
 	public static void main(String[] args) {
 		DateCalculator dc = new DateCalculator();
 		
-		System.out.println(dc.getFirstDate("20231216"));
+		System.out.println(dc.getEndDate("20231216"));
 	}
 
 }

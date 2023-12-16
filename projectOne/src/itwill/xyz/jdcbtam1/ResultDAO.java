@@ -79,6 +79,8 @@ public class ResultDAO extends ProjectDbcpFactory {
 			con = getConnection();
 			String sql = "select iocal,cid,withdraw,deposit,memo, hbalance,iotype from iocash join client on id=cid"
 					+ " where cid=? and iocal<=? order by iocal desc";
+			
+			
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, cid);
@@ -99,7 +101,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 			}
 
 		} catch (SQLException e) {
-			System.out.println("[에러]nowSearch() 메소드의 SQL 오류 = " + e.getMessage());
+			System.out.println("[에러]oneSearch() 메소드의 SQL 오류 = " + e.getMessage());
 		} finally {
 			close(con, pstmt, rs);
 		}
@@ -184,7 +186,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 			}
 
 		} catch (SQLException e) {
-			System.out.println("[에러]bothSearch() 메소드의 SQL 오류 = " + e.getMessage());
+			System.out.println("[에러]depositSearch() 메소드의 SQL 오류 = " + e.getMessage());
 			e.printStackTrace();
 		} finally {
 			close(con, pstmt, rs);
