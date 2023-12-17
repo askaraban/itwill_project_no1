@@ -17,7 +17,7 @@ import java.util.List;
 
 public class AccoutDAO extends ProjectDbcpFactory{
 	private static AccoutDAO _acdao;
-	
+	String findAccount = null;
 	private AccoutDAO() {
 		
 	}
@@ -129,7 +129,6 @@ public class AccoutDAO extends ProjectDbcpFactory{
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		JoinDTO deleteAccount = null;
-		String find = null;
 		
 		try {
 			con = getConnection();
@@ -139,11 +138,11 @@ public class AccoutDAO extends ProjectDbcpFactory{
 			pstmt = con.prepareStatement(sql);
 			for (String str : AccountDeleteUI.ac_List) {
 				if (str.equals("너가 액션리스너한 것과 같다면")) {
-					find = "너가 액션리스너한 것을 여기에 넣음";
+					findAccount = "너가 액션리스너한 것을 여기에 넣음";
 				}
 			}
 			
-			pstmt.setString(1, find);  // 액션리스너 한것을 여기 넣음
+			pstmt.setString(1, findAccount);  // 액션리스너 한것을 여기 넣음
 			
 			rs=pstmt.executeQuery();
 			
@@ -174,7 +173,7 @@ public class AccoutDAO extends ProjectDbcpFactory{
 	
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString(1, "삭제할 때 띄우는 다이얼로그에서 계좌를 선택한것을 여기에 넣을 예정");
+			pstmt.setString(1, findAccount);
 			
 			rs=pstmt.executeQuery();
 			

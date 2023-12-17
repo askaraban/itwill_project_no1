@@ -85,9 +85,12 @@ public class AccountDeleteUI extends JDialog {
 				
 				// 선택된 계좌에 계좌의 잔액이 0원이 아니라면
 				if (AccoutDAO.getAccountDAO().getAccountBal().getBalance()!=0) {
-					JOptionPane.showMessageDialog(null, "계좌에 잔액이 있습니다. 다른 계좌로 이체하세요.");
+					JOptionPane.showMessageDialog(null, "계좌에 잔액이 있습니다. 다른 계좌로 이체하세요.", "에러", JOptionPane.ERROR_MESSAGE);	
 					
-				}
+					TransferDialog transferDialog = new TransferDialog(null);
+					
+					
+				} 
 			}
 		});
 		panel_4.add(btnNewButton);
@@ -100,11 +103,58 @@ public class AccountDeleteUI extends JDialog {
 		JButton btnNewButton_1 = new JButton("취소");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
+				setVisible(false); 
 			}
 		});
 		panel_5.add(btnNewButton_1);
 	}
+		
 	
-	
+}
+
+class TransferDialog extends JDialog {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	// 이체할 계좌 리스트 등 필요한 변수들을 선언하세요.
+
+    public TransferDialog(JFrame parent) {
+        super(parent, "이체할 계좌 선택", true);
+        // TransferDialog의 GUI 초기화 및 구성 요소 생성
+        Vector<String> transferList = new Vector<String>();
+        List<JoinDTO> accountNumList = AccoutDAO.getAccountDAO().getDeleteSearch();
+        for (JoinDTO jd : accountNumList) {
+        	transferList.add(jd.getAc_num());
+		}
+        JComboBox<String> acListBox = new JComboBox<String>(transferList);
+        acListBox.setBounds(10, 10, 150, 30);
+        
+        
+
+        JButton confirmButton = new JButton("이체");
+        confirmButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // 확인 버튼이 눌리면 이체 로직을 수행하세요.
+                // 여기에서는 임의의 transfer() 메서드를 호출하도록 가정합니다.
+                transfer();
+
+                // 다이얼로그를 닫습니다.
+                dispose();
+            }
+        });
+
+        // 다른 GUI 구성 요소들을 추가하세요.
+
+        // JDialog 설정
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        setSize(300, 200);
+        setLocationRelativeTo(parent);
+    }
+
+    private void transfer() {
+        // 이체 로직을 구현하세요.
+    }
 }
