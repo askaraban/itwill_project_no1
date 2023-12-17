@@ -96,11 +96,17 @@ public class AccoutDAO extends ProjectDbcpFactory{
 	}
 	
 	// ****************** 계좌 삭제 메소드 **************************************
-	// 1. 다이얼로그 띄워서 계좌를 선택
+	// 1. 잔액이 남아있으면 경고 메세지 띄우기 -> 계좌이체하기
 	// 2. 삭제하시겠습니까? 메세지 띄우기
-	// 3. 잔액이 남아있다면, "잔액이 남아있습니다" 경고 띄우기
-	// 4. "이체하실 계좌를 선택하세요" -> 로그인된 아이디의 나머지 계좌를 선택하게 다이얼로그 띄우고 이체하기/취소하기 클릭
-	// 5. 계좌가 삭제되었습니다.
+	// 3. 삭제하기 -> 계좌가 삭제되었습니다 메세지 띄우기
+	
+	// ****************** 계좌 이체 메소드 **************************************
+	// 1. 계좌 번호 입력하기
+	// 2. 입금액 입력하기
+	// 3. 입금 버튼 입력 시 계좌 번호 올바르게 입력했다면 ok 아니면 "없는 계좌번호 입니다" 메세지 출력
+	// 4. 받는 계좌( 잔액 + 입금액) / 보낸 계좌 ( 잔액 - 입금액 )
+
+	// ******************* 계좌를 삭제하는 메소드 ********************************
 	public void accountDelete (String accountNumber) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -128,15 +134,16 @@ public class AccoutDAO extends ProjectDbcpFactory{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		JoinDTO deleteAccount = null;
+		JoinDTO searchBal = null;
 		
+		// 콤보창에서 액션 리스너한 것과 ac_List가 같다면 잔액을 확인하게 하자
 		try {
 			con = getConnection();
 			
 			String sql = "select balance from client join account on id=ac_id where ac_num=?";
 	
 			pstmt = con.prepareStatement(sql);
-			for (String str : AccountDeleteUI.ac_List) {
+			for (String str : AccountDeleteUI.ac_List) { // 콤보박스에서 고를 수 있는 계좌 리스트
 				if (str.equals("너가 액션리스너한 것과 같다면")) {
 					findAccount = "너가 액션리스너한 것을 여기에 넣음";
 				}
@@ -147,51 +154,20 @@ public class AccoutDAO extends ProjectDbcpFactory{
 			rs=pstmt.executeQuery();
 			
 			if (rs.next()) {
-				deleteAccount = new JoinDTO();
-				deleteAccount.setBalance(rs.getInt("balance"));
+				searchBal = new JoinDTO();
+				searchBal.setBalance(rs.getInt("balance"));
 			}
 			
 		} catch (SQLException e) {
 			System.out.println("[에러]getAccountBal() 메소드의 SQL 오류 = " + e.getMessage());
 		} finally {
 			close(con, pstmt, rs);
-		}  return deleteAccount;
+		}  return searchBal;
 	}
 	
-	// ********************* 선택된 내 계좌 외 나머지 계좌를 찾는 메소드 ****************
-	public List<JoinDTO> getDeleteSearch() {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		List<JoinDTO> delSearchList = new ArrayList<JoinDTO>();
-		JoinDTO delSearch = null;
-		
-		try {
-			con = getConnection();
-			
-			String sql = "select balance from client join account on id=ac_id where ac_num!=?";
 	
-			pstmt = con.prepareStatement(sql);
-			
-			pstmt.setString(1, findAccount);
-			
-			rs=pstmt.executeQuery();
-			
-			while (rs.next()) {
-				delSearch = new JoinDTO();
-				delSearch.setAc_num(rs.getString("ac_num"));
-				delSearchList.add(delSearch);
-			}
-			
-		} catch (SQLException e) {
-			System.out.println("[에러]getAccountBal() 메소드의 SQL 오류 = " + e.getMessage());
-		} finally {
-			close(con, pstmt, rs);
-			
-		}  return delSearchList;
-	}
 	
-	// ********************** 내 계좌에서 선택된 계좌에게 잔액을 이체하는 메소드 *********************
+	// ********************** 내 계좌에서 선택된 계좌에게 돈을 이체하는 메소드 *********************
 	public void delTrans () {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -199,8 +175,9 @@ public class AccoutDAO extends ProjectDbcpFactory{
 		
 		try {
 			con = getConnection();
-			// 기존 계좌에서 선택된 계좌로 남은 돈을 잔액에 더함
-			String sql = "update client set balance = balance + ? join account on id=ac_id "
+			// 기존 계좌에서 선택된 계좌로 돈을 잔액에 더함
+			// 회원테이블의 아이디가 전달받은 아이디(?)와 같고 / 계좌번호가 
+			String sql = "update client set balance = ? join account on id=? "
 					+ "where ac_num = (select balance from client join account on id=ac_id where ac_num=?)";
 			pstmt = con.prepareStatement(sql);
 			
@@ -254,9 +231,41 @@ public class AccoutDAO extends ProjectDbcpFactory{
 		}
 		
 		return accountSearchList;
+		
 	} 
 	
-	
+	// ********************* 선택된 내 계좌 외 나머지 계좌를 찾는 메소드 ****************
+		public List<JoinDTO> getDeleteSearch() {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<JoinDTO> delSearchList = new ArrayList<JoinDTO>();
+			JoinDTO delSearch = null;
+			
+			try {
+				con = getConnection();
+				
+				String sql = "select balance from client join account on id=ac_id where ac_num!=?";
+		
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1, findAccount);
+				
+				rs=pstmt.executeQuery();
+				
+				while (rs.next()) {
+					delSearch = new JoinDTO();
+					delSearch.setAc_num(rs.getString("ac_num"));
+					delSearchList.add(delSearch);
+				}
+				
+			} catch (SQLException e) {
+				System.out.println("[에러]getAccountBal() 메소드의 SQL 오류 = " + e.getMessage());
+			} finally {
+				close(con, pstmt, rs);
+				
+			}  return delSearchList;
+		}
 	 
 
 	

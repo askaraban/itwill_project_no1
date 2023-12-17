@@ -60,6 +60,7 @@ public class AccountDeleteUI extends JDialog {
 		separator_1.setBackground(new Color(255, 255, 255));
 		panel.add(separator_1);
 		
+		
 		JComboBox comboBox = new JComboBox();
 		List<JoinDTO> comboList = AccoutDAO.getAccountDAO().accountSearch(LoginUI.id);
 		for (JoinDTO jd : comboList) {
