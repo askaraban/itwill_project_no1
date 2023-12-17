@@ -166,9 +166,11 @@ public class AccoutDAO extends ProjectDbcpFactory{
 	}
 	
 	
+	// ex) transferMoney(String "이체받을 계좌번호" , 입금액)
+	// ex)  transferMoney(String "내 계좌번호" , - 입금액)
 	
 	// ********************** 내 계좌에서 선택된 계좌에게 돈을 이체하는 메소드 *********************
-	public void delTrans () {
+	public void transferMoney (String account_number, int deposit_money) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
@@ -177,13 +179,13 @@ public class AccoutDAO extends ProjectDbcpFactory{
 			con = getConnection();
 			// 기존 계좌에서 선택된 계좌로 돈을 잔액에 더함
 			// 회원테이블의 아이디가 전달받은 아이디(?)와 같고 / 계좌번호가 
-			String sql = "update client set balance = ? join account on id=? "
-					+ "where ac_num = (select balance from client join account on id=ac_id where ac_num=?)";
+			
+			String sql = "update client set balance = balance + ? join account on id=? where ac_num=?";
 			pstmt = con.prepareStatement(sql);
 			
 			// 내 계좌의 잔액
-			pstmt.setInt(1, getAccountBal().getBalance());
-			pstmt.setString(2, "선택된 계좌를 넣기-이체받을 계좌번호");
+			pstmt.setInt(1, deposit_money);
+			pstmt.setString(2, account_number);
 			
 			pstmt.executeUpdate();
 			
@@ -233,7 +235,7 @@ public class AccoutDAO extends ProjectDbcpFactory{
 		return accountSearchList;
 		
 	} 
-	
+	/*
 	// ********************* 선택된 내 계좌 외 나머지 계좌를 찾는 메소드 ****************
 		public List<JoinDTO> getDeleteSearch() {
 			Connection con = null;
@@ -266,7 +268,7 @@ public class AccoutDAO extends ProjectDbcpFactory{
 				
 			}  return delSearchList;
 		}
-	 
+	 */
 
 	
 }
