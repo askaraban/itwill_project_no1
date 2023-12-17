@@ -86,9 +86,20 @@ public class AccountDeleteUI extends JDialog {
 				
 				// 선택된 계좌에 계좌의 잔액이 0원이 아니라면
 				if (AccoutDAO.getAccountDAO().getAccountBal().getBalance()!=0) {
-					JOptionPane.showMessageDialog(null, "계좌에 잔액이 있습니다. 다른 계좌로 이체하세요.", "에러", JOptionPane.ERROR_MESSAGE);	
+					JOptionPane.showMessageDialog(null, "계좌에 잔액이 남아있습니다!", "에러", JOptionPane.ERROR_MESSAGE);	
+					return;
+				} else {
+					int result = JOptionPane.showConfirmDialog(null, "정말로 삭제하시겠습니까?", "계좌 삭제", JOptionPane.YES_NO_CANCEL_OPTION);
 					
-				} 
+					if (result == JOptionPane.YES_OPTION) {
+						AccoutDAO.getAccountDAO().accountDelete("combobox에 선택된 계좌번호를 여기에 넣으세요");
+						JOptionPane.showMessageDialog(null, "계좌를 삭제하였습니다.");	
+						
+					} else {
+						dispose();
+					}
+					
+				}
 			}
 		});
 		panel_4.add(btnNewButton);
@@ -101,7 +112,7 @@ public class AccountDeleteUI extends JDialog {
 		JButton btnNewButton_1 = new JButton("취소");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false); 
+				dispose();
 			}
 		});
 		panel_5.add(btnNewButton_1);

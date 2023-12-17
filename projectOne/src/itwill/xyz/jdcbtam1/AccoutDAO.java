@@ -170,7 +170,7 @@ public class AccoutDAO extends ProjectDbcpFactory{
 	// ex)  transferMoney(String "내 계좌번호" , - 입금액)
 	
 	// ********************** 내 계좌에서 선택된 계좌에게 돈을 이체하는 메소드 *********************
-	public void transferMoney (String account_number, int deposit_money) {
+	public void transferMoney (String account_number, Long deposit_money) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
@@ -184,8 +184,9 @@ public class AccoutDAO extends ProjectDbcpFactory{
 			pstmt = con.prepareStatement(sql);
 			
 			// 내 계좌의 잔액
-			pstmt.setInt(1, deposit_money);
-			pstmt.setString(2, account_number);
+			pstmt.setLong(1, deposit_money);
+			pstmt.setString(2, LoginUI.id);
+			pstmt.setString(3, account_number);
 			
 			pstmt.executeUpdate();
 			
