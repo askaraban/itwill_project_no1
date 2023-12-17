@@ -123,12 +123,13 @@ public class AccoutDAO extends ProjectDbcpFactory{
 		
 	}
 	
-	// ******************* 해당 계좌의 잔액을 확인하는 메소드 *************************
+	// ******************* 선택된 계좌의 잔액을 확인하는 메소드 *************************
 	public JoinDTO getAccountBal() {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		JoinDTO deleteAccount = null;
+		String find = null;
 		
 		try {
 			con = getConnection();
@@ -136,8 +137,13 @@ public class AccoutDAO extends ProjectDbcpFactory{
 			String sql = "select balance from client join account on id=ac_id where ac_num=?";
 	
 			pstmt = con.prepareStatement(sql);
+			for (String str : AccountDeleteUI.ac_List) {
+				if (str.equals("너가 액션리스너한 것과 같다면")) {
+					find = "너가 액션리스너한 것을 여기에 넣음";
+				}
+			}
 			
-			pstmt.setString(1, "삭제할 때 띄우는 다이얼로그에서 계좌를 선택한것을 여기에 넣을 예정");
+			pstmt.setString(1, find);  // 액션리스너 한것을 여기 넣음
 			
 			rs=pstmt.executeQuery();
 			

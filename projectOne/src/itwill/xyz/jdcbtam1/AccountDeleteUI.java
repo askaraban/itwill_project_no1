@@ -15,11 +15,15 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
 public class AccountDeleteUI extends JDialog {
+	public static Vector<String> ac_List = new Vector<String>();
 
 	/**
 	 * 
@@ -57,7 +61,11 @@ public class AccountDeleteUI extends JDialog {
 		panel.add(separator_1);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"----------------------------------"}));
+		List<JoinDTO> comboList = AccoutDAO.getAccountDAO().accountSearch(LoginUI.id);
+		for (JoinDTO jd : comboList) {
+			ac_List.add(jd.getAc_num());
+		}
+		comboBox.setModel(new DefaultComboBoxModel<String>(ac_List));
 		comboBox.setBounds(28, 15, 177, 23);
 		panel.add(comboBox);
 		
@@ -74,10 +82,8 @@ public class AccountDeleteUI extends JDialog {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				// 1. 해당 계정의 계좌 리스트를 팝업
 				
-				
-				// 현재 계좌의 잔액이 0원이 아니라면
+				// 선택된 계좌에 계좌의 잔액이 0원이 아니라면
 				if (AccoutDAO.getAccountDAO().getAccountBal().getBalance()!=0) {
 					JOptionPane.showMessageDialog(null, "계좌에 잔액이 있습니다. 다른 계좌로 이체하세요.");
 					
