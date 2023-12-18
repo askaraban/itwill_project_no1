@@ -765,6 +765,7 @@ public class ProjectUI {
 								outTF.requestFocus();
 								return;
 							}
+							
 							//출금액텍스트필드에 숫자가 아닌 다른값을 넣었을때
 							String outmoneyReg = "^[\\d]*$";
 							if(!Pattern.matches(outmoneyReg, OTF)) {
@@ -773,7 +774,8 @@ public class ProjectUI {
 								return;
 							}
 							int Omoney= Integer.parseInt(OTF);
-							dto2.setWithdraw(Omoney); 
+							dto2.setWithdraw(Omoney);
+							
 							
 							//북클래스에 계좌비번저장
 							
@@ -785,7 +787,7 @@ public class ProjectUI {
 							 
 							 if(!Pattern.matches(acpw, Opw)) {
 								 JOptionPane.showMessageDialog(null, "4자리 숫자만 입력해주세요");
-								outTF.requestFocus();
+								pwTF.requestFocus();
 								return;
 							 }
 							 
@@ -796,15 +798,15 @@ public class ProjectUI {
 //							 System.out.println(dto2.getAc_pw());
 							 if(ACPW != dto2.getAc_pw()) {
 								 JOptionPane.showMessageDialog(null, "계좌비밀번호가 다릅니다.");
-								outTF.requestFocus();
+								pwTF.requestFocus();
 								return;
 							 }
 							 
 							 
-							 while(dto2.getBalance() < dto2.getWithdraw()) {
+							 if(dto2.getBalance() < dto2.getWithdraw()) {
 								 JOptionPane.showMessageDialog(null, "잔액이 부족합니다.");
-								 continue;
-								 
+								 outTF.requestFocus();
+								 return;
 							 }
 							
 							 
