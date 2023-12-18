@@ -140,7 +140,7 @@ public class AccoutDAO extends ProjectDbcpFactory{
 		try {
 			con = getConnection();
 			
-			String sql = "select balance from client join account on id=ac_id where ac_num=?";
+			String sql = "select balance from account where ac_num=?";
 	
 			pstmt = con.prepareStatement(sql);
 			
@@ -176,24 +176,83 @@ public class AccoutDAO extends ProjectDbcpFactory{
 			// 기존 계좌에서 선택된 계좌로 돈을 잔액에 더함
 			// 회원테이블의 아이디가 전달받은 아이디(?)와 같고 / 계좌번호가 
 			
-			String sql = "update client set balance = balance + ? join account on id=? where ac_num=?";
+			String sql = "update account set balance = balance + ? where ac_num=?";
 			pstmt = con.prepareStatement(sql);
 			
 			// 내 계좌의 잔액
 			pstmt.setLong(1, deposit_money);
-			pstmt.setString(2, LoginUI.id);
-			pstmt.setString(3, ProjectUI.accoutSelectNumber);
+			pstmt.setString(2, account_number);
 			
 			pstmt.executeUpdate();
 			
 			
 		} catch (SQLException e) {
-			System.out.println("[에러]delTrans() 메소드의 SQL 오류 = " + e.getMessage());
+			System.out.println("[에러]transferMoney() 메소드의 SQL 오류 = " + e.getMessage());
 		} finally {
 			close(con, pstmt);
 		}
 	}
 	
+	// ********************** 내 계좌에서 선택된 계좌에게 돈을 이체하는 메소드2 - 출금히스토리 업데이트 *********************
+		public void transferHistoryInsert (String account_number, Long widthrow_money, String memo, int hbalance) {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			
+			
+			try {
+				con = getConnection();
+				
+				String sql = "insert into iocash values(seq10.nextval,?,?,?,?,?,sysdate,?) ";
+				pstmt = con.prepareStatement(sql);
+				// 내 계좌의 잔액
+				pstmt.setString(1, account_number);
+				pstmt.setString(2, "출금");
+				pstmt.setString(3, "0");
+				pstmt.setLong(4, widthrow_money);
+				pstmt.setString(5, memo);
+				pstmt.setInt(6, hbalance);
+				
+				
+				pstmt.executeUpdate();
+				
+				
+			} catch (SQLException e) {
+				System.out.println("[에러]transferHistoryInsert() 메소드의 SQL 오류 = " + e.getMessage());
+			} finally {
+				close(con, pstmt);
+			}
+		}
+		
+		// ********************** 내 계좌에서 선택된 계좌에게 돈을 이체하는 메소드3 - 이체된 계좌 입금히스토리 업데이트 *********************
+				public void receiveHistoryInsert (String account_number, Long deposit_money, String memo, int hbalance) {
+					Connection con = null;
+					PreparedStatement pstmt = null;
+					
+					
+					try {
+						con = getConnection();
+						
+						String sql = "insert into iocash values(seq10.nextval,?,?,?,?,?,sysdate,?) ";
+						pstmt = con.prepareStatement(sql);
+						// 내 계좌의 잔액
+						pstmt.setString(1, account_number);
+						pstmt.setString(2, "입금");
+						pstmt.setLong(3, deposit_money);
+						pstmt.setString(4, "0");
+						pstmt.setString(5, memo);
+						pstmt.setInt(6, hbalance);
+						
+						
+						pstmt.executeUpdate();
+						
+						
+					} catch (SQLException e) {
+						System.out.println("[에러]transferHistoryInsert() 메소드의 SQL 오류 = " + e.getMessage());
+					} finally {
+						close(con, pstmt);
+					}
+				}
+		
 	
 	
 	
@@ -213,7 +272,7 @@ public class AccoutDAO extends ProjectDbcpFactory{
 			String sql = "select ac_num from account where ac_id=?";
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString(1, LoginUI.id);
+			pstmt.setString(1, id);
 			
 			rs = pstmt.executeQuery();
 			
@@ -225,6 +284,7 @@ public class AccoutDAO extends ProjectDbcpFactory{
 			
 		} catch (SQLException e) {
 			System.out.println("[에러]accountSearch() 메소드의 SQL 오류 = " + e.getMessage());
+			e.printStackTrace();
 		} finally {
 			close(con, pstmt, rs);
 		}
@@ -232,6 +292,43 @@ public class AccoutDAO extends ProjectDbcpFactory{
 		return accountSearchList;
 		
 	} 
+	
+	// ****************** 계좌를 찾는 메소드 **************************************
+		// 계좌를 찾아서 JoinDTO 객체에 id에 맞는 계좌번호 리스트를 담음
+		public List<JoinDTO> allAccount() {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<JoinDTO> allAccountList  = new ArrayList<JoinDTO>();
+			JoinDTO accountSearch=null;
+			
+			
+			try {
+				con = getConnection();
+				// client의 id를 가져와서 account 테이블과 비교하여 모든 계좌번호를 가져오기
+				String sql = "select ac_num from account";
+				pstmt = con.prepareStatement(sql);
+				
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					accountSearch = new JoinDTO();
+					accountSearch.setAc_num(rs.getString("ac_num"));
+					allAccountList.add(accountSearch);
+				}
+				
+			} catch (SQLException e) {
+				System.out.println("[에러]allAccount() 메소드의 SQL 오류 = " + e.getMessage());
+				e.printStackTrace();
+			} finally {
+				close(con, pstmt, rs);
+			}
+			
+			return allAccountList;
+			
+		} 
+	
+	
 	/*
 	// ********************* 선택된 내 계좌 외 나머지 계좌를 찾는 메소드 ****************2
 		public List<JoinDTO> getDeleteSearch() {

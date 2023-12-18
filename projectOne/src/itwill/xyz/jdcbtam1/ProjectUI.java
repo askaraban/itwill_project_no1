@@ -280,9 +280,15 @@ public class ProjectUI {
 		});
 		panel_4.add(button);
 
-		btnNewButton_8 = new JButton("회원탈퇴");
+		btnNewButton_8 = new JButton("계좌 이체");
 		btnNewButton_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				TransferUI transferUI= new TransferUI(null, "계좌 이체");
+				transferUI.setSize(332, 365);
+				transferUI.setLocationRelativeTo(scrollPane);
+				transferUI.setVisible(true);
+				transferUI.getContentPane().setLayout(null);
+				transferUI.setResizable(false);
 			}
 		});
 		
@@ -512,6 +518,10 @@ public class ProjectUI {
 //		******************************* 계좌생성 UI **************************************
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int r1 = (int)((Math.random()*100)%100);
+				int r2 = (int)((Math.random()*1000)%1000);
+				int r3 = (int)((Math.random()*100000)%100000);
+				checkAccNumber = "1"+r1+"-"+r2+"-"+r3;
 				
 				AccountCreateUI acUI = new AccountCreateUI(frame, "계좌 생성");
 				
@@ -900,7 +910,6 @@ public class ProjectUI {
 			
 //												****** 아이디 넣는 곳 *********2
 			List<JoinDTO> jd = ResultDAO.getDao().nowSearch(accoutSelectNumber);
-			System.out.println(jd.size());
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 
 			for (int i = tableModel.getRowCount(); i > 0; i--) {
@@ -1155,4 +1164,5 @@ public class ProjectUI {
 			throw new Exception();
 		}
 	}
+	
 }
