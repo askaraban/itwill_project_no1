@@ -34,6 +34,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.ImageIcon;
 
 
 
@@ -366,6 +367,17 @@ public class ProjectUI {
 		
 		JPanel panel_18 = new JPanel();
 		panel_7.add(panel_18);
+		panel_18.setLayout(null);
+		
+		JPanel panel_24 = new JPanel();
+		panel_24.setBounds(120, 0, 72, 55);
+		panel_18.add(panel_24);
+		panel_24.setLayout(null);
+		
+		JLabel lblNewLabel_6 = new JLabel("");
+		lblNewLabel_6.setIcon(new ImageIcon(ProjectUI.class.getResource("/image/4xn.png")));
+		lblNewLabel_6.setBounds(0, 0, 72, 55);
+		panel_24.add(lblNewLabel_6);
 
 		JPanel panel_6 = new JPanel();
 		panel.add(panel_6);
@@ -1132,5 +1144,4 @@ public class ProjectUI {
 			throw new Exception();
 		}
 	}
-
 }
