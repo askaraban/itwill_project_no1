@@ -9,6 +9,7 @@ public interface JoinDAO {
 	JoinDTO selectClientByNo(String id);
 	
 	List<JoinDTO> InForMationClient(String id);
-
+	
+	JoinDTO selectClientAccountNo(String accoutSelectNumber);
 	
 }

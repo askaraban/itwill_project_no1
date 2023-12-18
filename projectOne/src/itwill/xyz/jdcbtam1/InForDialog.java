@@ -162,7 +162,7 @@ public class InForDialog extends JDialog {
 				
 				List<JoinDTO> INFORdialAcNum = JoinDAOImpl.getDAO().InForMationClient(LoginUI.id);
 				Vector<String> accountnumber = new Vector<>();
-				
+				 
 				for(JoinDTO INFORdial2 : INFORdialAcNum) {
 					accountnumber.add(INFORdial2.getAc_num());
 				}

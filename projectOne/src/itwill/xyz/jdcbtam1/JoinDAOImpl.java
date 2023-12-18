@@ -116,6 +116,36 @@ public class JoinDAOImpl extends ProjectDbcpFactory implements JoinDAO {
 			}
 			return clientList;
 		}
+		
+		@Override
+		public JoinDTO selectClientAccountNo(String accoutSelectNumber) {
+			Connection con=null;
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+			JoinDTO client=null;
+			try {
+				con=getConnection();
+				
+				String sql="select balance from account where ac_num=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, accoutSelectNumber);
+				
+				rs=pstmt.executeQuery();
+
+				if(rs.next()) {
+		
+					client=new JoinDTO();
+				
+					client.setBalance(rs.getInt("balance"));
+					
+				}
+			} catch (SQLException e) {
+				System.out.println("[에러]selectStudentByNo() 메소드의 SQL 오류 = "+e.getMessage());
+			} finally {
+				close(con, pstmt, rs);
+			}
+			return client;
+		}
 	
 }
 

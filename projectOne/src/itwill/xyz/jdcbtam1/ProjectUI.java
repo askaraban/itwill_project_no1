@@ -94,9 +94,10 @@ public class ProjectUI {
 				if(LoginUI.isLogin) {
 					lblNewLabel_1.setText(LoginUI.id);
 					System.out.println(LoginUI.id);
-					balanceLabel.setText(LoginUI.VisualBalance+" 원");//잔액넣기
 					
 					List<JoinDTO> INFORdialAcNum = JoinDAOImpl.getDAO().InForMationClient(LoginUI.id);
+					
+//					balanceLabel.setText(LoginUI.VisualBalance+" 원");//잔액넣기
 					
 					Vector<String> accountnumber = new Vector<>();
 					
@@ -370,6 +371,11 @@ public class ProjectUI {
 				comboBox_1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						accoutSelectNumber=(String)comboBox_1.getSelectedItem();
+						
+						 JoinDTO login2=JoinDAOImpl.getDAO().selectClientAccountNo(ProjectUI.accoutSelectNumber);
+						  String ACBAL = login2.getBalance()+"";
+
+						balanceLabel.setText(ACBAL +" 원");//잔액넣기
 					}
 				});
 		
