@@ -143,13 +143,9 @@ public class AccoutDAO extends ProjectDbcpFactory{
 			String sql = "select balance from client join account on id=ac_id where ac_num=?";
 	
 			pstmt = con.prepareStatement(sql);
-			for (String str : AccountDeleteUI.ac_List) { // 콤보박스에서 고를 수 있는 계좌 리스트
-				if (str.equals("너가 액션리스너한 것과 같다면")) {
-					findAccount = "너가 액션리스너한 것을 여기에 넣음";
-				}
-			}
 			
-			pstmt.setString(1, findAccount);  // 액션리스너 한것을 여기 넣음
+			
+			pstmt.setString(1, AccountDeleteUI.comboNumber);  // 액션리스너 한것을 여기 넣음
 			
 			rs=pstmt.executeQuery();
 			

@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class TransferUI extends JDialog{
 	private JTextField receiveAccountTF;
@@ -33,20 +34,36 @@ public class TransferUI extends JDialog{
 		
 		
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(4, 2));
+		panel.setLayout(null);
 		
-		panel.add(new JLabel("combobox에서 선택한 계좌를 여기에 넣으세요"));
+		JLabel label_1 = new JLabel("combobox에서 선택한 계좌를 여기에 넣으세요");
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		label_1.setBounds(213, 2, 225, 75);
+		panel.add(label_1);
 		
-		panel.add(new JLabel("누구에게 보낼까요?"));
+		JLabel label_2 = new JLabel("누구에게 보낼까요?");
+		label_2.setHorizontalAlignment(SwingConstants.CENTER);
+		label_2.setBounds(0, 75, 225, 75);
+		panel.add(label_2);
 		receiveAccountTF = new JTextField();
+		receiveAccountTF.setBounds(225, 87, 193, 51);
 		panel.add(receiveAccountTF);
 		
-		panel.add(new JLabel("얼마를 보낼까요?"));
+		JLabel label = new JLabel("얼마를 보낼까요?");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setBounds(0, 150, 225, 75);
+		panel.add(label);
 		MoneyTF = new JTextField();
+		MoneyTF.setBounds(225, 162, 193, 51);
 		panel.add(MoneyTF);
 		
+		
+		
+		
+		
 		// 전송 버튼
-		JButton transferBtn = new JButton();
+		JButton transferBtn = new JButton("이체");
+		transferBtn.setBounds(54, 235, 134, 44);
 		transferBtn.addActionListener(new ActionListener() {
 			
 			@Override
@@ -81,6 +98,23 @@ public class TransferUI extends JDialog{
 		});
 		panel.add(transferBtn);
 		
+		JButton cancelTF = new JButton("취소");
+		cancelTF.setBounds(225, 234, 134, 44);
+		cancelTF.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+			}
+		});
+		
+		panel.add(cancelTF);
+		
+		JLabel lblNewLabel = new JLabel("내 계좌번호");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(0, 2, 225, 75);
+		panel.add(lblNewLabel);
 		
 		
 		
@@ -90,5 +124,4 @@ public class TransferUI extends JDialog{
 		
 		
 	}
-	
 }

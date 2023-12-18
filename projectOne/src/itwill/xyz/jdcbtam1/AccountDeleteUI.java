@@ -23,8 +23,8 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
 public class AccountDeleteUI extends JDialog {
-	public static Vector<String> ac_List = new Vector<String>();
-
+	
+	public static String comboNumber=null;
 	/**
 	 * 
 	 */
@@ -36,14 +36,12 @@ public class AccountDeleteUI extends JDialog {
 		
 		super(frame, "계좌 삭제", false);
 		setTitle("삭제하실 계좌를 선택하세요.");
-		setResizable(false);
-		setAlwaysOnTop(true);
 		setType(Type.POPUP);
 		setResizable(false);
+		setSize(300, 200);
 		getContentPane().setForeground(new Color(255, 255, 255));
 		setForeground(new Color(255, 255, 255));
 		
-		setBounds(100, 100, 250, 150);
 		getContentPane().setLayout(new GridLayout(2, 3, 0, 0));
 		
 		JPanel panel = new JPanel();
@@ -62,12 +60,19 @@ public class AccountDeleteUI extends JDialog {
 		
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				comboNumber = (String)comboBox.getSelectedItem();
+			}
+		});
 		List<JoinDTO> comboList = AccoutDAO.getAccountDAO().accountSearch(LoginUI.id);
-		for (JoinDTO jd : comboList) {
-			ac_List.add(jd.getAc_num());
+		Vector<String> ac_List = new Vector<String>();
+		for (JoinDTO joinDTO : comboList) {
+			ac_List.add(joinDTO.getAc_num());
 		}
+		
 		comboBox.setModel(new DefaultComboBoxModel<String>(ac_List));
-		comboBox.setBounds(28, 15, 177, 23);
+		comboBox.setBounds(54, 24, 177, 23);
 		panel.add(comboBox);
 		
 		JPanel panel_1 = new JPanel();
@@ -86,14 +91,15 @@ public class AccountDeleteUI extends JDialog {
 				
 				// 선택된 계좌에 계좌의 잔액이 0원이 아니라면
 				if (AccoutDAO.getAccountDAO().getAccountBal().getBalance()!=0) {
-					JOptionPane.showMessageDialog(null, "계좌에 잔액이 남아있습니다!", "에러", JOptionPane.ERROR_MESSAGE);	
-					return;
+					JOptionPane.showMessageDialog(panel, "계좌에 잔액이 남아있습니다!", "삭제 불가!!", JOptionPane.ERROR_MESSAGE);
+					
+			
 				} else {
-					int result = JOptionPane.showConfirmDialog(null, "정말로 삭제하시겠습니까?", "계좌 삭제", JOptionPane.YES_NO_CANCEL_OPTION);
+					int result = JOptionPane.showConfirmDialog(panel, "정말로 삭제하시겠습니까?", "계좌 삭제", JOptionPane.YES_NO_CANCEL_OPTION);
 					
 					if (result == JOptionPane.YES_OPTION) {
-						AccoutDAO.getAccountDAO().accountDelete("combobox에 선택된 계좌번호를 여기에 넣으세요");
-						JOptionPane.showMessageDialog(null, "계좌를 삭제하였습니다.");	
+						AccoutDAO.getAccountDAO().accountDelete(comboNumber);
+						JOptionPane.showMessageDialog(panel, "계좌를 삭제하였습니다.");	
 						
 					} else {
 						dispose();

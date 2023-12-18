@@ -34,7 +34,6 @@ public class AccountCreateUI  extends JDialog{
 		// 생성하기 버튼 눌렀을 때 계좌번호를 생성하여 매개변수에 담아 중복을 검증 ex) 123-134-123456
 		
 		
-		setBounds(100, 100, 300, 400);
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
