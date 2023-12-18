@@ -118,17 +118,16 @@ public class ResultDAO extends ProjectDbcpFactory {
 
 		try {
 			con = getConnection();
-			String sql = "select iocal,cid,withdraw,deposit,memo, hbalance,iotype from iocash join account on cid=ac_id where ac_num=?"
+			String sql = "select iocal,withdraw,deposit,memo, hbalance,iotype from iocash join account on cid=ac_id where ac_num=?"
 					+ " order by iocal desc";
 			pstmt = con.prepareStatement(sql);
-
+			
 			pstmt.setString(1, ProjectUI.accoutSelectNumber);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				client = new JoinDTO();
 				client.setIocal(rs.getTimestamp("iocal"));
-				client.setCid(rs.getString("cid"));
 				client.setWithdraw(rs.getInt("withdraw"));
 				client.setDeposit(rs.getInt("deposit"));
 				client.setMemo(rs.getString("memo"));
@@ -142,9 +141,9 @@ public class ResultDAO extends ProjectDbcpFactory {
 			System.out.println("[에러]nowSearch() 메소드의 SQL 오류 = " + e.getMessage());
 		} finally {
 			close(con, pstmt, rs);
-		}
-		return resultList;
+		} return resultList;
 
+		
 	}
 	
 //	**************************************입금  입금*************************************************************************
