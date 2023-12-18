@@ -64,6 +64,7 @@ public class AccoutDAO extends ProjectDbcpFactory{
 	} 
 	
 	
+	
 //	*************************** 계좌 중복 확인 메소드 *****************************************
 	public String checkAccNum(String id) {
 		Connection con = null;

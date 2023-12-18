@@ -245,7 +245,12 @@ public class ProjectUI {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				int r1 = (int)((Math.random()*100)%100);
+				int r2 = (int)((Math.random()*1000)%1000);
+				int r3 = (int)((Math.random()*100000)%100000);
+				checkAccNumber = "1"+r1+"-"+r2+"-"+r3;
 				JoinUI join = new JoinUI();
+				
 				
 				
 				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -524,10 +529,7 @@ public class ProjectUI {
 //		******************************* 계좌생성 UI **************************************
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int r1 = (int)((Math.random()*100)%100);
-				int r2 = (int)((Math.random()*1000)%1000);
-				int r3 = (int)((Math.random()*100000)%100000);
-				checkAccNumber = "1"+r1+"-"+r2+"-"+r3;
+				
 				AccountCreateUI acUI = new AccountCreateUI(frame, "계좌 생성");
 				
 				acUI.setSize(332, 365);
