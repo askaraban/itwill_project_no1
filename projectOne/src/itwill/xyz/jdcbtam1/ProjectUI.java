@@ -37,7 +37,7 @@ import javax.swing.table.DefaultTableModel;
 
 
 
-//CREATE TABLE ACCOUNT (AC_ID VARCHAR2(30) NOT NULL, AC_NUM VARCHAR2(30) CONSTRAINT NUM_PK PRIMARY KEY, AC_PW NUMBER(4) NOT NULL, AC_KIND VARCHAR2(40) NOT NULL); 
+ 
 public class ProjectUI {
 	
 	private JTextField 이후날짜;

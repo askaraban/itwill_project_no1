@@ -33,7 +33,7 @@ public class JoinDAOImpl extends ProjectDbcpFactory implements JoinDAO {
 		try {
 			con=getConnection();
 			
-			String sql="insert into client values(?,?,?,sysdate,0)";
+			String sql="insert into client values(?,?,?,sysdate)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, client.getID());
 			pstmt.setString(2, client.getPw());
@@ -58,7 +58,7 @@ public class JoinDAOImpl extends ProjectDbcpFactory implements JoinDAO {
 		try {
 			con=getConnection();
 			
-			String sql="select id,pw,name,cal,balance from client where id=?";
+			String sql="select id,pw,name,cal from client where id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			
@@ -72,7 +72,6 @@ public class JoinDAOImpl extends ProjectDbcpFactory implements JoinDAO {
 				client.setPw(rs.getString("pw"));
 				client.setName(rs.getString("name"));
 				client.setCal(rs.getString("cal"));
-				client.setBalance(rs.getInt("balance"));
 				
 			}
 		} catch (SQLException e) {
