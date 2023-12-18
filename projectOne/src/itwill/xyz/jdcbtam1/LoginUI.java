@@ -21,6 +21,7 @@ public class LoginUI extends JDialog {
 	private JTextField idTf2;
 	private JTextField pwTf2;
 	public static String id;
+	public static String VisualBalance;
 
 	public static boolean isLogin;
 	
@@ -87,6 +88,9 @@ public class LoginUI extends JDialog {
 						id=idTf2.getText();
 						String pw=pwTf2.getText();
 						 JoinDTO login=JoinDAOImpl.getDAO().selectClientByNo(id);
+						 
+						 //===여기에 잔액띄우는 메소드 삽입===
+						  VisualBalance = login.getBalance()+""; 
 						
 				            if(login==null) {
 				               JOptionPane.showMessageDialog(null, "아이디를 찾을 수 업습니다.");

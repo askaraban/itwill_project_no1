@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class JoinDAOImpl extends ProjectDbcpFactory implements JoinDAO {
@@ -80,6 +82,41 @@ public class JoinDAOImpl extends ProjectDbcpFactory implements JoinDAO {
 		}
 		return client;
 	}
+	
+	
+	
+	//내정보 계좌항목에 계좌번호 보이는 기능
+		@Override
+		public List<JoinDTO> InForMationClient(String id) {
+			Connection con=null;
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+			
+			List<JoinDTO> clientList = new ArrayList<>();
+			
+			try {
+				con=getConnection();
+				
+				String sql="SELECT AC_NUM FROM ACCOUNT where ac_id=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs=pstmt.executeQuery();
+				
+				while(rs.next()) {
+				JoinDTO client= new JoinDTO();
+
+					client.setAc_num(rs.getString("ac_num"));
+					
+					clientList.add(client);
+				}
+				
+			} catch (SQLException e) {
+				System.out.println("[에러]InForMationClient() 메소드의 SQL 오류 = "+e.getMessage());
+			} finally {
+				close(con, pstmt, rs);
+			}
+			return clientList;
+		}
 	
 }
 

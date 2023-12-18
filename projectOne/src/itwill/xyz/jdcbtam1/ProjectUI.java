@@ -14,12 +14,16 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
+import java.util.regex.Pattern;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,9 +31,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.SwingConstants;
-import javax.swing.JSeparator;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+
+
 
 public class ProjectUI {
 	
@@ -41,11 +48,16 @@ public class ProjectUI {
 	private String endDate = null;
 	private String event = null;
 	public static String checkAccNumber;
+	
+	private InputMoneyDialog inin;
+	private OutputMoneyDialog OuOu;
 
 	private JFrame frame;
 	JLabel lblNewLabel_1;
+	JLabel balanceLabel;
+
 	
-	JButton btnNewButton,button,btnNewButton_8,btnNewButton_1,btnNewButton_6,btnNewButton_7,btnNewButton_5,btnNewButton_2,btnNewButton_3,btnNewButton_4;
+	JButton btnNewButton,button,btnNewButton_8,btnNewButton_1,btnNewButton_6,btnNewButton_7,InforBtn,InBtn,OutBtn,btnNewButton_4;
 	/**
 	 * Launch the application.
 	 */
@@ -80,6 +92,8 @@ public class ProjectUI {
 				//로그인 전과 후 버튼 활성화,비활성화 설정
 				if(LoginUI.isLogin) {
 					lblNewLabel_1.setText(LoginUI.id);
+					balanceLabel.setText(LoginUI.VisualBalance+" 원");//잔액넣기
+
 
 					btnNewButton.setEnabled(false);//회원가입
 					button.setEnabled(true);//로그아웃
@@ -87,9 +101,9 @@ public class ProjectUI {
 					btnNewButton_1.setEnabled(false);//로그인
 					btnNewButton_6.setEnabled(true);//계좌생성
 					btnNewButton_7.setEnabled(true);//계좌 삭제
-					btnNewButton_5.setEnabled(true);//내 정보
-					btnNewButton_2.setEnabled(true);//입금
-					btnNewButton_3.setEnabled(true);//출금
+					InforBtn.setEnabled(true);//내 정보
+					InBtn.setEnabled(true);//입금
+					OutBtn.setEnabled(true);//출금
 					btnNewButton_4.setEnabled(true);//조회
 				} else {
 					btnNewButton.setEnabled(true);//회원가입
@@ -98,9 +112,9 @@ public class ProjectUI {
 					btnNewButton_1.setEnabled(true);//로그인
 					btnNewButton_6.setEnabled(false);//계좌생성
 					btnNewButton_7.setEnabled(false);//계좌 삭제
-					btnNewButton_5.setEnabled(false);//내 정보
-					btnNewButton_2.setEnabled(false);//입금
-					btnNewButton_3.setEnabled(false);//출금
+					InforBtn.setEnabled(false);//내 정보
+					InBtn.setEnabled(false);//입금
+					OutBtn.setEnabled(false);//출금
 					btnNewButton_4.setEnabled(false);//조회
 				}
 			}		
@@ -122,11 +136,11 @@ public class ProjectUI {
 		frame.getContentPane().add(panel_3, BorderLayout.SOUTH);
 		panel_3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-		btnNewButton_2 = new JButton("입금");
-		panel_3.add(btnNewButton_2);
+		InBtn = new JButton("입금");
+		panel_3.add(InBtn);
 
-		btnNewButton_3 = new JButton("출금");
-		panel_3.add(btnNewButton_3);
+		OutBtn = new JButton("출금");
+		panel_3.add(OutBtn);
 
 		이전날짜 = new JTextField();
 
@@ -238,9 +252,9 @@ public class ProjectUI {
 					btnNewButton_1.setEnabled(true);//로그인
 					btnNewButton_6.setEnabled(false);//계좌생성
 					btnNewButton_7.setEnabled(false);//계좌 삭제
-					btnNewButton_5.setEnabled(false);//내 정보
-					btnNewButton_2.setEnabled(false);//입금
-					btnNewButton_3.setEnabled(false);//출금
+					InforBtn.setEnabled(false);//내 정보
+					InBtn.setEnabled(false);//입금
+					OutBtn.setEnabled(false);//출금
 					btnNewButton_4.setEnabled(false);//조회
 				} else {
 					btnNewButton.setEnabled(false);//회원가입
@@ -249,9 +263,9 @@ public class ProjectUI {
 					btnNewButton_1.setEnabled(false);//로그인
 					btnNewButton_6.setEnabled(true);//계좌생성
 					btnNewButton_7.setEnabled(true);//계좌 삭제
-					btnNewButton_5.setEnabled(true);//내 정보
-					btnNewButton_2.setEnabled(true);//입금
-					btnNewButton_3.setEnabled(true);//출금
+					InforBtn.setEnabled(true);//내 정보
+					InBtn.setEnabled(true);//입금
+					OutBtn.setEnabled(true);//출금
 					btnNewButton_4.setEnabled(true);//조회
 				}
 			}
@@ -295,8 +309,8 @@ public class ProjectUI {
 		panel_5.add(panel_10);
 		panel_10.setLayout(new BorderLayout(5, 5));
 		
-		btnNewButton_5 = new JButton("내 정보 ");
-		panel_10.add(btnNewButton_5, BorderLayout.CENTER);
+		InforBtn = new JButton("내 정보 ");
+		panel_10.add(InforBtn, BorderLayout.CENTER);
 
 		JPanel panel_7 = new JPanel();
 		panel_1.add(panel_7);
@@ -341,26 +355,29 @@ public class ProjectUI {
 		JPanel panel_6 = new JPanel();
 		panel.add(panel_6);
 		panel_6.setLayout(new GridLayout(2, 0, 0, 0));
+//-----------------------------------------------
+		JPanel panel_23 = new JPanel();
+		panel_6.add(panel_23);
+				panel_23.setLayout(new BorderLayout(0, 0));
+		
+				JComboBox comboBox_1 = new JComboBox();
+				panel_23.add(comboBox_1);
+				comboBox_1.setModel(new DefaultComboBoxModel(new String[] { "----------------------" }));
 
 		JPanel panel_8 = new JPanel();
 		panel_6.add(panel_8);
-		panel_8.setLayout(new GridLayout(0, 2, 0, 0));
-
-		JPanel panel_9 = new JPanel();
-		panel_8.add(panel_9);
-		panel_9.setLayout(new GridLayout(0, 2, 10, 50));
+		panel_8.setLayout(new GridLayout(0, 4, 0, 0));
 		
-		JPanel panel_23 = new JPanel();
-		panel_9.add(panel_23);
-		panel_23.setLayout(new BorderLayout(5, 5));
+		//잔액라벨 추가로 패넬 추가 및 레이아웃 변경
+				JPanel panel_15 = new JPanel();
+				panel_8.add(panel_15);
+				panel_15.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel_24 = new JPanel();
-		panel_9.add(panel_24);
-		panel_24.setLayout(new GridLayout(0, 2, 5, 5));
+		JLabel lblNewLabel_5 = new JLabel("  잔액 :");
+		panel_15.add(lblNewLabel_5, BorderLayout.CENTER);
 		
-		JPanel panel_25 = new JPanel();
-		panel_24.add(panel_25);
-		panel_25.setLayout(new GridLayout(0, 1, 5, 5));
+		balanceLabel = new JLabel("잔액라벨");
+		panel_8.add(balanceLabel);
 
 		JPanel panel_13 = new JPanel();
 		panel_6.add(panel_13);
@@ -368,22 +385,38 @@ public class ProjectUI {
 
 		JPanel panel_14 = new JPanel();
 		panel_13.add(panel_14);
-		panel_14.setLayout(new BorderLayout(0, 0));
 		
-		JComboBox comboBox_1 = new JComboBox();
-		panel_14.add(comboBox_1, BorderLayout.CENTER);
-
-		JPanel panel_15 = new JPanel();
-		panel_13.add(panel_15);
-		panel_15.setLayout(new BorderLayout(0, 0));
+				JPanel panel_9 = new JPanel();
+				panel_6.add(panel_9);
+				panel_9.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel_5 = new JLabel("      잔액 :");
-		panel_15.add(lblNewLabel_5, BorderLayout.CENTER);
-		lblNewLabel_5.setHorizontalAlignment(SwingConstants.LEFT);
+		
+		inin = new InputMoneyDialog(null, "입금창");
+		
+		InBtn.addActionListener(new InOutMoneyListener());
+		
+		
+		OuOu = new OutputMoneyDialog(null, "출금창");
+		
+		OutBtn.addActionListener(new InOutMoneyListener());
+		
 
 		// -------------------------------------------------------------------------------------------------------------------//
 //		****************** 기능 삽입 ***************************************************
-
+		//내정보 버튼 클릭시 발생하는 이벤트
+				InforBtn.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						InForDialog infordial = new InForDialog();
+						infordial.setVisible(true);
+						
+					}
+				});
+		
+		
+		
+		
 		// 날짜 입력 후 조회버튼 눌렀을 때 발생하는 이벤트
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -481,7 +514,336 @@ public class ProjectUI {
 		});
 		
 	}
+	
+	
+	//=============================================================================
+	//=============================================================================
+	public class InOutMoneyListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Object es = e.getSource();
+			
+			if(es == InBtn) {
+				inin.setVisible(true);
+			}else if(es == OutBtn) {
+				OuOu.setVisible(true);
+			}
+			
+		}
 		
+		
+		
+	}
+	
+	//입금다이얼로그===========================================================
+			public class InputMoneyDialog extends JDialog{
+				private static final long serialVersionUID = 1L;
+				
+				JTextField inTF, memoTF;
+				JButton okBtn, cancelBtn;
+				
+				public InputMoneyDialog(JFrame frame, String title) {
+					super(frame, title, true);
+					
+					setTitle(title);
+					
+					getContentPane().setLayout(new GridLayout(2, 1));
+					
+					JPanel panelOne = new JPanel(new GridLayout(2,2));
+					
+					panelOne.setBorder(new EmptyBorder(10,10,10,10));
+					
+					inTF = new JTextField();
+					memoTF = new JTextField();
+					
+					panelOne.add(new JLabel("입금액", JLabel.CENTER));
+					panelOne.add(inTF);
+					panelOne.add(new JLabel("메모", JLabel.CENTER));
+					panelOne.add(memoTF);
+					
+					inTF.requestFocus();
+					
+					okBtn = new JButton("입금");
+					cancelBtn = new JButton("취소");
+					
+					JPanel panel2 = new JPanel();
+					panel2.add(okBtn);
+					panel2.add(cancelBtn);
+					
+					getContentPane().add(panelOne);
+					getContentPane().add(panel2);
+//			=================================================================================
+					
+					
+					
+					//입금버튼 기능구현
+					okBtn.addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							JoinDTO dto2 = new JoinDTO();
+							
+							
+							
+							//북클래스에 입금액저장
+							String ITF = inTF.getText();
+							
+							//입금액텍스트필드에 값을 넣지 않았을때
+							if(ITF.equals("")) {
+								JOptionPane.showMessageDialog(null, "입금액을 입력해주세요");
+								inTF.requestFocus();
+								return;
+							}
+							
+							String inmoneyReg = "^[\\d]*$";
+							if(!Pattern.matches(inmoneyReg, ITF)) {
+								JOptionPane.showMessageDialog(null, "입금액은 숫자만 입력해주세요");
+								inTF.requestFocus();
+								return;
+							}
+							
+							int Imoney= Integer.parseInt(ITF);
+							dto2.setDeposit(Imoney); 
+							
+							
+							
+							//북클래스에 메모저장
+							String Imemo = memoTF.getText();
+							
+							if(Imemo.equals("")){
+								dto2.setMemo("");
+							}else {
+								dto2.setMemo(Imemo);
+							}
+							
+							
+							
+							INOUTDAO inoutdto = new INOUTDAO();
+							
+							inoutdto.selectBal(dto2);
+							inoutdto.insertInfo(dto2);
+							inoutdto.updateInfo(dto2);
+							
+							
+						
+							
+						Vector<String> vector = new Vector<String>();
+						
+						Date date = new Date();
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						String Cdate = dateFormat.format(date);
+						dto2.setCal(Cdate);
+						String Tdate = dto2.getCal()+"";
+						
+						
+						vector.add(Tdate);
+						vector.add("입금");
+						
+						
+						String iom = dto2.getDeposit() + "";
+						
+						vector.add(iom);
+						
+						long GLmoney = dto2.getBalance();
+						
+						String glastmoney =  Long.toString(GLmoney) ;
+						
+						vector.add(glastmoney);
+						vector.add(dto2.getMemo());
+							
+							
+					DefaultTableModel tableModel = (DefaultTableModel)table.getModel();
+					tableModel.addRow(vector);
+							
+					
+							inTF.setText("");
+							memoTF.setText("");
+							setVisible(true);
+							
+						}
+					});
+					
+					setBounds(750, 200, 250, 200);
+					setResizable(false);
+					}
+					
+				}
+			
+			//출금다이얼로그
+			public class OutputMoneyDialog extends JDialog{
+				private static final long serialVersionUID = 1L;
+				
+				JTextField outTF, pwTF, OmemoTF;
+				JButton okBtn, cancelBtn;
+				
+				public OutputMoneyDialog(JFrame frame, String title) {
+					super(frame, title, true);
+					
+					setTitle(title);
+					
+					getContentPane().setLayout(new GridLayout(2, 1));
+					
+					JPanel panelOne = new JPanel(new GridLayout(3,2));
+					
+					panelOne.setBorder(new EmptyBorder(10,10,10,10));
+					
+					outTF = new JTextField();
+					pwTF = new JTextField();
+					OmemoTF = new JTextField();
+					
+					panelOne.add(new JLabel("출금액", JLabel.CENTER));
+					panelOne.add(outTF);
+					panelOne.add(new JLabel("계좌 비밀번호", JLabel.CENTER));
+					panelOne.add(pwTF);
+					panelOne.add(new JLabel("메모", JLabel.CENTER));
+					panelOne.add(OmemoTF);
+					
+					outTF.requestFocus();
+					
+					okBtn = new JButton("출금");
+					cancelBtn = new JButton("취소");
+					
+					
+					JPanel panel2 = new JPanel();
+					panel2.add(okBtn);
+					panel2.add(cancelBtn);
+					
+					getContentPane().add(panelOne);
+					getContentPane().add(panel2);
+//			=================================================================================
+					
+					
+					
+					//출금버튼 기능구현
+					okBtn.addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							JoinDTO dto2 = new JoinDTO();
+							INOUTDAO inoutdto = new INOUTDAO();
+							
+							//북클래스에 출금액저장
+							String OTF = outTF.getText();
+							
+							//출금액텍스트필드에 값을 넣지 않았을때
+							if(OTF.equals("")) {
+								JOptionPane.showMessageDialog(null, "출금액을 입력해주세요");
+								outTF.requestFocus();
+								return;
+							}
+							//출금액텍스트필드에 숫자가 아닌 다른값을 넣었을때
+							String outmoneyReg = "^[\\d]*$";
+							if(!Pattern.matches(outmoneyReg, OTF)) {
+								JOptionPane.showMessageDialog(null, "출금액은 숫자만 입력해주세요");
+								outTF.requestFocus();
+								return;
+							}
+							int Omoney= Integer.parseInt(OTF);
+							dto2.setWithdraw(Omoney); 
+							
+							//북클래스에 계좌비번저장
+//							int ACpw =Integer.parseInt(pwTF.getText());
+							 String Opw =pwTF.getText();
+							 
+							 //계좌비밀번호 4자리를 넘거나 숫자가 아닌값을 넣었을때
+							 String acpw = "^[0-9]{4}$";
+							 
+							 if(!Pattern.matches(acpw, Opw)) {
+								 JOptionPane.showMessageDialog(null, "4자리 숫자만 입력해주세요");
+								outTF.requestFocus();
+								return;
+							 }
+							 
+							 inoutdto.accountInfor(dto2);
+							 
+							 
+							 int ACPW = Integer.parseInt(Opw);
+//							 System.out.println(dto2.getAc_pw());
+							 if(ACPW != dto2.getAc_pw()) {
+								 JOptionPane.showMessageDialog(null, "계좌비밀번호가 다릅니다.");
+								outTF.requestFocus();
+								return;
+							 }
+							 
+							 
+							
+							 
+							 
+							
+							 int ACpw=Integer.parseInt(Opw);
+							 dto2.setAc_pw(ACpw); 
+							
+							
+							//북클래스에 메모저장
+							String Dapmemo = OmemoTF.getText();
+							if(Dapmemo.equals("")){
+								dto2.setMemo("");
+							}else {
+								dto2.setMemo(Dapmemo);
+							}
+							
+							inoutdto.selecOutAccount(dto2);
+							inoutdto.OutupdateInfo(dto2);
+							inoutdto.OutinsertInfo(dto2);
+							
+						
+							
+						Vector<String> vector = new Vector<String>();
+						
+						Date date = new Date();
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						String Cdate = dateFormat.format(date);
+						dto2.setCal(Cdate);
+						
+						
+						vector.add(dto2.getCal());
+						vector.add("출금");
+						
+						
+						String iom = dto2.getWithdraw() + "";
+						
+						vector.add(iom);
+						
+						int GLmoney = dto2.getBalance();
+						String glastmoney =  Integer.toString(GLmoney) ;
+						
+						vector.add(glastmoney);
+						vector.add(dto2.getMemo());
+							
+							
+					DefaultTableModel tableModel = (DefaultTableModel)table.getModel();
+					tableModel.addRow(vector);
+							
+					outTF.setText("");
+					pwTF.setText("");
+							setVisible(true);
+
+						}
+					});
+					
+					setBounds(750, 200, 300, 250);
+					setResizable(false);
+					}
+					
+				}
+			
+	
+	//=============================================================================
+	//=============================================================================
+
+	
+	
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	public void result() throws Exception {
 
