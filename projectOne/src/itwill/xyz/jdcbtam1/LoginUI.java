@@ -25,6 +25,7 @@ public class LoginUI extends JDialog {
 
 	public static boolean isLogin;
 	public static String VisualBalance;
+	public static int FirstBal;
 	
 	/**
 	 * Launch the application.
@@ -60,7 +61,7 @@ public class LoginUI extends JDialog {
 			idTf2.setColumns(10);
 		}
 		{
-			JPasswordField pwTf2 = new JPasswordField();
+			pwTf2 = new JTextField();
 			pwTf2.setBounds(12, 106, 198, 21);
 			pwTf2.setColumns(10);
 			contentPanel.add(pwTf2);
@@ -87,23 +88,15 @@ public class LoginUI extends JDialog {
 						
 						//로그인 버튼을 눌렀을때
 						id=idTf2.getText();
-						String pw=pwTf2.getText();
+						String pw= pwTf2.getText();
+						
 						 JoinDTO login=JoinDAOImpl.getDAO().selectClientByNo(id);
 						 
+						 JoinDTO login2= JoinDAOImpl.getDAO().FristInForMationClient(id);
+						 FirstBal = login2.getBalance();
 						 
-						 
-						 //===여기에 잔액띄우는 메소드 삽입===
-						 
-						 
-						 
-//						 JoinDTO login2=JoinDAOImpl.getDAO().selectClientAccountNo(ProjectUI.accoutSelectNumber);
-//						  VisualBalance = login2.getBalance()+"";
-						 
-						  
-						  
-						
 				            if(login==null) {
-				               JOptionPane.showMessageDialog(null, "아이디를 찾을 수 업습니다.");
+				               JOptionPane.showMessageDialog(null, "아이디를 찾을 수 없습니다.");
 				               return;
 				            }
 				            

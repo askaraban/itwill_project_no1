@@ -47,40 +47,6 @@ public class JoinDAOImpl extends ProjectDbcpFactory implements JoinDAO {
 		}
 		return rows;
 	}
-
-	//아이디를 전달받아 Client 테이블에 저장된 고객정보를 검색하여 반환하는 메소드
-	@Override
-	public JoinDTO selectClientByNo(String id) {
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		JoinDTO client=null;
-		try {
-			con=getConnection();
-			
-			String sql="select id,pw,name,cal from client where id=?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			
-			rs=pstmt.executeQuery();
-
-			if(rs.next()) {
-	
-				client=new JoinDTO();
-			
-				client.setID(rs.getString("id"));
-				client.setPw(rs.getString("pw"));
-				client.setName(rs.getString("name"));
-				client.setCal(rs.getString("cal"));
-				
-			}
-		} catch (SQLException e) {
-			System.out.println("[에러]selectStudentByNo() 메소드의 SQL 오류 = "+e.getMessage());
-		} finally {
-			close(con, pstmt, rs);
-		}
-		return client;
-	}
 	
 	
 	
@@ -146,7 +112,74 @@ public class JoinDAOImpl extends ProjectDbcpFactory implements JoinDAO {
 			}
 			return client;
 		}
+		
+		
+		//첫번째 계좌 잔액 가져오기
+		@Override
+		public JoinDTO FristInForMationClient(String id) {
+			Connection con=null;
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+			JoinDTO client=null;
+
+			try {
+				con=getConnection();
+				
+				String sql="SELECT BALANCE FROM ACCOUNT WHERE ac_id=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs=pstmt.executeQuery();
+				
+				if(rs.next()) {
+					client= new JoinDTO();
+
+					client.setBalance(rs.getInt("balance"));
+					
+				}
+				
+			} catch (SQLException e) {
+				System.out.println("[에러]InForMationClient() 메소드의 SQL 오류 = "+e.getMessage());
+			} finally {
+				close(con, pstmt, rs);
+			}
+			return client;
+			
+		}
 	
+		
+		//아이디를 전달받아 Client 테이블에 저장된 고객정보를 검색하여 반환하는 메소드
+		@Override
+		public JoinDTO selectClientByNo(String id) {
+			Connection con=null;
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+			JoinDTO client=null;
+			try {
+				con=getConnection();
+				
+				String sql="select id,pw,name,cal from client where id=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				
+				rs=pstmt.executeQuery();
+				
+				if(rs.next()) {
+					
+					client=new JoinDTO();
+					
+					client.setID(rs.getString("id"));
+					client.setPw(rs.getString("pw"));
+					client.setName(rs.getString("name"));
+					client.setCal(rs.getString("cal"));
+					
+				}
+			} catch (SQLException e) {
+				System.out.println("[에러]selectStudentByNo() 메소드의 SQL 오류 = "+e.getMessage());
+			} finally {
+				close(con, pstmt, rs);
+			}
+			return client;
+		}
 }
 
 

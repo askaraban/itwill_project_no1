@@ -12,4 +12,7 @@ public interface JoinDAO {
 	
 	JoinDTO selectClientAccountNo(String accoutSelectNumber);
 	
+	JoinDTO FristInForMationClient(String id);
+
+	
 }

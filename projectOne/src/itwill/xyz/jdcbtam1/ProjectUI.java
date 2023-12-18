@@ -93,19 +93,26 @@ public class ProjectUI {
 				//로그인 전과 후 버튼 활성화,비활성화 설정
 				if(LoginUI.isLogin) {
 					lblNewLabel_1.setText(LoginUI.id);
-					System.out.println(LoginUI.id);
+					balanceLabel.setText(LoginUI.FirstBal+"");
+					
 					
 					List<JoinDTO> INFORdialAcNum = JoinDAOImpl.getDAO().InForMationClient(LoginUI.id);
 					
-//					balanceLabel.setText(LoginUI.VisualBalance+" 원");//잔액넣기
 					
 					Vector<String> accountnumber = new Vector<>();
 					
 					for(JoinDTO INFORdial2 : INFORdialAcNum) {
 						accountnumber.add(INFORdial2.getAc_num());
 					}
+					
 					comboBox_1.setModel(new DefaultComboBoxModel<String>(accountnumber));
 					comboBox_1.setToolTipText("");
+					
+					
+					
+					
+					
+					
 
 
 					btnNewButton.setEnabled(false);//회원가입
@@ -374,7 +381,7 @@ public class ProjectUI {
 						
 						 JoinDTO login2=JoinDAOImpl.getDAO().selectClientAccountNo(ProjectUI.accoutSelectNumber);
 						  String ACBAL = login2.getBalance()+"";
-
+						  
 						balanceLabel.setText(ACBAL +" 원");//잔액넣기
 					}
 				});
