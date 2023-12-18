@@ -136,7 +136,6 @@ public class AccountCreateUI  extends JDialog{
 		jd.setID(LoginUI.id);
 		jd.setAc_num(ProjectUI.checkAccNumber);
 		jd.setAc_pw(Integer.parseInt(str));
-		jd.setAc_kind("일반통장");
 		
 		int rows = AccoutDAO.getAccountDAO().createAccount(jd);
 		JOptionPane.showMessageDialog(this, rows+"개의 계좌를 생성하였습니다.");

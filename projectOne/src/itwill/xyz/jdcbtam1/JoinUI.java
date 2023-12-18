@@ -14,6 +14,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
@@ -23,7 +24,7 @@ public class JoinUI extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField idTf;
-	private JTextField pwTf;
+	private JPasswordField pwTf;
 	private JTextField nameTf;
 	private JTextField calTf;
 	private JTextField textField_5;
@@ -31,6 +32,7 @@ public class JoinUI extends JDialog {
 	protected JoinDTO join;
 	protected Date cal;
 	private JTextField textField;
+	private JPasswordField passwordField;
 	
 	/**
 	 * Launch the application.2
@@ -118,6 +120,8 @@ public class JoinUI extends JDialog {
 					return;
 				}
 				
+				addAccount();
+				
 				join=new JoinDTO();
 				join.setID(id);
 				join.setPw(pw);
@@ -174,7 +178,7 @@ public class JoinUI extends JDialog {
 		lblNewLabel_2.setBounds(49, 134, 57, 15);
 		getContentPane().add(lblNewLabel_2);
 		
-		pwTf = new JTextField();
+		pwTf = new JPasswordField();
 		pwTf.setColumns(10);
 		pwTf.setBounds(49, 154, 213, 21);
 		getContentPane().add(pwTf);
@@ -194,7 +198,7 @@ public class JoinUI extends JDialog {
 		ACCOUNT_NUM.setBounds(49, 270, 57, 15);
 		getContentPane().add(ACCOUNT_NUM);
 		
-		JLabel lblNewLabel_3 = new JLabel("계좌번호 랜덤생성구역");
+		JLabel lblNewLabel_3 = new JLabel(ProjectUI.checkAccNumber);
 		lblNewLabel_3.setFont(new Font("나눔고딕코딩", Font.PLAIN, 12));
 		lblNewLabel_3.setBounds(49, 291, 213, 21);
 		getContentPane().add(lblNewLabel_3);
@@ -204,11 +208,33 @@ public class JoinUI extends JDialog {
 		lblNewLabel_4.setBounds(49, 335, 83, 15);
 		getContentPane().add(lblNewLabel_4);
 		
-		textField = new JTextField();
-		textField.setBounds(49, 360, 116, 21);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		passwordField = new JPasswordField();
+		passwordField.setBounds(49, 360, 116, 21);
+		getContentPane().add(passwordField);
+		passwordField.setColumns(10);
 		
 		setResizable(false);
+		
+		
+	}
+	
+	public void addAccount() {
+		String str = new String(passwordField.getPassword());
+		String regEx = "^[0-9]$";
+		if (!Pattern.matches(regEx, str)) {
+			JOptionPane.showMessageDialog(this, "4자리 숫자를 입력해 주세요.");
+			textField.requestFocus();
+			return;
+		}
+		
+		JoinDTO jd = new JoinDTO();
+		jd.setID(idTf.getText());
+		jd.setAc_num(ProjectUI.checkAccNumber);
+		jd.setAc_pw(Integer.parseInt(str));
+		
+		int rows = AccoutDAO.getAccountDAO().createAccount(jd);
+		
+		
+		
 	}
 }
