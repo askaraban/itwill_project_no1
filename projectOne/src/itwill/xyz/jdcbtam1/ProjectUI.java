@@ -659,8 +659,10 @@ public class ProjectUI {
 							INOUTDAO inoutdto = new INOUTDAO();
 							
 							inoutdto.selectBal(dto2);
+							System.out.println(dto2.getAc_num());
+							
 							inoutdto.insertInfo(dto2);
-							inoutdto.updateInfo(dto2);
+//							inoutdto.updateInfo(dto2);
 							
 							
 						

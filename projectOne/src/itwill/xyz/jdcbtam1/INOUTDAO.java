@@ -27,22 +27,29 @@ public class INOUTDAO extends ProjectDbcpFactory{
 		// 자바 잔액 가져오기
 		try {
 			// 회원테이블에서 id와 잔액 가져오기
-			String sql1 = "select balance,ID from client where id='TEST'";
+			String sql1 = "SELECT ID,PW,NAME,CAL,AC_NUM,BALANCE FROM CLIENT JOIN ACCOUNT ON CLIENT.ID = ACCOUNT.AC_ID WHERE ID = ? AND AC_NUM = ?";
 			pstmt = con.prepareStatement(sql1);
+			pstmt.setString(1, LoginUI.id);
+			pstmt.setString(2, ProjectUI.accoutSelectNumber);
 			rs = pstmt.executeQuery();
 
 			String Cidd = null;
 			int AClastmoney = 0;
+			
 			// 오라클의 잔액을 가져와 자바에 잔액을 설정
 			if (rs.next()) {
-				String Obal = rs.getString("balance");
+				int Obal = rs.getInt("balance");
+				System.out.println(Obal);
 				Cidd = rs.getString("id");
 				dto2.setID(Cidd);
-
-				AClastmoney = Integer.parseInt(Obal);
-
+				
 				// 잔액설정완료
-				dto2.setBalance(AClastmoney);
+				dto2.setBalance(Obal);
+				
+				
+				dto2.setAc_num(rs.getString("AC_Num"));
+			
+
 			}
 
 		} catch (SQLException e1) {
@@ -55,6 +62,7 @@ public class INOUTDAO extends ProjectDbcpFactory{
 	
 	
 	//클라이언트 정보변경
+	
 	public void updateInfo(JoinDTO dto2) {
 		Connection con = getConnection();
 		ResultSet rs = null;
@@ -66,13 +74,16 @@ public class INOUTDAO extends ProjectDbcpFactory{
 
 		// 자바 잔액 더하기 유아이 입금액
 		try {
-			int fanalmoney = dto2.getHbalance() + dto2.getDeposit();
+			int fanalmoney = dto2.getBalance() + dto2.getDeposit();
 			dto2.setBalance(fanalmoney);
-
+			System.out.println(dto2.getBalance());
 			// 클라이언트 balance에 잔액 넣기
-			String sql2 = "update client set balance=? where id = 'TEST' ";
+			String sql2 = "update account set balance=? where ac_num = ? ";
 			pstmt = con.prepareStatement(sql2);
-			pstmt.setLong(1, dto2.getHbalance());
+			pstmt.setLong(1, fanalmoney);
+			pstmt.setString(2, dto2.getAc_num());
+			
+			
 			pstmt.executeUpdate();
 
 		} catch (SQLException e1) {
@@ -82,7 +93,8 @@ public class INOUTDAO extends ProjectDbcpFactory{
 			close(con, pstmt, rs);
 		}
 	}
-
+	
+	
 	//입출금테이블 삽입
 	public void insertInfo(JoinDTO dto2) {
 		Connection con = getConnection();
@@ -94,19 +106,24 @@ public class INOUTDAO extends ProjectDbcpFactory{
 		int paswd = 0;
 		
 		try {
-		String sql3= "insert into iocash values(seq10.nextval,?,?,?,?,?,sysdate,?)";
 		
+			String sql3= "insert into iocash values(seq10.nextval,?,?,?,?,?,sysdate,?) ";
 		
 		pstmt = con.prepareStatement(sql3);
-		pstmt.setString(1, dto2.getID());
+		
+		pstmt.setString(1, dto2.getAc_num());
 		pstmt.setString(2, "입금");
 		pstmt.setLong(3, dto2.getDeposit());
 		pstmt.setString(4, "0");
 		pstmt.setString(5, dto2.getMemo());
 		
-		long HB = dto2.getDeposit()+dto2.getHbalance();
+		int HB = dto2.getDeposit()+dto2.getBalance();
+		dto2.setBalance(HB);
 		
-		pstmt.setLong(6, HB);
+		pstmt.setInt(6, HB);
+		
+//		dto2.setBalance(HB);
+		
 		
 		pstmt.executeUpdate();
 		}catch (SQLException e1) {
@@ -250,7 +267,7 @@ public class INOUTDAO extends ProjectDbcpFactory{
 		
 		
 		//테이블에서 내정보에 넣을 정보 가져오기
-		public void InforBtnTable(JoinDTO dto2) {
+		public void InforBtnTable2(JoinDTO dto2) {
 		Connection con = getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
