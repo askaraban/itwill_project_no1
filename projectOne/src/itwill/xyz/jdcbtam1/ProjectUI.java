@@ -147,7 +147,6 @@ public class ProjectUI {
 	 * @throws IOException
 	 */
 	private void initialize() throws IOException {
-		System.out.println(LoginUI.id);
 		frame = new JFrame();
 		frame.setBounds(800, 200, 800, 500);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
@@ -877,8 +876,8 @@ public class ProjectUI {
 		if (firstDate.isEmpty() && endDate.isEmpty()) {
 			
 //												****** 아이디 넣는 곳 *********
-			List<JoinDTO> jd = ResultDAO.getDao().nowSearch("TEST");
-
+			List<JoinDTO> jd = ResultDAO.getDao().nowSearch(accoutSelectNumber);
+			System.out.println(jd.size());
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 
 			for (int i = tableModel.getRowCount(); i > 0; i--) {

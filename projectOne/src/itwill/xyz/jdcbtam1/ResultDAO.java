@@ -118,13 +118,12 @@ public class ResultDAO extends ProjectDbcpFactory {
 
 		try {
 			con = getConnection();
-			String sql = "select iocal,withdraw,deposit,memo, hbalance,iotype from iocash join account on cid=ac_id where ac_num=?"
-					+ " order by iocal desc";
+			String sql = "select iocal,withdraw,deposit,memo, hbalance,iotype from iocash join account on ac_id=cid where ac_num=? order by iocal desc";
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString(1, ProjectUI.accoutSelectNumber);
+			pstmt.setString(1, selectNumber);
 			rs = pstmt.executeQuery();
-
+			
 			while (rs.next()) {
 				client = new JoinDTO();
 				client.setIocal(rs.getTimestamp("iocal"));
@@ -133,6 +132,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 				client.setMemo(rs.getString("memo"));
 				client.setHbalance(rs.getInt("hbalance"));
 				client.setIotype(rs.getString("iotype"));
+				
 				// 정보결과 리스트에 클라이언트 정보 추가
 				resultList.add(client);
 			}
@@ -163,7 +163,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 
 			pstmt = con.prepareStatement(sql);
 
-			pstmt.setString(1, ProjectUI.accoutSelectNumber);
+			pstmt.setString(1, selectNumber);
 			pstmt.setString(2, firstDate);
 			pstmt.setString(3, endDate);
 			rs = pstmt.executeQuery();
@@ -209,7 +209,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 			
 			pstmt = con.prepareStatement(sql);
 
-			pstmt.setString(1, ProjectUI.accoutSelectNumber);
+			pstmt.setString(1, selectNumber);
 			pstmt.setString(2, endDate);
 			rs = pstmt.executeQuery();
 
@@ -253,7 +253,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 			
 			pstmt = con.prepareStatement(sql);
 
-			pstmt.setString(1, ProjectUI.accoutSelectNumber);
+			pstmt.setString(1, selectNumber);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -295,7 +295,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 
 			pstmt = con.prepareStatement(sql);
 
-			pstmt.setString(1, ProjectUI.accoutSelectNumber);
+			pstmt.setString(1, selectNumber);
 			pstmt.setString(2, firstDate);
 			pstmt.setString(3, endDate);
 			rs = pstmt.executeQuery();
@@ -339,7 +339,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 			 
 			pstmt = con.prepareStatement(sql);
 
-			pstmt.setString(1, ProjectUI.accoutSelectNumber);
+			pstmt.setString(1, selectNumber);
 			pstmt.setString(2, endDate);
 			rs = pstmt.executeQuery();
 
@@ -382,7 +382,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 	
 			pstmt = con.prepareStatement(sql);
 
-			pstmt.setString(1, ProjectUI.accoutSelectNumber);
+			pstmt.setString(1, selectNumber);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
