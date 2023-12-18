@@ -22,7 +22,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 		return _dao;
 	}
 
-	// 이전날짜와 이후 날짜를 사이의 모든 검색결과를 호출
+	// 이전날짜와 이후 날짜를 사이의 모든 검색결과를 호출s
 	public List<JoinDTO> bothSearch(String firstDate, String endDate, String selectNumber) {
 		Connection con = null;
 		PreparedStatement pstmt = null;

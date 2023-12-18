@@ -801,10 +801,11 @@ public class ProjectUI {
 							 }
 							 
 							 
-//							 if(dto2.getBalance() < dto2.getWithdraw()) {
-//								 JOptionPane.showMessageDialog(null, "잔액이 부족합니다.");
-//								 
-//							 }
+							 while(dto2.getBalance() < dto2.getWithdraw()) {
+								 JOptionPane.showMessageDialog(null, "잔액이 부족합니다.");
+								 continue;
+								 
+							 }
 							
 							 
 							 
