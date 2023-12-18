@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -45,22 +46,25 @@ public class ProjectUI {
 	private JTextField 이후날짜;
 	private JTable table;
 	private JTextField 이전날짜;
-	DateCalculator dc = new DateCalculator();
 	private String firstDate = null;
 	private String endDate = null;
 	private String event = null;
 	public String id;
 	private InputMoneyDialog inin;
 	private OutputMoneyDialog OuOu;
-	Vector<String> accountnumber = new Vector<>();
-	JComboBox<String> comboBox_1 = new JComboBox<String>(accountnumber);
 	private String[] comboSearchList = {"전체", "입금", "출금" };
 	private JFrame frame;
-	public static String checkAccNumber;
-	public static String accoutSelectNumber;
 	JLabel lblNewLabel_1;
 	JLabel balanceLabel;
 	private JPasswordField pwTF;
+	
+	public static String checkAccNumber;
+	public static String accoutSelectNumber;
+	
+	DateCalculator dc = new DateCalculator();
+	Vector<String> accountnumber = new Vector<>();
+	JComboBox<String> comboBox_1 = new JComboBox<String>(accountnumber);
+	DecimalFormat decimalFormat = new DecimalFormat("###,###");
 
 	
 	JButton btnNewButton,button,btnNewButton_8,btnNewButton_1,btnNewButton_6,btnNewButton_7,InforBtn,InBtn,OutBtn,btnNewButton_4;
@@ -923,11 +927,11 @@ public class ProjectUI {
 				i.add(joinDTO.getIotype());
 				check = joinDTO.getIotype();
 				if (check.equals("입금")) {
-					i.add(joinDTO.getDeposit());
+					i.add(decimalFormat.format(joinDTO.getDeposit()));
 				} else {
-					i.add(joinDTO.getWithdraw());
+					i.add(decimalFormat.format(joinDTO.getWithdraw()));
 				}
-				i.add(joinDTO.getHbalance());
+				i.add(decimalFormat.format(joinDTO.getHbalance()));
 				i.add(joinDTO.getMemo());
 
 				tableModel.addRow(i);
@@ -935,7 +939,8 @@ public class ProjectUI {
 
 //			// 2. 이후 날짜만 있다면, 이후 날짜 이전꺼를 모두 조회
 		} else if (firstDate.isEmpty() && !endDate.isEmpty()) {
-//																	****** 아이디 넣는 곳 *********
+			
+									
 			List<JoinDTO> jd = ResultDAO.getDao().oneSearch(accoutSelectNumber,dc.getEndDate(endDate));
 			
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
@@ -951,11 +956,11 @@ public class ProjectUI {
 				i.add(joinDTO.getIotype());
 				check = joinDTO.getIotype();
 				if (check.equals("입금")) {
-					i.add(joinDTO.getDeposit());
+					i.add(decimalFormat.format(joinDTO.getDeposit()));
 				} else {
-					i.add(joinDTO.getWithdraw());
+					i.add(decimalFormat.format(joinDTO.getWithdraw()));
 				}
-				i.add(joinDTO.getHbalance());
+				i.add(decimalFormat.format(joinDTO.getHbalance()));
 				i.add(joinDTO.getMemo());
 
 				tableModel.addRow(i);
@@ -984,11 +989,11 @@ public class ProjectUI {
 				i.add(joinDTO.getIotype());
 				check = joinDTO.getIotype();
 				if (check.equals("입금")) {
-					i.add(joinDTO.getDeposit());
+					i.add(decimalFormat.format(joinDTO.getDeposit()));
 				} else {
-					i.add(joinDTO.getWithdraw());
+					i.add(decimalFormat.format(joinDTO.getWithdraw()));
 				}
-				i.add(joinDTO.getHbalance());
+				i.add(decimalFormat.format(joinDTO.getHbalance()));
 				i.add(joinDTO.getMemo());
 
 				tableModel.addRow(i);
@@ -1016,8 +1021,8 @@ public class ProjectUI {
 				i.add(joinDTO.getIocal());
 				i.add(joinDTO.getIotype());
 				check = joinDTO.getIotype();
-				if (check.equals("입금")) i.add(joinDTO.getDeposit()); 
-				i.add(joinDTO.getHbalance());
+				if (check.equals("입금")) i.add(decimalFormat.format(joinDTO.getDeposit()));
+				i.add(decimalFormat.format(joinDTO.getHbalance()));
 				i.add(joinDTO.getMemo());
 
 				tableModel.addRow(i);
@@ -1040,8 +1045,8 @@ public class ProjectUI {
 				i.add(joinDTO.getIocal());
 				i.add(joinDTO.getIotype());
 				check = joinDTO.getIotype();
-				if (check.equals("입금")) i.add(joinDTO.getDeposit());
-				i.add(joinDTO.getHbalance());
+				if (check.equals("입금")) i.add(decimalFormat.format(joinDTO.getDeposit()));
+				i.add(decimalFormat.format(joinDTO.getHbalance()));
 				i.add(joinDTO.getMemo());
 
 				tableModel.addRow(i);
@@ -1069,8 +1074,8 @@ public class ProjectUI {
 				i.add(joinDTO.getIocal());
 				i.add(joinDTO.getIotype());
 				check = joinDTO.getIotype();
-				if (check.equals("입금")) i.add(joinDTO.getDeposit());
-				i.add(joinDTO.getHbalance());
+				if (check.equals("입금")) i.add(decimalFormat.format(joinDTO.getDeposit()));
+				i.add(decimalFormat.format(joinDTO.getHbalance()));
 				i.add(joinDTO.getMemo());
 
 				tableModel.addRow(i);
@@ -1100,9 +1105,9 @@ public class ProjectUI {
 				i.add(joinDTO.getIotype());
 				check = joinDTO.getIotype();
 				if (check.equals("출금")) {
-					i.add(joinDTO.getWithdraw());
+					i.add(decimalFormat.format(joinDTO.getWithdraw()));
 				}
-				i.add(joinDTO.getHbalance());
+				i.add(decimalFormat.format(joinDTO.getHbalance()));
 				i.add(joinDTO.getMemo());
 
 				tableModel.addRow(i);
@@ -1125,8 +1130,8 @@ public class ProjectUI {
 				i.add(joinDTO.getIocal());
 				i.add(joinDTO.getIotype());
 				check = joinDTO.getIotype();
-				if (check.equals("출금")) i.add(joinDTO.getWithdraw());
-				i.add(joinDTO.getHbalance());
+				if (check.equals("출금")) i.add(decimalFormat.format(joinDTO.getWithdraw()));
+				i.add(decimalFormat.format(joinDTO.getHbalance()));
 				i.add(joinDTO.getMemo());
 
 				tableModel.addRow(i);
@@ -1154,8 +1159,8 @@ public class ProjectUI {
 				i.add(joinDTO.getIocal());
 				i.add(joinDTO.getIotype());
 				check = joinDTO.getIotype();
-				if (check.equals("출금")) i.add(joinDTO.getWithdraw());
-				i.add(joinDTO.getHbalance());
+				if (check.equals("출금")) i.add(decimalFormat.format(joinDTO.getWithdraw()));
+				i.add(decimalFormat.format(joinDTO.getHbalance()));
 				i.add(joinDTO.getMemo());
 
 				tableModel.addRow(i);
