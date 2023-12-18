@@ -244,7 +244,8 @@ public class ProjectUI {
 
 		button = new JButton("로그아웃");
 		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) { 
+				//로그아웃 메시지와 함께 실행시 프로그램 종료
 				JOptionPane.showMessageDialog(null, "이용해 주셔서 감사합니다.");
 				System.exit(0);
 				/*
