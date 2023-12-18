@@ -33,6 +33,7 @@ public class JoinUI extends JDialog {
 	protected Date cal;
 	private JTextField textField;
 	private JPasswordField passwordField;
+	private String str=null;
 	
 	/**
 	 * Launch the application.2
@@ -120,7 +121,21 @@ public class JoinUI extends JDialog {
 					return;
 				}
 				
-				addAccount();
+				str = new String(passwordField.getPassword());
+				
+				String regEx = "^[0-9]{4}$";
+				if (!Pattern.matches(regEx, str)) {
+					JOptionPane.showMessageDialog(null, "4자리 숫자를 입력해 주세요.");
+					passwordField.requestFocus();
+					return;
+				}
+				
+				JoinDTO jd = new JoinDTO();
+				jd.setID(idTf.getText());
+				jd.setAc_num(ProjectUI.checkAccNumber);
+				jd.setAc_pw(Integer.parseInt(str));
+				int rows = AccoutDAO.getAccountDAO().createAccount(jd);
+				
 				
 				join=new JoinDTO();
 				join.setID(id);
@@ -218,23 +233,5 @@ public class JoinUI extends JDialog {
 		
 	}
 	
-	public void addAccount() {
-		String str = new String(passwordField.getPassword());
-		String regEx = "^[0-9]$";
-		if (!Pattern.matches(regEx, str)) {
-			JOptionPane.showMessageDialog(this, "4자리 숫자를 입력해 주세요.");
-			textField.requestFocus();
-			return;
-		}
-		
-		JoinDTO jd = new JoinDTO();
-		jd.setID(idTf.getText());
-		jd.setAc_num(ProjectUI.checkAccNumber);
-		jd.setAc_pw(Integer.parseInt(str));
-		
-		int rows = AccoutDAO.getAccountDAO().createAccount(jd);
-		
-		
-		
-	}
+
 }

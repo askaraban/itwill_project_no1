@@ -228,7 +228,7 @@ public class ProjectUI {
 		});
 		panel_4.add(btnNewButton_1);
 
-		btnNewButton = new JButton("회원가입");
+		btnNewButton = new JButton("회원가입"); 
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

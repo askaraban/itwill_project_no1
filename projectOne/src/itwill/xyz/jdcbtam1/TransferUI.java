@@ -36,7 +36,7 @@ public class TransferUI extends JDialog{
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		
-		JLabel label_1 = new JLabel("combobox에서 선택한 계좌를 여기에 넣으세요");
+		JLabel label_1 = new JLabel(ProjectUI.accoutSelectNumber);
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		label_1.setBounds(213, 2, 225, 75);
 		panel.add(label_1);
