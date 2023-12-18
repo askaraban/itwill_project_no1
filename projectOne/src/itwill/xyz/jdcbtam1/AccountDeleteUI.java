@@ -72,6 +72,7 @@ public class AccountDeleteUI extends JDialog {
 		}
 		
 		comboBox.setModel(new DefaultComboBoxModel<String>(ac_List));
+		
 		comboBox.setBounds(54, 24, 177, 23);
 		panel.add(comboBox);
 		

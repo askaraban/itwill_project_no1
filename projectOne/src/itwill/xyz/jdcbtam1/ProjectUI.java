@@ -48,10 +48,10 @@ public class ProjectUI {
 	private String endDate = null;
 	private String event = null;
 	public static String checkAccNumber;
-	
+	public String id;
 	private InputMoneyDialog inin;
 	private OutputMoneyDialog OuOu;
-
+	JComboBox comboBox_1 = new JComboBox();
 	private JFrame frame;
 	JLabel lblNewLabel_1;
 	JLabel balanceLabel;
@@ -92,7 +92,18 @@ public class ProjectUI {
 				//로그인 전과 후 버튼 활성화,비활성화 설정
 				if(LoginUI.isLogin) {
 					lblNewLabel_1.setText(LoginUI.id);
+					System.out.println(LoginUI.id);
 					balanceLabel.setText(LoginUI.VisualBalance+" 원");//잔액넣기
+					
+					List<JoinDTO> INFORdialAcNum = JoinDAOImpl.getDAO().InForMationClient(LoginUI.id);
+					
+					Vector<String> accountnumber = new Vector<>();
+					
+					for(JoinDTO INFORdial2 : INFORdialAcNum) {
+						accountnumber.add(INFORdial2.getAc_num());
+					}
+					comboBox_1.setModel(new DefaultComboBoxModel<String>(accountnumber));
+					comboBox_1.setToolTipText("");
 
 
 					btnNewButton.setEnabled(false);//회원가입
@@ -127,7 +138,7 @@ public class ProjectUI {
 	 * @throws IOException
 	 */
 	private void initialize() throws IOException {
-		
+		System.out.println(LoginUI.id);
 		frame = new JFrame();
 		frame.setBounds(800, 200, 800, 500);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
@@ -356,17 +367,10 @@ public class ProjectUI {
 		panel_6.add(panel_23);
 		panel_23.setLayout(new BorderLayout(0, 0));
 		
-		JComboBox comboBox_1 = new JComboBox();
-		List<JoinDTO> INFORdialAcNum = JoinDAOImpl.getDAO().InForMationClient(LoginUI.id);
-		Vector<String> accountnumber = new Vector<>();
-		
-		for(JoinDTO INFORdial2 : INFORdialAcNum) {
-			accountnumber.add(INFORdial2.getAc_num());
-		}
-		
-		comboBox_1.setModel(new DefaultComboBoxModel<String>(accountnumber));
-		comboBox_1.setToolTipText("");
-		panel_23.add(comboBox_1);
+				
+				
+				
+				panel_23.add(comboBox_1);
 
 		JPanel panel_8 = new JPanel();
 		panel_6.add(panel_8);

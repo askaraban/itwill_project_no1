@@ -4,7 +4,7 @@ package itwill.xyz.jdcbtam1;
 AC_ID   NOT NULL VARCHAR2(30) 
 AC_NUM  NOT NULL VARCHAR2(30) 
 AC_PW   NOT NULL NUMBER(4)    
-AC_KIND NOT NULL VARCHAR2(40)
+BALANCE NOT NULL VARCHAR2(40)
 */
 
 
@@ -45,13 +45,12 @@ public class AccoutDAO extends ProjectDbcpFactory{
 		
 		try {
 			con = getConnection();
-			String sql = "insert into account values (?,?,?,?)";
+			String sql = "insert into account(AC_ID,AC_NUM,AC_PW) values (?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, createAccount.getID());
 			pstmt.setString(2, createAccount.getAc_num());
 			pstmt.setInt(3, createAccount.getAc_pw());
-			pstmt.setString(4, createAccount.getAc_kind());
 			
 			rows= pstmt.executeUpdate();
 			
@@ -210,7 +209,7 @@ public class AccoutDAO extends ProjectDbcpFactory{
 		try {
 			con = getConnection();
 			// client의 id를 가져와서 account 테이블과 비교하여 모든 계좌번호를 가져오기
-			String sql = "select ac_num from account join client on ac_id=?";
+			String sql = "select ac_num from account where ac_id=?";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, LoginUI.id);
