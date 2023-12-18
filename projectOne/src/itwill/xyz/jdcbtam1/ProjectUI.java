@@ -47,12 +47,13 @@ public class ProjectUI {
 	private String firstDate = null;
 	private String endDate = null;
 	private String event = null;
-	public static String checkAccNumber;
 	public String id;
 	private InputMoneyDialog inin;
 	private OutputMoneyDialog OuOu;
 	JComboBox comboBox_1 = new JComboBox();
 	private JFrame frame;
+	public static String checkAccNumber;
+	public static String accoutSelectNumber;
 	JLabel lblNewLabel_1;
 	JLabel balanceLabel;
 
@@ -366,6 +367,11 @@ public class ProjectUI {
 		JPanel panel_23 = new JPanel();
 		panel_6.add(panel_23);
 		panel_23.setLayout(new BorderLayout(0, 0));
+				comboBox_1.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						accoutSelectNumber=(String)comboBox_1.getSelectedItem();
+					}
+				});
 		
 				
 				
