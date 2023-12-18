@@ -688,6 +688,15 @@ public class ProjectUI {
 						}
 					});
 					
+					cancelBtn.addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							setVisible(false);
+							
+						}
+					});
+					
 					setBounds(750, 200, 250, 200);
 					setResizable(false);
 					}
@@ -844,6 +853,14 @@ public class ProjectUI {
 					pwTF.setText("");
 							setVisible(true);
 
+						}
+					});
+					
+					cancelBtn.addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							setVisible(false);
 						}
 					});
 					
