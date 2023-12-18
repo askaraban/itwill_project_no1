@@ -28,6 +28,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -59,6 +60,7 @@ public class ProjectUI {
 	public static String accoutSelectNumber;
 	JLabel lblNewLabel_1;
 	JLabel balanceLabel;
+	private JPasswordField pwTF;
 
 	
 	JButton btnNewButton,button,btnNewButton_8,btnNewButton_1,btnNewButton_6,btnNewButton_7,InforBtn,InBtn,OutBtn,btnNewButton_4;
@@ -696,7 +698,7 @@ public class ProjectUI {
 			public class OutputMoneyDialog extends JDialog{
 				private static final long serialVersionUID = 1L;
 				
-				JTextField outTF, pwTF, OmemoTF;
+				JTextField outTF, OmemoTF;
 				JButton okBtn, cancelBtn;
 				
 				public OutputMoneyDialog(JFrame frame, String title) {
@@ -711,7 +713,7 @@ public class ProjectUI {
 					panelOne.setBorder(new EmptyBorder(10,10,10,10));
 					
 					outTF = new JTextField();
-					pwTF = new JTextField();
+					pwTF = new JPasswordField();
 					OmemoTF = new JTextField();
 					
 					panelOne.add(new JLabel("출금액", JLabel.CENTER));
@@ -765,8 +767,9 @@ public class ProjectUI {
 							dto2.setWithdraw(Omoney); 
 							
 							//북클래스에 계좌비번저장
-//							int ACpw =Integer.parseInt(pwTF.getText());
-							 String Opw =pwTF.getText();
+							
+							 String Opw = new String(pwTF.getPassword());
+							 
 							 
 							 //계좌비밀번호 4자리를 넘거나 숫자가 아닌값을 넣었을때
 							 String acpw = "^[0-9]{4}$";
