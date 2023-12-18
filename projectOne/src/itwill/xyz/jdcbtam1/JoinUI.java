@@ -30,6 +30,7 @@ public class JoinUI extends JDialog {
 	JButton okButton;
 	protected JoinDTO join;
 	protected Date cal;
+	private JTextField textField;
 	
 	/**
 	 * Launch the application.2
@@ -48,7 +49,7 @@ public class JoinUI extends JDialog {
 	 * Create the dialog.
 	 */
 	public JoinUI() {
-		setBounds(100, 100, 332, 365);
+		setBounds(100, 100, 398, 505);
 		getContentPane().setLayout(null);
 		contentPanel.setBounds(0, 0, 434, 1);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -56,7 +57,7 @@ public class JoinUI extends JDialog {
 		contentPanel.setLayout(null);
 
 		JPanel buttonPane = new JPanel();
-		buttonPane.setBounds(0, 273, 317, 33);
+		buttonPane.setBounds(29, 405, 317, 33);
 		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		getContentPane().add(buttonPane);
 		
@@ -158,13 +159,13 @@ public class JoinUI extends JDialog {
 		lblNewLabel.setFont(new Font("나눔고딕코딩", Font.PLAIN, 17));
 
 		JLabel lblNewLabel_1 = new JLabel("아이디");
-		lblNewLabel_1.setBounds(49, 66, 57, 15);
+		lblNewLabel_1.setBounds(49, 53, 57, 15);
 		lblNewLabel_1.setFont(new Font("나눔고딕코딩", Font.PLAIN, 12));
 		getContentPane().add(lblNewLabel_1);
 
 			
 		idTf = new JTextField();
-		idTf.setBounds(49, 86, 213, 21);
+		idTf.setBounds(49, 78, 213, 21);
 		getContentPane().add(idTf);
 		idTf.setColumns(10);
 		
@@ -187,6 +188,26 @@ public class JoinUI extends JDialog {
 		nameTf.setColumns(10);
 		nameTf.setBounds(49, 222, 213, 21);
 		getContentPane().add(nameTf);
+		
+		JLabel ACCOUNT_NUM = new JLabel("계좌번호");
+		ACCOUNT_NUM.setFont(new Font("나눔고딕코딩", Font.PLAIN, 12));
+		ACCOUNT_NUM.setBounds(49, 270, 57, 15);
+		getContentPane().add(ACCOUNT_NUM);
+		
+		JLabel lblNewLabel_3 = new JLabel("계좌번호 랜덤생성구역");
+		lblNewLabel_3.setFont(new Font("나눔고딕코딩", Font.PLAIN, 12));
+		lblNewLabel_3.setBounds(49, 291, 213, 21);
+		getContentPane().add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("계좌 비밀번호");
+		lblNewLabel_4.setFont(new Font("나눔고딕코딩", Font.PLAIN, 12));
+		lblNewLabel_4.setBounds(49, 335, 83, 15);
+		getContentPane().add(lblNewLabel_4);
+		
+		textField = new JTextField();
+		textField.setBounds(49, 360, 116, 21);
+		getContentPane().add(textField);
+		textField.setColumns(10);
 		
 		setResizable(false);
 	}

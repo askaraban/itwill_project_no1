@@ -247,7 +247,6 @@ public class ProjectUI {
 				
 				JoinUI join = new JoinUI();
 				
-				join.setSize(332, 365);
 				
 				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 				int x = (screenSize.width - join.getWidth()) / 2;
