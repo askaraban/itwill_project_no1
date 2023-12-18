@@ -95,7 +95,7 @@ public class INOUTDAO extends ProjectDbcpFactory{
 	}
 	
 	
-	//입출금테이블 삽입
+	//입출금테이블 삽입d
 	public void insertInfo(JoinDTO dto2) {
 		Connection con = getConnection();
 		ResultSet rs = null;
