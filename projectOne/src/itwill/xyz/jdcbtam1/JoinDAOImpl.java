@@ -114,37 +114,7 @@ public class JoinDAOImpl extends ProjectDbcpFactory implements JoinDAO {
 		}
 		
 		
-		//첫번째 계좌 잔액 가져오기
-		@Override
-		public JoinDTO FristInForMationClient(String id) {
-			Connection con=null;
-			PreparedStatement pstmt=null;
-			ResultSet rs=null;
-			JoinDTO client=null;
-
-			try {
-				con=getConnection();
-				
-				String sql="SELECT BALANCE FROM ACCOUNT WHERE ac_id=?";
-				pstmt=con.prepareStatement(sql);
-				pstmt.setString(1, id);
-				rs=pstmt.executeQuery();
-				
-				if(rs.next()) {
-					client= new JoinDTO();
-
-					client.setBalance(rs.getInt("balance"));
-					
-				}
-				
-			} catch (SQLException e) {
-				System.out.println("[에러]InForMationClient() 메소드의 SQL 오류 = "+e.getMessage());
-			} finally {
-				close(con, pstmt, rs);
-			}
-			return client;
-			
-		}
+		
 	
 		
 		//아이디를 전달받아 Client 테이블에 저장된 고객정보를 검색하여 반환하는 메소드2

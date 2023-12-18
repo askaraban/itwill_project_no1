@@ -379,18 +379,11 @@ public class ProjectUI {
 					public void actionPerformed(ActionEvent e) {
 						accoutSelectNumber=(String)comboBox_1.getSelectedItem();
 						
-//						 JoinDTO login2=JoinDAOImpl.getDAO().selectClientAccountNo(ProjectUI.accoutSelectNumber);
-//						  String ACBAL = login2.getBalance()+"";
-//						  
-//						balanceLabel.setText(ACBAL +" 원");//잔액넣기
-						
 						JoinDTO showAmount = AccoutDAO.getAccountDAO().getAccountBal(accoutSelectNumber);
 						balanceLabel.setText(showAmount.getBalance()+" 원");
 					}
 				});
 		
-				
-				
 				
 				panel_23.add(comboBox_1);
 
