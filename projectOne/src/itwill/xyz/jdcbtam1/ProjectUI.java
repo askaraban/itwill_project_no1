@@ -245,29 +245,24 @@ public class ProjectUI {
 		button = new JButton("로그아웃");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(LoginUI.isLogin) {
-					btnNewButton.setEnabled(true);//회원가입
-					button.setEnabled(false);//로그아웃
-					btnNewButton_8.setEnabled(false);//회원탈퇴
-					btnNewButton_1.setEnabled(true);//로그인
-					btnNewButton_6.setEnabled(false);//계좌생성
-					btnNewButton_7.setEnabled(false);//계좌 삭제
-					InforBtn.setEnabled(false);//내 정보
-					InBtn.setEnabled(false);//입금
-					OutBtn.setEnabled(false);//출금
-					btnNewButton_4.setEnabled(false);//조회
-				} else {
-					btnNewButton.setEnabled(false);//회원가입
-					button.setEnabled(true);//로그아웃
-					btnNewButton_8.setEnabled(true);//회원탈퇴
-					btnNewButton_1.setEnabled(false);//로그인
-					btnNewButton_6.setEnabled(true);//계좌생성
-					btnNewButton_7.setEnabled(true);//계좌 삭제
-					InforBtn.setEnabled(true);//내 정보
-					InBtn.setEnabled(true);//입금
-					OutBtn.setEnabled(true);//출금
-					btnNewButton_4.setEnabled(true);//조회
-				}
+				JOptionPane.showMessageDialog(null, "이용해 주셔서 감사합니다.");
+				System.exit(0);
+				/*
+				 * if(LoginUI.isLogin) { btnNewButton.setEnabled(true);//회원가입
+				 * button.setEnabled(false);//로그아웃 btnNewButton_8.setEnabled(false);//회원탈퇴
+				 * btnNewButton_1.setEnabled(true);//로그인 btnNewButton_6.setEnabled(false);//계좌생성
+				 * btnNewButton_7.setEnabled(false);//계좌 삭제 btnNewButton_5.setEnabled(false);//내
+				 * 정보 btnNewButton_2.setEnabled(false);//입금
+				 * btnNewButton_3.setEnabled(false);//출금 btnNewButton_4.setEnabled(false);//조회 }
+				 * else { btnNewButton.setEnabled(false);//회원가입 button.setEnabled(true);//로그아웃
+				 * btnNewButton_8.setEnabled(true);//회원탈퇴 btnNewButton_1.setEnabled(false);//로그인
+				 * btnNewButton_6.setEnabled(true);//계좌생성 btnNewButton_7.setEnabled(true);//계좌
+				 * 삭제 btnNewButton_5.setEnabled(true);//내 정보
+				 * btnNewButton_2.setEnabled(true);//입금 btnNewButton_3.setEnabled(true);//출금
+				 * btnNewButton_4.setEnabled(true);//조회
+				 * 
+				 * }
+				 */
 			}
 			
 		});
