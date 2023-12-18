@@ -91,7 +91,7 @@ public class AccountDeleteUI extends JDialog {
 				
 				
 				// 선택된 계좌에 계좌의 잔액이 0원이 아니라면
-				if (AccoutDAO.getAccountDAO().getAccountBal().getBalance()!=0) {
+				if (AccoutDAO.getAccountDAO().getAccountBal(comboNumber).getBalance()!=0) {
 					JOptionPane.showMessageDialog(panel, "계좌에 잔액이 남아있습니다!", "삭제 불가!!", JOptionPane.ERROR_MESSAGE);
 					
 			

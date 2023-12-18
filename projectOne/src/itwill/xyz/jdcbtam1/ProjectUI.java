@@ -96,17 +96,12 @@ public class ProjectUI {
 				//로그인 전과 후 버튼 활성화,비활성화 설정
 				if(LoginUI.isLogin) {
 					lblNewLabel_1.setText(LoginUI.id);
-					balanceLabel.setText(LoginUI.FirstBal+"");
-					
 					
 					List<JoinDTO> INFORdialAcNum = JoinDAOImpl.getDAO().InForMationClient(LoginUI.id);
-								
-					
 					
 					for(JoinDTO INFORdial2 : INFORdialAcNum) {
 						accountnumber.add(INFORdial2.getAc_num());
 					}
-					
 					
 					btnNewButton.setEnabled(false);//회원가입
 					button.setEnabled(true);//로그아웃
@@ -376,7 +371,7 @@ public class ProjectUI {
 		JPanel panel_6 = new JPanel();
 		panel.add(panel_6);
 		panel_6.setLayout(new GridLayout(2, 0, 0, 0));
-//-----------------------------------------------
+//------------------------------------------------
 		JPanel panel_23 = new JPanel();
 		panel_6.add(panel_23);
 		panel_23.setLayout(new BorderLayout(0, 0));
@@ -384,10 +379,13 @@ public class ProjectUI {
 					public void actionPerformed(ActionEvent e) {
 						accoutSelectNumber=(String)comboBox_1.getSelectedItem();
 						
-						 JoinDTO login2=JoinDAOImpl.getDAO().selectClientAccountNo(ProjectUI.accoutSelectNumber);
-						  String ACBAL = login2.getBalance()+"";
-						  
-						balanceLabel.setText(ACBAL +" 원");//잔액넣기
+//						 JoinDTO login2=JoinDAOImpl.getDAO().selectClientAccountNo(ProjectUI.accoutSelectNumber);
+//						  String ACBAL = login2.getBalance()+"";
+//						  
+//						balanceLabel.setText(ACBAL +" 원");//잔액넣기
+						
+						JoinDTO showAmount = AccoutDAO.getAccountDAO().getAccountBal(accoutSelectNumber);
+						balanceLabel.setText(showAmount.getBalance()+" 원");
 					}
 				});
 		
@@ -408,7 +406,7 @@ public class ProjectUI {
 		JLabel lblNewLabel_5 = new JLabel("  잔액 :");
 		panel_15.add(lblNewLabel_5, BorderLayout.CENTER);
 		
-		balanceLabel = new JLabel("잔액라벨");
+		balanceLabel = new JLabel(" ");
 		panel_8.add(balanceLabel);
 
 		JPanel panel_13 = new JPanel();

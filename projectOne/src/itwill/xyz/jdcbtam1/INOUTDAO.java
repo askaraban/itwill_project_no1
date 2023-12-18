@@ -230,7 +230,7 @@ public class INOUTDAO extends ProjectDbcpFactory{
 				e1.printStackTrace();
 			}finally {
 				close(con, pstmt, rs);
-			}
+			} 
 			
 		}
 		

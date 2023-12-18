@@ -92,8 +92,6 @@ public class LoginUI extends JDialog {
 						
 						 JoinDTO login=JoinDAOImpl.getDAO().selectClientByNo(id);
 						 
-						 JoinDTO login2= JoinDAOImpl.getDAO().FristInForMationClient(id);
-						 FirstBal = login2.getBalance();
 						 
 				            if(login==null) {
 				               JOptionPane.showMessageDialog(null, "아이디를 찾을 수 없습니다.");

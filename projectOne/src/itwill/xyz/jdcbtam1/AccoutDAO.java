@@ -130,7 +130,7 @@ public class AccoutDAO extends ProjectDbcpFactory{
 	}
 	
 	// ******************* 선택된 계좌의 잔액을 확인하는 메소드 *************************
-	public JoinDTO getAccountBal() {
+	public JoinDTO getAccountBal(String com) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -145,7 +145,7 @@ public class AccoutDAO extends ProjectDbcpFactory{
 			pstmt = con.prepareStatement(sql);
 			
 			
-			pstmt.setString(1, AccountDeleteUI.comboNumber);  // 액션리스너 한것을 여기 넣음
+			pstmt.setString(1, com);  // 액션리스너 한것을 여기 넣음
 			
 			rs=pstmt.executeQuery();
 			
