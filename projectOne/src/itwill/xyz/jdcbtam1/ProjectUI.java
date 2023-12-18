@@ -354,11 +354,19 @@ public class ProjectUI {
 //-----------------------------------------------
 		JPanel panel_23 = new JPanel();
 		panel_6.add(panel_23);
-				panel_23.setLayout(new BorderLayout(0, 0));
+		panel_23.setLayout(new BorderLayout(0, 0));
 		
-				JComboBox comboBox_1 = new JComboBox();
-				panel_23.add(comboBox_1);
-				comboBox_1.setModel(new DefaultComboBoxModel(new String[] { "----------------------" }));
+		JComboBox comboBox_1 = new JComboBox();
+		List<JoinDTO> INFORdialAcNum = JoinDAOImpl.getDAO().InForMationClient(LoginUI.id);
+		Vector<String> accountnumber = new Vector<>();
+		
+		for(JoinDTO INFORdial2 : INFORdialAcNum) {
+			accountnumber.add(INFORdial2.getAc_num());
+		}
+		
+		comboBox_1.setModel(new DefaultComboBoxModel<String>(accountnumber));
+		comboBox_1.setToolTipText("");
+		panel_23.add(comboBox_1);
 
 		JPanel panel_8 = new JPanel();
 		panel_6.add(panel_8);
