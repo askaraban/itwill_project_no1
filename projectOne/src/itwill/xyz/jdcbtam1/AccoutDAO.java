@@ -181,7 +181,7 @@ public class AccoutDAO extends ProjectDbcpFactory{
 			// 내 계좌의 잔액
 			pstmt.setLong(1, deposit_money);
 			pstmt.setString(2, LoginUI.id);
-			pstmt.setString(3, account_number);
+			pstmt.setString(3, ProjectUI.accoutSelectNumber);
 			
 			pstmt.executeUpdate();
 			
