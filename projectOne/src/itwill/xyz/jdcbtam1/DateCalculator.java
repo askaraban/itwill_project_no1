@@ -13,7 +13,7 @@ public class DateCalculator extends ProjectDbcpFactory{
 	Date endDate = null;
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	
-	// 검색하고자 하는 전 날짜를 구하기 위한 메소드
+	// 검색하고자 하는 전 날짜를 구하기 위한 메소드2
 	/*
 	public String getFirstDate(String firstDate) {
 

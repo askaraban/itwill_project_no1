@@ -11,7 +11,7 @@ public class BankBookDTO {
 	
 	
 	public BankBookDTO() {
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stub2
 	}
 
 

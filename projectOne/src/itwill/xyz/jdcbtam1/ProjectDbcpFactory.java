@@ -22,7 +22,7 @@ public abstract class ProjectDbcpFactory {
 			pds.setInitialPoolSize(7); // 
 			pds.setMaxPoolSize(10);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// TODO Auto-generated catch block2
 			e.printStackTrace();
 		}
 		

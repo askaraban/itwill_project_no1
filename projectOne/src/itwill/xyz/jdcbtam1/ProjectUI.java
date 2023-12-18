@@ -875,7 +875,7 @@ public class ProjectUI {
 
 		if (firstDate.isEmpty() && endDate.isEmpty()) {
 			
-//												****** 아이디 넣는 곳 *********
+//												****** 아이디 넣는 곳 *********2
 			List<JoinDTO> jd = ResultDAO.getDao().nowSearch(accoutSelectNumber);
 			System.out.println(jd.size());
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();

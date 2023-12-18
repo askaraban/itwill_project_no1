@@ -72,7 +72,7 @@ public class TransferUI extends JDialog{
 				NumberFormat kr = NumberFormat.getNumberInstance(Locale.KOREA);
 				// 입력된 값을 매개변수에 넣음
 				String MoneyTextField = MoneyTF.getText();
-				//입금액텍스트필드에 값을 넣지 않았을때
+				//입금액텍스트필드에 값을 넣지 않았을때2
 				if(MoneyTextField.equals("")) {
 					JOptionPane.showMessageDialog(null, "입금액을 입력해주세요");
 					MoneyTF.requestFocus();

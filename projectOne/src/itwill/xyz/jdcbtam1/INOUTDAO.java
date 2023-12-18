@@ -76,7 +76,7 @@ public class INOUTDAO extends ProjectDbcpFactory{
 			pstmt.executeUpdate();
 
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
+			// TODO Auto-generated catch block2
 			e1.printStackTrace();
 		}finally {
 			close(con, pstmt, rs);

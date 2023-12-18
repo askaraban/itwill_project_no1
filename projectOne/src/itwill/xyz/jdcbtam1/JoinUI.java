@@ -32,7 +32,7 @@ public class JoinUI extends JDialog {
 	protected Date cal;
 	
 	/**
-	 * Launch the application.
+	 * Launch the application.2
 	 */
 	public static void main(String[] args) {
 		try {

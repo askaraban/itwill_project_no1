@@ -147,7 +147,7 @@ public class JoinDAOImpl extends ProjectDbcpFactory implements JoinDAO {
 		}
 	
 		
-		//아이디를 전달받아 Client 테이블에 저장된 고객정보를 검색하여 반환하는 메소드
+		//아이디를 전달받아 Client 테이블에 저장된 고객정보를 검색하여 반환하는 메소드2
 		@Override
 		public JoinDTO selectClientByNo(String id) {
 			Connection con=null;

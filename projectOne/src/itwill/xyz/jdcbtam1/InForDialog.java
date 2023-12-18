@@ -31,7 +31,7 @@ public class InForDialog extends JDialog {
 	
 	
 	/**
-	 * Launch the application.
+	 * Launch the application.2
 	 */
 	public static void main(String[] args) {
 		try {

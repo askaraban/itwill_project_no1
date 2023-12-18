@@ -28,7 +28,7 @@ public class LoginUI extends JDialog {
 	public static int FirstBal;
 	
 	/**
-	 * Launch the application.
+	 * Launch the application.2
 	 */
 	public static void main(String[] args) {
 		try {
@@ -41,7 +41,7 @@ public class LoginUI extends JDialog {
 	}
 
 	/**
-	 * Create the dialog.
+	 * Create the dialog. 11
 	 */
 	public LoginUI() {
 		setBounds(100, 100, 256, 225);

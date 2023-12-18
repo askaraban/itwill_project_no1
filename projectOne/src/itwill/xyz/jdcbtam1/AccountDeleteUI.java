@@ -26,7 +26,7 @@ public class AccountDeleteUI extends JDialog {
 	
 	public static String comboNumber=null;
 	/**
-	 * 
+	 * 2
 	 */
 	private static final long serialVersionUID = 1L;
 

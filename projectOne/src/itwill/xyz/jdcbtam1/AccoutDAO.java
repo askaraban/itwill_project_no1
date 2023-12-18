@@ -232,7 +232,7 @@ public class AccoutDAO extends ProjectDbcpFactory{
 		
 	} 
 	/*
-	// ********************* 선택된 내 계좌 외 나머지 계좌를 찾는 메소드 ****************
+	// ********************* 선택된 내 계좌 외 나머지 계좌를 찾는 메소드 ****************2
 		public List<JoinDTO> getDeleteSearch() {
 			Connection con = null;
 			PreparedStatement pstmt = null;

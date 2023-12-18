@@ -14,5 +14,5 @@ public interface JoinDAO {
 	
 	JoinDTO FristInForMationClient(String id);
 
-	
+	// 2
 }

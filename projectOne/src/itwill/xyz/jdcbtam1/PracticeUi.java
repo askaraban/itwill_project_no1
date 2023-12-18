@@ -37,7 +37,7 @@ public class PracticeUi extends JFrame {
 
 
 	/**
-	 * Create the application.
+	 * Create the application.2
 	 */ 
 	public PracticeUi(String title) {
 		initialize(title); 
