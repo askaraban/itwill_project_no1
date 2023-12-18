@@ -618,7 +618,7 @@ public class ProjectUI {
 					
 					//입금버튼 기능구현
 					okBtn.addActionListener(new ActionListener() {
-						
+						 
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							JoinDTO dto2 = new JoinDTO();
@@ -663,8 +663,8 @@ public class ProjectUI {
 							inoutdto.selectBal(dto2);
 							System.out.println(dto2.getAc_num());
 							
+							inoutdto.updateInfo(dto2);
 							inoutdto.insertInfo(dto2);
-//							inoutdto.updateInfo(dto2);
 							
 							
 						

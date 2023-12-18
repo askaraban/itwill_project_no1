@@ -38,17 +38,11 @@ public class INOUTDAO extends ProjectDbcpFactory{
 			
 			// 오라클의 잔액을 가져와 자바에 잔액을 설정
 			if (rs.next()) {
-				int Obal = rs.getInt("balance");
-				System.out.println(Obal);
-				Cidd = rs.getString("id");
-				dto2.setID(Cidd);
 				
-				// 잔액설정완료
-				dto2.setBalance(Obal);
-				
-				
+				// 잔액,아이디,계좌번호 설정완료
+				dto2.setBalance(rs.getInt("balance"));
+				dto2.setID(rs.getString("id"));
 				dto2.setAc_num(rs.getString("AC_Num"));
-			
 
 			}
 
@@ -76,15 +70,15 @@ public class INOUTDAO extends ProjectDbcpFactory{
 		try {
 			int fanalmoney = dto2.getBalance() + dto2.getDeposit();
 			dto2.setBalance(fanalmoney);
-			System.out.println(dto2.getBalance());
 			// 클라이언트 balance에 잔액 넣기
 			String sql2 = "update account set balance=? where ac_num = ? ";
 			pstmt = con.prepareStatement(sql2);
-			pstmt.setLong(1, fanalmoney);
+			pstmt.setLong(1, dto2.getBalance());
 			pstmt.setString(2, dto2.getAc_num());
 			
 			
 			pstmt.executeUpdate();
+			System.out.println(dto2.getBalance());
 
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block2
@@ -117,10 +111,8 @@ public class INOUTDAO extends ProjectDbcpFactory{
 		pstmt.setString(4, "0");
 		pstmt.setString(5, dto2.getMemo());
 		
-		int HB = dto2.getDeposit()+dto2.getBalance();
-		dto2.setBalance(HB);
 		
-		pstmt.setInt(6, HB);
+		pstmt.setInt(6, dto2.getBalance());
 		
 //		dto2.setBalance(HB);
 		
@@ -241,13 +233,14 @@ public class INOUTDAO extends ProjectDbcpFactory{
 		ResultSet rs = null;
 		
 	try {
-		String sql4 = "select ac_id,ac_num,ac_pw from account where ac_id='TEST'";
+		String sql4 = "select ac_id,ac_num,ac_pw from account where ac_id=?";
 		pstmt = con.prepareStatement(sql4);
-		
+		pstmt.setString(1, LoginUI.id);
 		rs = pstmt.executeQuery();
 		
 		int ACpw = 0;
 		if(rs.next()) {
+			
 			String ACid =rs.getString("ac_id");
 			String ACnum=rs.getString("ac_num");
 			ACpw =rs.getInt("ac_pw");
@@ -263,47 +256,6 @@ public class INOUTDAO extends ProjectDbcpFactory{
 				close(con, pstmt, rs);
 			}
 		}
-		
-		
-		
-		//테이블에서 내정보에 넣을 정보 가져오기
-		public void InforBtnTable2(JoinDTO dto2) {
-		Connection con = getConnection();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-	try {
-		String sql4 = "SELECT ID,NAME,CAL,AC_NUM FROM CLIENT LEFT JOIN  ACCOUNT ON CLIENT.ID = ACCOUNT.AC_ID  where ac_id='TEST'";
-		pstmt = con.prepareStatement(sql4);
-		
-		rs = pstmt.executeQuery();
-		
-		int ACpw = 0;
-		String ACnum = null;
-		while(rs.next()) {
-			ACnum=rs.getString("ac_num");
-		}
-		dto2.setAc_num(ACnum);
-		System.out.println(dto2.getAc_num());
-			
-		
-		
-		
-		} catch (SQLException e) {
-			e.printStackTrace();
-			}finally {
-				close(con, pstmt, rs);
-			}
-		}
-
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		
 		
