@@ -24,7 +24,7 @@ public class JoinUI extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField idTf;
-	private JTextField pwTf;
+	private JPasswordField pwTf;
 	private JTextField nameTf;
 	private JTextField calTf;
 	private JTextField textField_5;
@@ -178,7 +178,7 @@ public class JoinUI extends JDialog {
 		lblNewLabel_2.setBounds(49, 134, 57, 15);
 		getContentPane().add(lblNewLabel_2);
 		
-		pwTf = new JTextField();
+		pwTf = new JPasswordField();
 		pwTf.setColumns(10);
 		pwTf.setBounds(49, 154, 213, 21);
 		getContentPane().add(pwTf);
