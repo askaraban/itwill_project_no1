@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -59,7 +60,7 @@ public class LoginUI extends JDialog {
 			idTf2.setColumns(10);
 		}
 		{
-			pwTf2 = new JTextField();
+			JPasswordField pwTf2 = new JPasswordField();
 			pwTf2.setBounds(12, 106, 198, 21);
 			pwTf2.setColumns(10);
 			contentPanel.add(pwTf2);
