@@ -51,7 +51,9 @@ public class ProjectUI {
 	public String id;
 	private InputMoneyDialog inin;
 	private OutputMoneyDialog OuOu;
-	JComboBox comboBox_1 = new JComboBox();
+	Vector<String> accountnumber = new Vector<>();
+	JComboBox<String> comboBox_1 = new JComboBox<String>(accountnumber);
+	private String[] comboSearchList = {"전체", "입금", "출금" };
 	private JFrame frame;
 	public static String checkAccNumber;
 	public static String accoutSelectNumber;
@@ -98,24 +100,14 @@ public class ProjectUI {
 					
 					
 					List<JoinDTO> INFORdialAcNum = JoinDAOImpl.getDAO().InForMationClient(LoginUI.id);
+								
 					
-					
-					Vector<String> accountnumber = new Vector<>();
 					
 					for(JoinDTO INFORdial2 : INFORdialAcNum) {
 						accountnumber.add(INFORdial2.getAc_num());
 					}
 					
-					comboBox_1.setModel(new DefaultComboBoxModel<String>(accountnumber));
-					comboBox_1.setToolTipText("");
 					
-					
-					
-					
-					
-					
-
-
 					btnNewButton.setEnabled(false);//회원가입
 					button.setEnabled(true);//로그아웃
 					btnNewButton_8.setEnabled(true);//회원탈퇴
@@ -178,13 +170,11 @@ public class ProjectUI {
 		panel_3.add(이후날짜);
 		이후날짜.setColumns(10);
 
-		JComboBox comboBox = new JComboBox();
+		JComboBox<String> comboBox = new JComboBox<String>(comboSearchList);
 
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"  ", "전체", "입금", "출금" }));
 		comboBox.setMaximumRowCount(3);
 		panel_3.add(comboBox);
 
-		System.out.println(comboBox.getSelectedItem());
 
 	    btnNewButton_4 = new JButton("조회");
 		// 조회버튼을 눌렀을 경우
@@ -467,7 +457,7 @@ public class ProjectUI {
 				
 				
 				
-				if (event.equals("전체")) {
+				if (comboSearchList[0].equals("전체")) {
 					try {
 
 						result();
@@ -478,7 +468,7 @@ public class ProjectUI {
 								JOptionPane.ERROR_MESSAGE);
 
 					}
-				} else if (event.equals("입금")) {
+				} else if (comboSearchList[1].equals("입금")) {
 					try {
 
 						depositResult();
@@ -489,7 +479,7 @@ public class ProjectUI {
 								JOptionPane.ERROR_MESSAGE);
 
 					}
-				} else if (event.equals("출금")) {
+				} else if (comboSearchList[2].equals("출금")) {
 					try {
 
 						withResult();
@@ -919,7 +909,7 @@ public class ProjectUI {
 //			// 2. 이후 날짜만 있다면, 이후 날짜 이전꺼를 모두 조회
 		} else if (firstDate.isEmpty() && !endDate.isEmpty()) {
 //																	****** 아이디 넣는 곳 *********
-			List<JoinDTO> jd = ResultDAO.getDao().oneSearch(LoginUI.id,dc.getEndDate(endDate));
+			List<JoinDTO> jd = ResultDAO.getDao().oneSearch(accoutSelectNumber,dc.getEndDate(endDate));
 			
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 
@@ -952,7 +942,7 @@ public class ProjectUI {
 			}
 
 //																	****** 아이디 넣는 곳 *********
-			List<JoinDTO> jd = ResultDAO.getDao().bothSearch(firstDate, dc.getEndDate(endDate), LoginUI.id);
+			List<JoinDTO> jd = ResultDAO.getDao().bothSearch(firstDate, dc.getEndDate(endDate), accoutSelectNumber);
 
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 
@@ -985,7 +975,7 @@ public class ProjectUI {
 
 		if (firstDate.isEmpty() && endDate.isEmpty()) {
 //												****** 아이디 넣는 곳 *********
-			List<JoinDTO> jd = ResultDAO.getDao().depositNowSearch(LoginUI.id);
+			List<JoinDTO> jd = ResultDAO.getDao().depositNowSearch(accoutSelectNumber);
 
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 
@@ -1009,7 +999,7 @@ public class ProjectUI {
 //			// 2. 이후 날짜만 있다면, 이후 날짜 이전꺼를 모두 조회
 		} else if (firstDate.isEmpty() && !endDate.isEmpty()) {
 //																	****** 아이디 넣는 곳 *********
-			List<JoinDTO> jd = ResultDAO.getDao().depositOneSearch(dc.getEndDate(endDate), LoginUI.id);
+			List<JoinDTO> jd = ResultDAO.getDao().depositOneSearch(dc.getEndDate(endDate), accoutSelectNumber);
 
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 
@@ -1038,7 +1028,7 @@ public class ProjectUI {
 			}
 
 //																	****** 아이디 넣는 곳 *********
-			List<JoinDTO> jd = ResultDAO.getDao().depositSearch(firstDate, dc.getEndDate(endDate), LoginUI.id);
+			List<JoinDTO> jd = ResultDAO.getDao().depositSearch(firstDate, dc.getEndDate(endDate), accoutSelectNumber);
 
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 
@@ -1068,7 +1058,7 @@ public class ProjectUI {
 		if (firstDate.isEmpty() && endDate.isEmpty()) {
 			
 //												****** 아이디 넣는 곳 *********
-			List<JoinDTO> jd = ResultDAO.getDao().withNowSearch(LoginUI.id);
+			List<JoinDTO> jd = ResultDAO.getDao().withNowSearch(accoutSelectNumber);
 
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 
@@ -1094,7 +1084,7 @@ public class ProjectUI {
 //			// 2. 이후 날짜만 있다면, 이후 날짜 이전꺼를 모두 조회
 		} else if (firstDate.isEmpty() && !endDate.isEmpty()) {
 //																	****** 아이디 넣는 곳 *********
-			List<JoinDTO> jd = ResultDAO.getDao().withOneSearch(dc.getEndDate(endDate), LoginUI.id);
+			List<JoinDTO> jd = ResultDAO.getDao().withOneSearch(dc.getEndDate(endDate), accoutSelectNumber);
 
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 
@@ -1123,7 +1113,7 @@ public class ProjectUI {
 			}
 
 //																	****** 아이디 넣는 곳 *********
-			List<JoinDTO> jd = ResultDAO.getDao().withSearch(firstDate, dc.getEndDate(endDate), LoginUI.id);
+			List<JoinDTO> jd = ResultDAO.getDao().withSearch(firstDate, dc.getEndDate(endDate), accoutSelectNumber);
 
 			DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 

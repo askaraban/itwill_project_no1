@@ -88,9 +88,7 @@ public class LoginUI extends JDialog {
 						
 						//로그인 버튼을 눌렀을때
 						id=idTf2.getText();
-						System.out.println(new String(pwTf2.getPassword()));
 						String pw= new String(pwTf2.getPassword());
-						System.out.println(pw);
 						
 						 JoinDTO login=JoinDAOImpl.getDAO().selectClientByNo(id);
 						 

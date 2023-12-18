@@ -118,7 +118,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 
 		try {
 			con = getConnection();
-			String sql = "select iocal,withdraw,deposit,memo, hbalance,iotype from iocash join account on ac_id=cid where ac_num=? order by iocal desc";
+			String sql = "select iocal,withdraw,deposit,memo, hbalance,iotype from iocash join account on ac_num=cid where ac_num=? order by iocal desc";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, selectNumber);
@@ -158,7 +158,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 		try {
 			con = getConnection();
 
-			String sql = "select iocal,cid,withdraw,deposit,memo, hbalance,iotype from iocash join account on cid=ac_id "
+			String sql = "select iocal,cid,withdraw,deposit,memo, hbalance,iotype from iocash join account on cid=ac_num "
 					+ " where ac_num=? and iotype='입금' and iocash.iocal between ? and ?";
 			
 
@@ -203,7 +203,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 
 		try {
 			con = getConnection();
-			String sql = "select iocal,cid,withdraw,deposit,memo, hbalance,iotype from iocash join account on cid=ac_id"
+			String sql = "select iocal,cid,withdraw,deposit,memo, hbalance,iotype from iocash join account on cid=ac_num"
 					+ " where ac_num=? and iotype='입금' and iocal<=to_date(?,'YY-MM-DD') order by iocal desc";
 			
 			
@@ -248,7 +248,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 
 		try {
 			con = getConnection();
-			String sql = "select iocal,cid,withdraw,deposit,memo, hbalance,iotype from iocash join account on cid=ac_id"
+			String sql = "select iocal,cid,withdraw,deposit,memo, hbalance,iotype from iocash join account on cid=ac_num"
 					+ " where ac_num=? and iotype='입금' order by iocal desc";
 			
 			
@@ -290,7 +290,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 		try {
 			con = getConnection();
 
-			String sql = "select iocal,cid,withdraw,deposit,memo, hbalance,iotype from iocash join account on cid=ac_id "
+			String sql = "select iocal,cid,withdraw,deposit,memo, hbalance,iotype from iocash join account on cid=ac_num "
 					+ " where ac_num=? and iotype='출금' and iocash.iocal between ? and ?";
 
 
@@ -335,7 +335,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 
 		try {
 			con = getConnection();
-			String sql = "select iocal,cid,withdraw,deposit,memo, hbalance,iotype from iocash join account on cid=ac_id"
+			String sql = "select iocal,cid,withdraw,deposit,memo, hbalance,iotype from iocash join account on cid=ac_num"
 					+ " where ac_num=? and iocal<=? and iotype='출금' order by iocal desc";
 			 
 			pstmt = con.prepareStatement(sql);
@@ -378,7 +378,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 
 		try {
 			con = getConnection();
-			String sql = "select iocal,cid,withdraw,deposit,memo, hbalance,iotype from iocash join account on cid=ac_id"
+			String sql = "select iocal,cid,withdraw,deposit,memo, hbalance,iotype from iocash join account on cid=ac_num"
 					+ " where ac_num=? and iotype='출금' order by iocal desc";
 	
 			pstmt = con.prepareStatement(sql);
