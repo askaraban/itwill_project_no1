@@ -140,21 +140,27 @@ public class INOUTDAO extends ProjectDbcpFactory{
 			// 자바 잔액 가져오기
 			try {
 				// 회원테이블에서 id와 잔액 가져오기
-				String sql1 = "select balance,ID from client where id='TEST'";
+				String sql1 = "SELECT ID,PW,NAME,CAL,AC_NUM,BALANCE FROM CLIENT JOIN ACCOUNT ON CLIENT.ID = ACCOUNT.AC_ID WHERE ID = ? AND AC_NUM = ?";
 				pstmt = con.prepareStatement(sql1);
+				pstmt.setString(1, LoginUI.id);
+				pstmt.setString(2, ProjectUI.accoutSelectNumber);
 				rs = pstmt.executeQuery();
 
 				// 오라클의 잔액을 가져와 자바에 잔액을 설정
 				if (rs.next()) {
 					
 					//회원테이블의 잔액을 가져와 DTO에 저장
-					String Obal = rs.getString("balance");
-					AClastmoney = Integer.parseInt(Obal);
-					dto2.setBalance(AClastmoney);
+					dto2.setBalance(rs.getInt("balance"));
 					
 					//회원테이블의 아이디를 가져와 DTO에 저장
-					Cidd = rs.getString("id");
-					dto2.setID(Cidd);
+					dto2.setID(rs.getString("id"));
+					
+					//계좌테이블의 계좌번호를 가져와 DTO에 저장
+					dto2.setAc_num(rs.getString("ac_num"));
+					
+					 
+					
+					 
 				}
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
@@ -172,15 +178,18 @@ public class INOUTDAO extends ProjectDbcpFactory{
 			PreparedStatement pstmt = null;
 			Statement stmt = null;
 
-			// 자바 잔액 빼기 유아이 입금액
 			try {
-				int fanalmoney = dto2.getHbalance() - dto2.getWithdraw();
-				dto2.setBalance(fanalmoney);
+				;
+				
+				// 자바 잔액 빼기 유아이 입금액
+				dto2.setBalance(dto2.getBalance() - dto2.getWithdraw());
 
 				// 클라이언트 balance에 잔액 넣기
-				String sql2 = "update client set balance=? where id = 'TEST' ";
+				String sql2 = "update account set balance=? where ac_num = ? ";
 				pstmt = con.prepareStatement(sql2);
-				pstmt.setLong(1, dto2.getHbalance());
+				pstmt.setInt(1, dto2.getBalance());
+				pstmt.setString(2, dto2.getAc_num());
+				
 				pstmt.executeUpdate();
 
 			} catch (SQLException e1) {
@@ -199,22 +208,21 @@ public class INOUTDAO extends ProjectDbcpFactory{
 			Statement stmt = null;
 			
 			try {
-			String sql3= "insert into iocash values(seq10.nextval,?,?,?,?,?,sysdate,?)";
+				String sql3= "insert into iocash values(seq10.nextval,?,?,?,?,?,sysdate,?) ";
+				
+				pstmt = con.prepareStatement(sql3);
+				
+				pstmt.setString(1, dto2.getAc_num());
+				pstmt.setString(2, "출금");
+				pstmt.setString(3, "0");
+				pstmt.setLong(4, dto2.getWithdraw());
+				pstmt.setString(5, dto2.getMemo());
+				
+				
+				pstmt.setInt(6, dto2.getBalance());
 			
-			Date now = new Date();
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			String nowDate = dateFormat.format(now);
-			dto2.setCal(nowDate);
-			
-			pstmt = con.prepareStatement(sql3);
-			pstmt.setString(1, dto2.getID());
-			pstmt.setString(2, "출금");
-			pstmt.setString(3, "0");
-			pstmt.setLong(4, dto2.getWithdraw());
-			pstmt.setString(5, dto2.getMemo());
-			
-			long HB = dto2.getHbalance() - dto2.getWithdraw();
-			pstmt.setLong(6, HB);
+//			long HB = dto2.getHbalance() - dto2.getWithdraw();
+//			pstmt.setLong(6, HB);
 			
 			pstmt.executeUpdate();
 			}catch (SQLException e1) {

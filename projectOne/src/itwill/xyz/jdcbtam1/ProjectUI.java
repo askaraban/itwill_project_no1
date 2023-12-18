@@ -814,7 +814,7 @@ public class ProjectUI {
 								dto2.setMemo(Dapmemo);
 							}
 							
-							inoutdto.selecOutAccount(dto2);
+							inoutdto.selectBal(dto2);
 							inoutdto.OutupdateInfo(dto2);
 							inoutdto.OutinsertInfo(dto2);
 							
