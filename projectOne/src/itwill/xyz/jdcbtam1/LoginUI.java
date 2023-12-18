@@ -20,7 +20,7 @@ public class LoginUI extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField idTf2;
-	private JTextField pwTf2;
+	private JPasswordField pwTf2;
 	public static String id;
 
 	public static boolean isLogin;
@@ -61,7 +61,7 @@ public class LoginUI extends JDialog {
 			idTf2.setColumns(10);
 		}
 		{
-			pwTf2 = new JTextField();
+			pwTf2 = new JPasswordField();
 			pwTf2.setBounds(12, 106, 198, 21);
 			pwTf2.setColumns(10);
 			contentPanel.add(pwTf2);
@@ -88,7 +88,9 @@ public class LoginUI extends JDialog {
 						
 						//로그인 버튼을 눌렀을때
 						id=idTf2.getText();
-						String pw= pwTf2.getText();
+						System.out.println(new String(pwTf2.getPassword()));
+						String pw= new String(pwTf2.getPassword());
+						System.out.println(pw);
 						
 						 JoinDTO login=JoinDAOImpl.getDAO().selectClientByNo(id);
 						 
@@ -107,9 +109,7 @@ public class LoginUI extends JDialog {
 				            
 				            isLogin=true;
 				            
-				            
 				            dispose();
-
 						
 					}
 				});
