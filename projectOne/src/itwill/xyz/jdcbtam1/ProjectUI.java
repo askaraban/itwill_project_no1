@@ -72,7 +72,7 @@ public class ProjectUI {
 	DecimalFormat decimalFormat = new DecimalFormat("###,###");
 
 	
-	JButton btnNewButton,button,btnNewButton_8,btnNewButton_1,btnNewButton_6,btnNewButton_7,InforBtn,InBtn,OutBtn,btnNewButton_4;
+	JButton btnNewButton,button,btnNewButton_8,btnNewButton_1,btnNewButton_6,btnNewButton_7,InforBtn,InBtn,OutBtn,btnNewButton_4,ReSetBtn;
 	/**
 	 * Launch the application.
 	 */
@@ -112,7 +112,7 @@ public class ProjectUI {
 					
 					btnNewButton.setEnabled(false);//회원가입
 					button.setEnabled(true);//로그아웃
-					btnNewButton_8.setEnabled(true);//회원탈퇴
+					btnNewButton_8.setEnabled(true);//계좌이체
 					btnNewButton_1.setEnabled(false);//로그인
 					btnNewButton_6.setEnabled(true);//계좌생성
 					btnNewButton_7.setEnabled(true);//계좌 삭제
@@ -120,10 +120,11 @@ public class ProjectUI {
 					InBtn.setEnabled(true);//입금
 					OutBtn.setEnabled(true);//출금
 					btnNewButton_4.setEnabled(true);//조회
+					ReSetBtn.setEnabled(true);//Re버튼
 				} else {
 					btnNewButton.setEnabled(true);//회원가입
 					button.setEnabled(false);//로그아웃
-					btnNewButton_8.setEnabled(false);//회원탈퇴
+					btnNewButton_8.setEnabled(false);//계좌이체
 					btnNewButton_1.setEnabled(true);//로그인
 					btnNewButton_6.setEnabled(false);//계좌생성
 					btnNewButton_7.setEnabled(false);//계좌 삭제
@@ -131,6 +132,7 @@ public class ProjectUI {
 					InBtn.setEnabled(false);//입금
 					OutBtn.setEnabled(false);//출금
 					btnNewButton_4.setEnabled(false);//조회
+					ReSetBtn.setEnabled(false);//Re버튼
 				}
 				
 				List<JoinDTO> findList = AccoutDAO.getAccountDAO().accountSearch(LoginUI.id);
@@ -414,17 +416,27 @@ public class ProjectUI {
 
 		JPanel panel_8 = new JPanel();
 		panel_6.add(panel_8);
-		panel_8.setLayout(new GridLayout(0, 4, 0, 0));
+				panel_8.setLayout(null);
 		
 		//잔액라벨 추가로 패넬 추가 및 레이아웃 변경
 				JPanel panel_15 = new JPanel();
+				panel_15.setBounds(0, 0, 98, 27);
 				panel_8.add(panel_15);
 		panel_15.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		JPanel panel_25 = new JPanel();
 		panel_15.add(panel_25);
 		
-		JButton ReSetBtn = new JButton("Re");
+		JLabel lblNewLabel_5 = new JLabel("  잔액 :");
+		panel_15.add(lblNewLabel_5);
+		
+		balanceLabel = new JLabel(" ");
+		balanceLabel.setBounds(98, 0, 98, 27);
+		panel_8.add(balanceLabel);
+		
+		ReSetBtn = new JButton("Re");
+		ReSetBtn.setBounds(252, 0, 52, 27);
+		panel_8.add(ReSetBtn);
 		ReSetBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JoinDTO showAmount = AccoutDAO.getAccountDAO().getAccountBal(accoutSelectNumber);
@@ -432,14 +444,7 @@ public class ProjectUI {
 				
 			}
 		});
-		ReSetBtn.setFont(new Font("굴림", Font.PLAIN, 12));
-		panel_25.add(ReSetBtn);
-		
-		JLabel lblNewLabel_5 = new JLabel("  잔액 :");
-		panel_15.add(lblNewLabel_5);
-		
-		balanceLabel = new JLabel(" ");
-		panel_8.add(balanceLabel);
+		ReSetBtn.setFont(new Font("Gadugi", Font.BOLD, 12));
 
 		JPanel panel_13 = new JPanel();
 		panel_6.add(panel_13);
