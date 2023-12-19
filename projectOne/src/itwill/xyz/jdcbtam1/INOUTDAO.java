@@ -239,9 +239,9 @@ public class INOUTDAO extends ProjectDbcpFactory{
 		Connection con = getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+		int Bal = 0;
 	try {
-		String sql4 = "select ac_id,ac_num,ac_pw from account where ac_id=?";
+		String sql4 = "select ac_id,ac_num,ac_pw,balance from account where ac_id=?";
 		pstmt = con.prepareStatement(sql4);
 		pstmt.setString(1, LoginUI.id);
 		rs = pstmt.executeQuery();
@@ -252,9 +252,14 @@ public class INOUTDAO extends ProjectDbcpFactory{
 			String ACid =rs.getString("ac_id");
 			String ACnum=rs.getString("ac_num");
 			ACpw =rs.getInt("ac_pw");
+			Bal = rs.getInt("balance");
 		}
 		
 		dto2.setAc_pw(ACpw);
+		dto2.setBalance(Bal);
+		
+		
+		
 //		dto2.setAc_num(ACnum);
 //		dto2.getAc_pw() ;
 		

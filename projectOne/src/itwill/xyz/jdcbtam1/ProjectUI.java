@@ -40,6 +40,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ImageIcon;
+import java.awt.Font;
 
 
 
@@ -418,10 +419,24 @@ public class ProjectUI {
 		//잔액라벨 추가로 패넬 추가 및 레이아웃 변경
 				JPanel panel_15 = new JPanel();
 				panel_8.add(panel_15);
-				panel_15.setLayout(new BorderLayout(0, 0));
+		panel_15.setLayout(new GridLayout(0, 2, 0, 0));
+		
+		JPanel panel_25 = new JPanel();
+		panel_15.add(panel_25);
+		
+		JButton ReSetBtn = new JButton("Re");
+		ReSetBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JoinDTO showAmount = AccoutDAO.getAccountDAO().getAccountBal(accoutSelectNumber);
+				balanceLabel.setText(showAmount.getBalance()+" 원");
+				
+			}
+		});
+		ReSetBtn.setFont(new Font("굴림", Font.PLAIN, 12));
+		panel_25.add(ReSetBtn);
 		
 		JLabel lblNewLabel_5 = new JLabel("  잔액 :");
-		panel_15.add(lblNewLabel_5, BorderLayout.CENTER);
+		panel_15.add(lblNewLabel_5);
 		
 		balanceLabel = new JLabel(" ");
 		panel_8.add(balanceLabel);
@@ -816,6 +831,7 @@ public class ProjectUI {
 								pwTF.requestFocus();
 								return;
 							 }
+							 
 							 
 							 inoutdto.accountInfor(dto2);
 							 
