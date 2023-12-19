@@ -326,43 +326,6 @@ public class AccoutDAO extends ProjectDbcpFactory{
 			
 			return allAccountList;
 			
-		} 
-	
-	
-	/*
-	// ********************* 선택된 내 계좌 외 나머지 계좌를 찾는 메소드 ****************2
-		public List<JoinDTO> getDeleteSearch() {
-			Connection con = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			List<JoinDTO> delSearchList = new ArrayList<JoinDTO>();
-			JoinDTO delSearch = null;
-			
-			try {
-				con = getConnection();
-				
-				String sql = "select balance from client join account on id=ac_id where ac_num!=?";
-		
-				pstmt = con.prepareStatement(sql);
-				
-				pstmt.setString(1, findAccount);
-				
-				rs=pstmt.executeQuery();
-				
-				while (rs.next()) {
-					delSearch = new JoinDTO();
-					delSearch.setAc_num(rs.getString("ac_num"));
-					delSearchList.add(delSearch);
-				}
-				
-			} catch (SQLException e) {
-				System.out.println("[에러]getAccountBal() 메소드의 SQL 오류 = " + e.getMessage());
-			} finally {
-				close(con, pstmt, rs);
-				
-			}  return delSearchList;
 		}
-	 */
-
 	
 }
