@@ -17,7 +17,10 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.Vector;
 import java.util.regex.Pattern;
 
@@ -62,7 +65,8 @@ public class ProjectUI {
 	public static String accoutSelectNumber;
 	
 	DateCalculator dc = new DateCalculator();
-	Vector<String> accountnumber = new Vector<>();
+	Vector<String> accountnumber = new Vector<String>();
+	Set<String> st = new HashSet<String>();
 	JComboBox<String> comboBox_1 = new JComboBox<String>(accountnumber);
 	DecimalFormat decimalFormat = new DecimalFormat("###,###");
 
@@ -103,11 +107,7 @@ public class ProjectUI {
 				if(LoginUI.isLogin) {
 					lblNewLabel_1.setText(LoginUI.id);
 					
-					List<JoinDTO> INFORdialAcNum = JoinDAOImpl.getDAO().InForMationClient(LoginUI.id);
 					
-					for(JoinDTO INFORdial2 : INFORdialAcNum) {
-						accountnumber.add(INFORdial2.getAc_num());
-					}
 					
 					btnNewButton.setEnabled(false);//회원가입
 					button.setEnabled(true);//로그아웃
@@ -131,6 +131,18 @@ public class ProjectUI {
 					OutBtn.setEnabled(false);//출금
 					btnNewButton_4.setEnabled(false);//조회
 				}
+				
+				List<JoinDTO> findList = AccoutDAO.getAccountDAO().accountSearch(LoginUI.id);
+				int count=findList.size();
+				if (comboBox_1.getItemCount()==0) {
+					for(JoinDTO INFORdial2 : findList) {
+						accountnumber.add(INFORdial2.getAc_num());
+					}
+				}else if (count!=comboBox_1.getItemCount()) {
+					accountnumber.add(findList.get(findList.size()).getAc_num());
+				}
+				
+				
 			}		
 		});
 	}
