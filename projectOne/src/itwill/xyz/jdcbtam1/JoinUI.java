@@ -52,7 +52,8 @@ public class JoinUI extends JDialog {
 	 * Create the dialog.
 	 */
 	public JoinUI() {
-		setBounds(100, 100, 398, 505);
+		setTitle("회원가입");
+		setBounds(100, 100, 365, 505);
 		getContentPane().setLayout(null);
 		contentPanel.setBounds(0, 0, 434, 1);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -60,7 +61,7 @@ public class JoinUI extends JDialog {
 		contentPanel.setLayout(null);
 
 		JPanel buttonPane = new JPanel();
-		buttonPane.setBounds(29, 405, 317, 33);
+		buttonPane.setBounds(20, 406, 317, 33);
 		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		getContentPane().add(buttonPane);
 		
@@ -173,58 +174,58 @@ public class JoinUI extends JDialog {
 
 
 		JLabel lblNewLabel = new JLabel("< 회 원 가 입 >");
-		lblNewLabel.setBounds(90, 10, 131, 33);
+		lblNewLabel.setBounds(101, 11, 131, 33);
 		getContentPane().add(lblNewLabel);
 		lblNewLabel.setFont(new Font("나눔고딕코딩", Font.PLAIN, 17));
 
 		JLabel lblNewLabel_1 = new JLabel("아이디");
-		lblNewLabel_1.setBounds(49, 53, 57, 15);
+		lblNewLabel_1.setBounds(60, 54, 57, 15);
 		lblNewLabel_1.setFont(new Font("나눔고딕코딩", Font.PLAIN, 12));
 		getContentPane().add(lblNewLabel_1);
 
 			
 		idTf = new JTextField();
-		idTf.setBounds(49, 78, 213, 21);
+		idTf.setBounds(60, 79, 213, 21);
 		getContentPane().add(idTf);
 		idTf.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("비밀번호");
 		lblNewLabel_2.setFont(new Font("나눔고딕코딩", Font.PLAIN, 12));
-		lblNewLabel_2.setBounds(49, 134, 57, 15);
+		lblNewLabel_2.setBounds(60, 135, 57, 15);
 		getContentPane().add(lblNewLabel_2);
 		
 		pwTf = new JPasswordField();
 		pwTf.setColumns(10);
-		pwTf.setBounds(49, 154, 213, 21);
+		pwTf.setBounds(60, 155, 213, 21);
 		getContentPane().add(pwTf);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("이름");
 		lblNewLabel_1_1.setFont(new Font("나눔고딕코딩", Font.PLAIN, 12));
-		lblNewLabel_1_1.setBounds(49, 202, 57, 15);
+		lblNewLabel_1_1.setBounds(60, 203, 57, 15);
 		getContentPane().add(lblNewLabel_1_1);
 		
 		nameTf = new JTextField();
 		nameTf.setColumns(10);
-		nameTf.setBounds(49, 222, 213, 21);
+		nameTf.setBounds(60, 223, 213, 21);
 		getContentPane().add(nameTf);
 		
 		JLabel ACCOUNT_NUM = new JLabel("계좌번호");
 		ACCOUNT_NUM.setFont(new Font("나눔고딕코딩", Font.PLAIN, 12));
-		ACCOUNT_NUM.setBounds(49, 270, 57, 15);
+		ACCOUNT_NUM.setBounds(60, 271, 57, 15);
 		getContentPane().add(ACCOUNT_NUM);
 		
 		JLabel lblNewLabel_3 = new JLabel(ProjectUI.checkAccNumber);
 		lblNewLabel_3.setFont(new Font("나눔고딕코딩", Font.PLAIN, 12));
-		lblNewLabel_3.setBounds(49, 291, 213, 21);
+		lblNewLabel_3.setBounds(60, 292, 213, 21);
 		getContentPane().add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("계좌 비밀번호");
 		lblNewLabel_4.setFont(new Font("나눔고딕코딩", Font.PLAIN, 12));
-		lblNewLabel_4.setBounds(49, 335, 83, 15);
+		lblNewLabel_4.setBounds(60, 336, 83, 15);
 		getContentPane().add(lblNewLabel_4);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(49, 360, 116, 21);
+		passwordField.setBounds(60, 361, 116, 21);
 		getContentPane().add(passwordField);
 		passwordField.setColumns(10);
 		

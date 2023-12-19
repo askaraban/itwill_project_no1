@@ -152,6 +152,7 @@ public class ProjectUI {
 	 */
 	private void initialize() throws IOException {
 		frame = new JFrame();
+		frame.setTitle("1조 프로젝트");
 		frame.setBounds(800, 200, 800, 500);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 

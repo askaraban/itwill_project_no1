@@ -47,6 +47,7 @@ public class InForDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public InForDialog() {
+		setTitle("내 정보");
 		//joinDAOlmple 메소드 사용해서 DTO에 로그인 정보저장
 		JoinDTO INFORdial = JoinDAOImpl.getDAO().selectClientByNo(LoginUI.id);
 		
