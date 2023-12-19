@@ -108,8 +108,6 @@ public class ProjectUI {
 				if(LoginUI.isLogin) {
 					lblNewLabel_1.setText(LoginUI.id);
 					
-					
-					
 					btnNewButton.setEnabled(false);//회원가입
 					button.setEnabled(true);//로그아웃
 					btnNewButton_8.setEnabled(true);//계좌이체
@@ -135,17 +133,14 @@ public class ProjectUI {
 					ReSetBtn.setEnabled(false);//Re버튼
 				}
 				
+				comboBox_1.removeAllItems();
+				
 				List<JoinDTO> findList = AccoutDAO.getAccountDAO().accountSearch(LoginUI.id);
-				int count=findList.size();
-				if (comboBox_1.getItemCount()==0) {
-					for(JoinDTO INFORdial2 : findList) {
-						accountnumber.add(INFORdial2.getAc_num());
-					}
-				}else if (count!=comboBox_1.getItemCount()) {
-					accountnumber.add(findList.get(findList.size()).getAc_num());
+
+				for(JoinDTO INFORdial2 : findList) {
+						comboBox_1.addItem(INFORdial2.getAc_num());
 				}
-				
-				
+
 			}		
 		});
 	}
@@ -402,14 +397,17 @@ public class ProjectUI {
 		JPanel panel_23 = new JPanel();
 		panel_6.add(panel_23);
 		panel_23.setLayout(new BorderLayout(0, 0));
-				comboBox_1.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+				
+		comboBox_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
 						accoutSelectNumber=(String)comboBox_1.getSelectedItem();
 						
 						JoinDTO showAmount = AccoutDAO.getAccountDAO().getAccountBal(accoutSelectNumber);
+						if(showAmount!=null) {
 						balanceLabel.setText(showAmount.getBalance()+" 원");
-					}
-				});
+						}
+				}
+		});
 		
 				
 				panel_23.add(comboBox_1);
