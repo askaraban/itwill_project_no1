@@ -491,9 +491,8 @@ public class ProjectUI {
 				
 				
 				
-				if (comboSearchList[0].equals("전체")) {
+				if (event.equals("전체")) {
 					try {
-
 						result();
 
 					} catch (Exception e1) {
@@ -502,9 +501,8 @@ public class ProjectUI {
 								JOptionPane.ERROR_MESSAGE);
 
 					}
-				} else if (comboSearchList[1].equals("입금")) {
+				} else if (event.equals("입금")) {
 					try {
-
 						depositResult();
 
 					} catch (Exception e1) {
@@ -513,9 +511,8 @@ public class ProjectUI {
 								JOptionPane.ERROR_MESSAGE);
 
 					}
-				} else if (comboSearchList[2].equals("출금")) {
+				} else if (event.equals("출금")) {
 					try {
-
 						withResult();
 
 					} catch (Exception e1) {
@@ -545,7 +542,7 @@ public class ProjectUI {
 
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				
 				event = (String) comboBox.getSelectedItem();
 
 			}

@@ -33,7 +33,7 @@ public class ResultDAO extends ProjectDbcpFactory {
 		try {
 			con = getConnection();
 
-			String sql = "select iocal,cid,withdraw,deposit,memo, hbalance,iotype from iocash join account on cid=ac_id where ac_num=? and iocash.iocal between ? and ?";
+			String sql = "select iocal,cid,withdraw,deposit,memo, hbalance,iotype from iocash join account on cid=ac_num where ac_num=? and iocash.iocal between ? and ?";
 
 			pstmt = con.prepareStatement(sql);
 
@@ -76,12 +76,13 @@ public class ResultDAO extends ProjectDbcpFactory {
 
 		try {
 			con = getConnection();
-			String sql = "select iocal,cid,withdraw,deposit,memo, hbalance,iotype from iocash join account on cid=ac_id"
+			String sql = "select iocal,cid,withdraw,deposit,memo, hbalance,iotype from iocash join account on cid=ac_num"
 					+ " where ac_num=? and iocal<=? order by iocal desc";
 			
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, ProjectUI.accoutSelectNumber);
+			System.out.println(ProjectUI.accoutSelectNumber);
 			pstmt.setString(2, endDate);
 			rs = pstmt.executeQuery();
 
