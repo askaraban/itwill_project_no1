@@ -52,7 +52,6 @@ public class ProjectUI {
 	private JTextField 이전날짜;
 	private String firstDate = null;
 	private String endDate = null;
-	private String event = null;
 	public String id;
 	private InputMoneyDialog inin;
 	private OutputMoneyDialog OuOu;
@@ -491,7 +490,7 @@ public class ProjectUI {
 				
 				
 				
-				if (event.equals("전체")) {
+				if (comboBox.getSelectedItem().equals("전체")) {
 					try {
 						result();
 
@@ -501,7 +500,7 @@ public class ProjectUI {
 								JOptionPane.ERROR_MESSAGE);
 
 					}
-				} else if (event.equals("입금")) {
+				} else if (comboBox.getSelectedItem().equals("입금")) {
 					try {
 						depositResult();
 
@@ -511,7 +510,7 @@ public class ProjectUI {
 								JOptionPane.ERROR_MESSAGE);
 
 					}
-				} else if (event.equals("출금")) {
+				} else if (comboBox.getSelectedItem().equals("출금")) {
 					try {
 						withResult();
 
@@ -540,13 +539,6 @@ public class ProjectUI {
 			}
 		});
 
-		comboBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				event = (String) comboBox.getSelectedItem();
-
-			}
-		});
 //		******************************* 계좌생성 UI **************************************
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
